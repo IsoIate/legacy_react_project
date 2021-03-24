@@ -1,0 +1,51 @@
+.App {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.jumbo {
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.img {
+  background-size: contain;
+  width: 10%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.adminButton {
+  background-image: url(../img/Admin.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+
+}
+
+.mainImg {
+  background-image: url(../img/MainImg.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  opacity: 0.5;
+  padding: 0px;
+}
+
+.orderBtn {
+  background-color : deepskyblue;
+  font-weight: bold;
+  border: none;
+  width: 60%;
+  height: 140%;
+}
+
+.eazyOrderBtn {
+  font-weight: bold;
+  border: none;
+  width: 60%;
+  height: 140%;
+}

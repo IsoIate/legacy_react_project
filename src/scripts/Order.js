@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 
 import { Link, useHistory, useParams } from 'react-router-dom'
-import {Button, Nav} from 'react-bootstrap'
+import {Button, Modal, Nav} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import Data from './data.js'
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
+import MenuSelectModal from "./MenuSelectModal";
 
 import '../css/Order.css';
 
@@ -108,7 +109,7 @@ function Order(props) {
                     </div>
                     <div className="payBtn">
                         <Button onClick = { () => {
-                            history.push("/eazyorder");
+                            history.push("/");
                         }}>뒤로가기</Button>
                         <Button>현금결제</Button>
                         <Button>카드결제</Button>
@@ -124,10 +125,10 @@ function Menu(props) {
         props.menu.map(function (num, index) {
             return (
                 <Nav justify variant="pills" className="menuSelect" defaultActiveKey="/home">
-                    <Nav.Link style={{paddingBottom: "0px"}}>
-                        <p className = "menu" onClick={ () => {
-                            props.history.push("./" + index)
-                        }}> { props.menu[index] } </p>
+                    <Nav.Link style={{paddingBottom: "0px"}} onClick={ () => {
+                        props.history.push("./" + index)
+                    }}>
+                        <p className = "menu" > { props.menu[index] } </p>
                     </Nav.Link>
                 </Nav>
             )
@@ -137,21 +138,31 @@ function Menu(props) {
 
 function Coffee(props) {
 
+    const [show, setShow] = useState(false);
+    const [count, setCount] = useState(1);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return (
         props.coffee.map(function (num, index) {
             return (
-                <div className="col-sm-3 menuBox " onClick={() => {
-                    props.setModal(true);
-                }}>
-                    <div>
-                        <img className = "coffeeImg" src = { coffee1 } />
-                    </div>
-                    <div>
-                        <p> { props.coffee[props.id].title } </p>
-                        <p> { props.coffee[props.id].price + " 원"} </p>
-                    </div>
+                <>
+                    <div className="col-sm-3 menuBox " onClick={ handleShow }>
 
-                </div>
+                        <div >
+                            <img className = "coffeeImg" src = { coffee1 } />
+                        </div>
+                        <div>
+                            <p> { props.coffee[props.id].title } </p>
+                            <p> { props.coffee[props.id].price + " 원"} </p>
+                        </div>
+
+                    </div>
+                    <MenuSelectModal show = { show } setShow = { setShow } handleClose = { handleClose }
+                                     handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
+                                     id = { props.id } coffeeImg = { coffee1 }/>
+                </>
             )
         })
     )

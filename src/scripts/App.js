@@ -42,7 +42,7 @@ function MainPage(props) {
 
             <Card className="text-center" style={{height: "150vw", width: "100vw"}}>
                 <Card.Body className= " mainImg ">
-                    <Button variant="primary" onClick={props.handleShow}>
+                    {/* <Button variant="primary" onClick={props.handleShow}>
                         Launch demo modal
                     </Button>
 
@@ -59,7 +59,7 @@ function MainPage(props) {
                                 Save Changes
                             </Button>
                         </Modal.Footer>
-                    </Modal>
+                    </Modal>*/}
                 </Card.Body>
                 <Card.Footer className="text-muted">
                     <div className="row" style={{ marginBottom: "20px" }}>

@@ -8,6 +8,8 @@ import Drink from '../img/drink.png'
 import hotDrink from '../img/hotDrink.png'
 import syrup from '../img/syrup.png'
 import noSyrup from '../img/noSyrup.png'
+import inStore from '../img/inStore.png'
+import takeAway from '../img/takeAway.png'
 
 function MenuSelectModal(props) {
 
@@ -53,9 +55,9 @@ function MenuSelectModal(props) {
                             </div>
                         </div>
                         <div className="totalPriceDiv">
-                            <h4> 합계 : </h4>
-                            <h3 style={{ color : "#FEC800", fontWeight : "bold" }}> { (props.coffee[props.id].price) * props.count } </h3>
-                            <h4> 원 </h4>
+                            <h3> 총 : </h3>
+                            <h2> { (props.coffee[props.id].price) * props.count } </h2>
+                            <h3> 원 </h3>
                         </div>
 
 
@@ -65,57 +67,76 @@ function MenuSelectModal(props) {
                     <div className="titleDiv">
                         <h4> 옵션을 선택해 주세요 </h4>
                     </div>
-                    <div>
-                        <div className="optionSelect">
+                    <div className = "optionDiv">
+                        <div className = "iceOption">
                             <div className = "optionName">
                                 <p> 얼음 </p>
                             </div>
-                            <div className = { iceSelect ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                iceChange(true);
-                                console.log(iceSelect);
-                            }}>
-                                <img className = "selectBtnImg" src = { iceDrink }/>
-                                <p> 얼음많이 </p>
-                            </div>
-                            <div className = { iceSelect ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                iceChange(true);
-                                console.log(iceSelect);
-                            }}>
-                                <img className = "selectBtnImg" src = { Drink }/>
-                                <p> 얼음적게 </p>
-                            </div>
-                            <div className = { iceSelect ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                iceChange(true);
-                                console.log(iceSelect);
-                            }}>
-                                <img className = "selectBtnImg" src = { hotDrink }/>
-                                <p> 따뜻하게 </p>
+                            <div className="optionSelect">
+                                <div className = { "optionSelectBtn" } onClick={() => {
+                                    iceChange(true);
+                                    console.log(iceSelect);
+                                }}>
+                                    <img className = "selectBtnImg" src = { iceDrink }/>
+                                    <p> 얼음 많이 </p>
+                                </div>
+                                <div className = { "optionSelectBtn" } onClick={() => {
+                                    iceChange(true);
+                                    console.log(iceSelect);
+                                }}>
+                                    <img className = "selectBtnImg" src = { Drink }/>
+                                    <p> 얼음 적게 </p>
+                                </div>
+                                <div className = { "optionSelectBtn" } onClick={() => {
+                                    iceChange(true);
+                                    console.log(iceSelect);
+                                }}>
+                                    <img className = "selectBtnImg" src = { hotDrink }/>
+                                    <p> 따뜻하게 </p>
+                                </div>
                             </div>
                         </div>
-                        <div className="optionSelect">
+                        <div className = "syrupOption">
                             <div className = "optionName">
                                 <p> 시럽 </p>
                             </div>
-                            <div className = "optionSelectBtn">
-                                <img className = "selectBtnImg" src = { noSyrup }/>
-                                <p> 시럽 없음 </p>
-                            </div>
-                            <div className = "optionSelectBtn">
-                                <img className = "selectBtnImg" src = { syrup }/>
-                                <p> 시럽 추가 </p>
-                            </div>
+                            <div className="optionSelect">
 
+                                <div className = "optionSelectBtn">
+                                    <img className = "selectBtnImg" src = { noSyrup }/>
+                                    <p> 시럽 없음 </p>
+                                </div>
+                                <div className = "optionSelectBtn">
+                                    <img className = "selectBtnImg" src = { syrup }/>
+                                    <p> 시럽 추가 </p>
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
                     <div className="titleDiv">
                         <h4> 포장 하시겠습니까? </h4>
                     </div>
-                    <div className="packageSelect">
-                        <p> 포장하기 </p>
-                        <p> 매장취식 </p>
+                    <div className = "optionDiv">
+                        <div className = "packageOption">
+                            <div className = "optionName">
+                                <p> 포장 </p>
+                            </div>
+                            <div className="optionSelect">
+
+                                <div className = "optionSelectBtn">
+                                    <img className = "selectBtnImg" src = { takeAway }/>
+                                    <p> 포장 주문 </p>
+                                </div>
+                                <div className = "optionSelectBtn">
+                                    <img className = "selectBtnImg" src = { inStore }/>
+                                    <p> 매장 취식 </p>
+                                </div>
+
+                            </div>
+                        </div>
                     </div>
-                    <optionSelect iceSelect = { iceSelect } syrupSelect = { syrupSelect } />
+
                 </Modal.Body>
 
 

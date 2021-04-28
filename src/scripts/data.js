@@ -44,15 +44,8 @@ export default
 
     {
         id : 6,
-        title : "카라멜마끼아또",
-        content : "카라멜마끼아또",
-        price : 3000
-    },
-
-    {
-        id : 7,
-        title : "카라멜마끼아또",
-        content : "카라멜마끼아또",
-        price : 3000
+        title : "티라미수라떼",
+        content : "티라미수라떼",
+        price : 4000
     }
 ]

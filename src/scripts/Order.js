@@ -18,6 +18,7 @@ import coffee2 from '../img/vanillalatte.png';
 import coffee3 from '../img/cafemoca.png';
 import coffee4 from '../img/hazelnut.png';
 import coffee5 from '../img/caramelmacchiato.png';
+import coffee6 from '../img/tiramisulatte.png'
 
 import background from '../img/Background.png'
 
@@ -28,6 +29,7 @@ function Order(props) {
     let [coffee, coffeeChange] = useState(Data);
 
     let menu = ['커피', '버블티', '프라페', '스무디', '에이드', '주스', '차', '디저트']
+    let coffeeImg = [coffee0, coffee1, coffee2, coffee3, coffee4, coffee5, coffee6];
     let [menuState, menuStateChange] = useState(false);
     let [modal, setModal] = useState(false);
 
@@ -64,7 +66,7 @@ function Order(props) {
                 {/* 음료 선택 버튼 */}
                 <div className="container-fluid ">
                     <div className="row test1">
-                        <Coffee coffee = { coffee } id = { id } setModal = { setModal }/>
+                        <Coffee coffee = { coffee } id = { id } setModal = { setModal } coffeeImg = { coffeeImg }/>
                     </div>
                 </div>
 
@@ -151,17 +153,20 @@ function Coffee(props) {
                     <div className="col-sm-3 menuBox " onClick={ handleShow }>
 
                         <div >
-                            <img className = "coffeeImg" src = { coffee1 } />
+                            <img className = "coffeeImg" src = { props.coffeeImg[index] } />
                         </div>
                         <div>
-                            <p> { props.coffee[props.id].title } </p>
-                            <p> { props.coffee[props.id].price + " 원"} </p>
+                            <p> { props.coffee[index].title } </p>
+                            <p> { props.coffee[index].price + " 원"} </p>
                         </div>
 
                     </div>
-                    <MenuSelectModal show = { show } setShow = { setShow } handleClose = { handleClose }
-                                     handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
-                                     id = { props.id } coffeeImg = { coffee1 }/>
+
+                    { console.log(index) }
+                    { index === 6 ? <MenuSelectModal show = { show } setShow = { setShow } handleClose = { handleClose }
+                                                     handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
+                                                     id = { props.id } coffeeImg = { props.coffeeImg } /> : null}
+
                 </>
             )
         })

@@ -40,6 +40,11 @@
     flex-grow: 1;
 }
 
+.menuTitleDiv {
+    margin-top: 30px;
+    margin-bottom: 10px;
+}
+
 .titleDiv {
     background-color: #e9ecef;
     padding: 5px;
@@ -52,6 +57,36 @@
 .menuCountDiv {
     display: flex;
     flex-direction: row;
+    margin-top : 50px;
+}
+
+.menuPriceDiv {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 2;
+}
+
+.menuPriceDiv h3 {
+    margin : 0;
+}
+
+.totalPriceDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: baseline;
+
+}
+
+.totalPriceDiv h2 {
+    color : #FEC800;
+    font-weight : bold;
+    margin : 20px 0px 0px 10px;
+}
+
+.totalPriceDiv h3 {
+    margin : 0px;
 }
 
 .countUpBtn {
@@ -139,10 +174,32 @@
 
 }
 
+.optionDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.iceOption {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.syrupOption {
+    display: flex;
+    flex-direction: row;
+}
+
+.packageOption {
+    display: flex;
+    flex-direction: row;
+}
+
 .optionSelect {
     display: flex;
     flex-direction: row;
-    margin : 10px;
+
+
     font-weight: bold;
     font-size: 18px;
 }
@@ -152,11 +209,9 @@
     justify-content: center;
     align-items: center;
 
-    margin-left: 20px;
+    width : 100px;
+
     font-size: 24px;
-
-    border : 1px solid black;
-
     color : white;
     background-color: #FEC800;
 }
@@ -166,6 +221,7 @@
     flex-direction: column;
     align-items: center;
     margin : 20px 30px;
+    cursor: pointer;
 }
 
 .optionSelectBtn p {

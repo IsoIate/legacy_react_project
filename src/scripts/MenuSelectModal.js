@@ -37,7 +37,7 @@ function MenuSelectModal(props) {
                     </div>
                     <div className="menuInfoDiv">
                         <div className="menuTitleDiv">
-                            <h2> { props.coffee[props.id].title } </h2>
+                            <h2> { props.coffee[0].title } </h2>
                         </div>
                         <div className="menuCountDiv">
                             <div className = { props.count === 1 ? "countBtnDisable" : "countDownBtn" } onClick={ () => {
@@ -58,12 +58,12 @@ function MenuSelectModal(props) {
                                 <div className="plus"></div>
                             </div>
                             <div className = "menuPriceDiv">
-                                <h3> { props.coffee[props.id].price } 원 </h3>
+                                <h3> { props.coffee[0].price } 원 </h3>
                             </div>
                         </div>
                         <div className="totalPriceDiv">
                             <h3> 총 : </h3>
-                            <h2> { (props.coffee[props.id].price) * props.count } </h2>
+                            <h2> { (props.coffee[0].price) * props.count } </h2>
                             <h3> 원 </h3>
                         </div>
 

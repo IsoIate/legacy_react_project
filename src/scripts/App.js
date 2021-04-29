@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button, Card, Modal } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 
-import Data from './data.js'
+import Data from '../data/coffeeData.js'
 import Title from './Title';
 import Order from './Order.js';
 import EazyOrder from './EazyOrder.js';

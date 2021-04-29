@@ -5,12 +5,18 @@ import {Button, Modal, Nav} from 'react-bootstrap'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
 import coffeeData from '../data/coffeeData.js'
+import bubbleTeaData from "../data/bubbleTeaData";
+import adeData from "../data/adeData";
+import frappeData from "../data/frappeData";
+import juiceData from "../data/juiceData";
+import dessertData from "../data/dessertData";
+import smoothieData from "../data/smoothieData";
+import teaData from "../data/teaData";
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
 import MenuSelectModal from "./MenuSelectModal";
 
 import '../css/Order.css';
-import dataController from "../data/dataController.js";
 
 import coffee0 from '../img/coffee/americano.png';
 import coffee1 from '../img/coffee/cafelatte.png';
@@ -70,12 +76,15 @@ import dessert6 from "../img/dessert/custardCreamBread.png";
 import background from '../img/Background.png'
 
 
-function Order(props) {
-    let history = useHistory();
-    let { id } = useParams();       /* 페이지 뒤에 붙는 숫자 */
-    let [coffee, coffeeChange] = useState(coffeeData);
-
-    console.log("id : " + id);
+function Order() {
+    let [coffee] = useState(coffeeData);
+    let [bubbleTea] = useState(bubbleTeaData);
+    let [frappe] = useState(frappeData);
+    let [smoothie] = useState(smoothieData);
+    let [ade] = useState(adeData);
+    let [juice] = useState(juiceData);
+    let [tea] = useState(teaData);
+    let [dessert] = useState(dessertData);
 
     let menu = ['커피', '버블티', '프라페', '스무디', '에이드', '주스', '차', '디저트'];
     let coffeeImg = [coffee0, coffee1, coffee2, coffee3, coffee4, coffee5, coffee6];
@@ -84,14 +93,16 @@ function Order(props) {
     let smoothieImg = [smoothie0, smoothie1, smoothie2, smoothie3, smoothie4, smoothie5, smoothie6];
     let adeImg = [ade0, ade1, ade2, ade3, ade4, ade5];
     let juiceImg = [juice0, juice1, juice2];
-    let teaImg = [tea0, tea1, tea2, tea3, tea4, tea5, tea6, tea7];
+    let teaImg = [tea0, tea1, tea2, tea3, tea4, tea5, tea6/*, 나중에 수정 tea7*/];
     let dessertImg = [dessert0, dessert1, dessert2, dessert3, dessert4, dessert5, dessert6];
 
-    let menuItem = [coffee ];
-    /*let coffeeNo = coffee.map(num, index)*/
+    let menuItem = [ coffee, bubbleTea, frappe, smoothie, ade, juice, tea, dessert ];
+    let menuImg = [coffeeImg, bubbleTeaImg, frappeImg, smoothieImg, adeImg, juiceImg, teaImg, dessertImg ];
 
-    let [menuState, menuStateChange] = useState(false);
-    let [modal, setModal] = useState(false);
+    let history = useHistory();
+    let { id } = useParams();       /* 페이지 뒤에 붙는 숫자 */
+
+    let [menuState] = useState(false);
 
 
 
@@ -112,7 +123,7 @@ function Order(props) {
                             </Nav.Link>
                         </Nav>
 
-                        <Menu menu = { menu } history = { history }/>     {/* 메뉴 버튼 */}
+                        <Menu menu = { menu } history = { history } />     {/* 메뉴 버튼 */}
 
                         <Nav justify variant="pills"  defaultActiveKey="/home">
                             <Nav.Link style={{paddingBottom: "0px"}}>
@@ -126,7 +137,14 @@ function Order(props) {
                 {/* 음료 선택 버튼 */}
                 <div className="container-fluid ">
                     <div className="row test1">
-                        <Coffee coffee = { coffee } id = { id } menuItem = { menuItem } setModal = { setModal } coffeeImg = { coffeeImg }/>
+                        <MenuDisplay menu = { menu }
+                                coffee = { coffee } bubbleTea = { bubbleTea } frappe = { frappe } smoothie = { smoothie }
+                                ade = { ade } juice = { juice } tea = { tea } dessert = { dessert } coffeeImg = { coffeeImg }
+                                bubbleTeaImg = { bubbleTeaImg } frappeImg = { frappeImg } smoothieImg = { smoothieImg }
+                                adeImg = { adeImg } juiceImg = { juiceImg } teaImg = { teaImg } dessertImg = { dessertImg }
+                                id = { id } menuItem = { menuItem } menuImg = { menuImg } history = { history }
+                        />
+
                     </div>
                 </div>
 
@@ -198,7 +216,7 @@ function Menu(props) {
     )
 }
 
-function Coffee(props) {
+function MenuDisplay(props) {
 
     const [show, setShow] = useState(false);
     const [count, setCount] = useState(1);
@@ -207,25 +225,29 @@ function Coffee(props) {
     const handleShow = () => setShow(true);
 
     return (
-        props.menuItem[0].map(function (num, index) {
+        props.menuItem[props.id].map(function (num, index) {
             return (
                 <>
                     <div className="col-sm-3 menuBox " onClick={ handleShow }>
 
                         <div >
-                            <img className = "coffeeImg" src = { props.coffeeImg[index] } />
+                            {/*{ console.log("menuItem : " + props.menuItem[0][0].title) }Z*/}
+                            <img className = "coffeeImg" src = { props.menuImg[props.id][index] } />
                         </div>
                         <div>
-                            <p> { props.coffee[index].title } </p>
-                            <p> { props.coffee[index].price + " 원"} </p>
+
+                            <p> { props.menuItem[props.id][index].title } </p>
+                            <p> { props.menuItem[props.id][index].price + " 원"} </p>
                         </div>
 
                     </div>
 
-                    {/*{ console.log(index) }*/}
+
                     { index === 6 ? <MenuSelectModal show = { show } setShow = { setShow } handleClose = { handleClose }
                                                      handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
-                                                     id = { props.id } coffeeImg = { props.coffeeImg } /> : null}
+                                                     id = { props.id } coffeeImg = { props.coffeeImg } menuImg = { props.menuImg } menuItem = { props.menuItem }
+
+                    /> : null}
 
                 </>
             )

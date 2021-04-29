@@ -6,8 +6,10 @@ import { Link, Route, Switch } from "react-router-dom";
 import Data from '../data/coffeeData.js'
 import Title from './Title';
 import Order from './Order.js';
-import EazyOrder from './EazyOrder.js';
+import SimpleOrder from './SimpleOrder';
+import MainPage from "./MainPage";
 import '../css/App.css';
+import FrontPage from "./FrontPage";
 /*import imgA from './img/Admin.png';*/
 
 function App() {
@@ -21,11 +23,22 @@ function App() {
 
             <Switch>
                 <Route exact path = { "/order/:id" }>
-                    <Order Data = { Data } />
+                    <Order />
                 </Route>
-                <Route exact path = { "/eazyOrder:/id" }>
-                    <EazyOrder/>
+                <Route exact path = { "/SimpleOrder:/id" }>
+                    <SimpleOrder />
                 </Route>
+                {/*<Route exact path = { "/MainPage:/id" }>
+                    <Title/>
+                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
+                </Route>
+                <Route exact path = {"/"}>
+                    <FrontPage />
+                </Route>
+                <Route exact path = { "/MainPage:/id" }>
+                    <Title/>
+                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
+                </Route>*/}
                 <Route exact path = {"/"}>
                     <Title/>
                     <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
@@ -34,50 +47,6 @@ function App() {
 
         </div>
     );
-}
-
-function MainPage(props) {
-    return (
-        <>
-
-            <Card className="text-center" style={{height: "150vw", width: "100vw"}}>
-                <Card.Body className= " mainImg ">
-                    {/* <Button variant="primary" onClick={props.handleShow}>
-                        Launch demo modal
-                    </Button>
-
-                    <Modal show={ props. show } onHide={props.handleClose}>
-                        <Modal.Header closeButton>
-                            <Modal.Title>Modal heading</Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-                        <Modal.Footer>
-                            <Button variant="secondary" onClick={props.handleClose}>
-                                Close
-                            </Button>
-                            <Button variant="primary" onClick={props.handleClose}>
-                                Save Changes
-                            </Button>
-                        </Modal.Footer>
-                    </Modal>*/}
-                </Card.Body>
-                <Card.Footer className="text-muted">
-                    <div className="row" style={{ marginBottom: "20px" }}>
-                        <div className="col-md-6">
-                            <Link as={ Link } to={ "/order/0" }>
-                                <Button className = "orderBtn" size="lg"> 주문하기 </Button>
-                            </Link>
-                        </div>
-                        <div className="col-md-6">
-                            <Link as={ Link } to={ "/eazyorder/0" }>
-                                <Button className = "eazyOrderBtn" size="lg"> 더 쉽게 주문하기 </Button>
-                            </Link>
-                        </div>
-                    </div>
-                </Card.Footer>
-            </Card>
-        </>
-    )
 }
 
 /*function Modal(props) {

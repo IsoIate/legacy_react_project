@@ -22,7 +22,7 @@ function MenuSelectModal(props) {
     let [packageSelect, packageChange] = useState(1);
 
     useEffect(() => {
-        console.log("open modal")
+
     })
 
     return (
@@ -33,7 +33,8 @@ function MenuSelectModal(props) {
                 </Jumbotron>
                 <Modal.Header className = "header" >
                     <div className="menuImageDiv">
-                        <img className="menuImage" src={ props.coffeeImg[props.id] }/>
+                        { console.log("log : " + props.menuImg[props.id][props.id]) }
+                        <img className="menuImage" src={ props.menuImg[props.id][2] }/>
                     </div>
                     <div className="menuInfoDiv">
                         <div className="menuTitleDiv">

@@ -47,12 +47,12 @@ export default
         title : "카모마일",
         content : "카모마일",
         price : 3000
-    },
-
+    }/*,
+        나중에 수정
     {
         id : 7,
         title : "얼그레이",
         content : "얼그레이",
         price : 3000
-    }
+    }*/
 ]

@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button, Card, Modal } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 
-import Data from './data.js'
+import Data from '../data/coffeeData.js'
 import Title from './Title';
 import Order from './Order.js';
 import EazyOrder from './EazyOrder.js';
@@ -16,24 +16,24 @@ function App() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-  return (
-    <div className="App">
+    return (
+        <div className="App">
 
-      <Switch>
-          <Route exact path = { "/order/:id" }>
-              <Order Data = { Data } />
-          </Route>
-          <Route exact path = { "/eazyOrder:/id" }>
-              <EazyOrder/>
-          </Route>
-          <Route exact path = {"/"}>
-              <Title/>
-              <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
-          </Route>
-      </Switch>
+            <Switch>
+                <Route exact path = { "/order/:id" }>
+                    <Order Data = { Data } />
+                </Route>
+                <Route exact path = { "/eazyOrder:/id" }>
+                    <EazyOrder/>
+                </Route>
+                <Route exact path = {"/"}>
+                    <Title/>
+                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
+                </Route>
+            </Switch>
 
-    </div>
-  );
+        </div>
+    );
 }
 
 function MainPage(props) {

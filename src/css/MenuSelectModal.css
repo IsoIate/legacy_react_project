@@ -17,10 +17,14 @@
     font-family: "나눔스퀘어", serif;
 }
 
+.Jumbo h1 {
+    font-weight: bold;
+}
+
 .header {
     display: flex;
     flex-direction: row;
-
+    border : none;
 }
 
 .menuImageDiv {
@@ -48,10 +52,14 @@
 
 .titleDiv {
     background-color: #e9ecef;
-    padding: 5px;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+
 }
 
 .titleDiv h4 {
+    font-weight: bold;
     margin : 0px;
 }
 
@@ -246,17 +254,24 @@
 
     width : 100px;
 
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: bold;
     color : white;
     background-color: #FEC800;
+}
+
+.optionName p {
+    margin : 0px;
 }
 
 .optionSelectBtn {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     width : 150px;
+    height : 150px;
     padding : 10px 30px 0px 30px;
     cursor: pointer;
 }
@@ -269,8 +284,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     width : 150px;
+    height : 150px;
     padding : 10px 30px 0px 30px;
     cursor: pointer;
     background-color: moccasin;
@@ -292,4 +309,36 @@
 .modalFooter {
     display: flex;
     justify-content: space-evenly;
+    text-align: center;
+}
+
+.backBtn {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+
+    border : none;
+}
+
+.backBtn p {
+    margin : 0px;
+    font-size: 24px;
+}
+
+.orderAddBtn {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+
+    background-color: #FEC800;
+    border : none;
+}
+
+.orderAddBtn p {
+    margin : 0px;
+    font-size: 24px;
+}
+
+.orderAddBtn:hover {
+    background-color: #efbf0b;
 }

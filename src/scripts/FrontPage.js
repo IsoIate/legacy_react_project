@@ -1,20 +1,37 @@
 import React from 'react';
-import {Link, Route} from "react-router-dom";
+import {Link, Route, useHistory} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import MainPage from "./MainPage";
+import qrcode from "../img/qrcode.png"
+
+import Title from './Title.js'
+import '../css/FrontPage.css'
+import guide from '../img/guide.png'
 
 function FrontPage() {
+    let history = useHistory();
+
     return (
         <>
-            <div>
-                <h1> FrontPage </h1>
-                <Route exact path = { "/MainPage:/id" }>
-                    <MainPage />
-                </Route>
+            <Title/>
+            <div className = "header">
 
-                <Link as={ Link } to={ "/MainPage/:id" }>
-                    <Button className = "orderBtn" size="lg"> 메인으로 </Button>
-                </Link>
+            </div>
+            <div className = "body">
+                <div>
+                    <img className = "qrcodeImg" src = { qrcode } />
+                    <img className = "guideImg" src = { guide } />
+                </div>
+            </div>
+            <div className = "footer">
+                <div className = "btnDiv">
+                    <Button className = "writeBtn" size="lg" onClick={() => {
+                        history.push("/MainPage/:id")
+                    }}> QR코드로 출입명부 작성하기 </Button>
+
+                    <Button className = "writeBtn" size="lg" onClick={() => {
+                        history.push("/MainPage/:id")
+                    }}> 직접 출입명부 작성하기 </Button>
+                </div>
             </div>
         </>
     )

@@ -26,26 +26,4 @@
 
 }
 
-.mainImg {
-  background-image: url(../img/MainImg.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  opacity: 0.5;
-  padding: 0px;
-}
 
-.orderBtn {
-  background-color : deepskyblue;
-  font-weight: bold;
-  border: none;
-  width: 60%;
-  height: 140%;
-}
-
-.simpleOrderBtn {
-  font-weight: bold;
-  border: none;
-  width: 60%;
-  height: 140%;
-}

@@ -16,8 +16,8 @@ export default
 
     {
         id: 2,
-        title : "초콜릿무스 케익 (1조각)",
-        content : "초콜릿무스 케익",
+        title : "초코크림 케익 (1조각)",
+        content : "초코크림 케익",
         price : 5000
     },
 

@@ -195,7 +195,11 @@ function MenuSelectModal(props) {
                     <Button className = "backBtn" variant="secondary" onClick={ props.handleClose }>
                         <p> 돌아가기 </p>
                     </Button>
-                    <Button  className = "orderAddBtn" onClick={ props.handleClose }>
+                    <Button  className = "orderAddBtn" onClick={ () => {
+                        props.handleClose();
+                        props.totalCountChange(props.count);
+                        props.totalPriceChange(( props.menuItem[props.id][props.clickNum].price ) * props.count);
+                    } }>
                         <p> 주문추가 </p>
                     </Button>
                 </Modal.Footer>

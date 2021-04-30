@@ -103,17 +103,22 @@ function Order() {
     let { id } = useParams();       /* 페이지 뒤에 붙는 숫자 */
 
     let [menuState] = useState(false);
-
-
+    let [orderCount, orderCountChange] = useState(0);
+    let [orderPrice, orderPriceChange] = useState(0);
+    let tableIndex = [1,2,3,4,5];
 
     return (
         <div className = "order">
             <div className="body">
                 <div className="menuContainer">
-                    <div className="homeBtn">
-                        <p className="cursorAble" onClick={() => {
-                            history.push("/")
-                        }}><i className="fas fa-home fa-2x"></i>  처음으로</p>
+                    <div className = "storeBanner">
+                        <div className="homeBtn">
+                            <p className="cursorAble" onClick={() => {
+                                history.push("/")
+                            }}><i className="fas fa-home fa-2x"></i>  처음으로</p>
+                        </div>
+
+                        <h1> ABC Cafe </h1>
                     </div>
                     <div className = "menuTitle" >      {/* 메뉴 선택 버튼 */}
 
@@ -136,13 +141,14 @@ function Order() {
 
                 {/* 음료 선택 버튼 */}
                 <div className="container-fluid ">
-                    <div className="row test1">
-                        <MenuDisplay menu = { menu }
-                                coffee = { coffee } bubbleTea = { bubbleTea } frappe = { frappe } smoothie = { smoothie }
-                                ade = { ade } juice = { juice } tea = { tea } dessert = { dessert } coffeeImg = { coffeeImg }
-                                bubbleTeaImg = { bubbleTeaImg } frappeImg = { frappeImg } smoothieImg = { smoothieImg }
-                                adeImg = { adeImg } juiceImg = { juiceImg } teaImg = { teaImg } dessertImg = { dessertImg }
-                                id = { id } menuItem = { menuItem } menuImg = { menuImg } history = { history }
+                    <div className="row menuSelectDiv">
+                        <MenuDisplay menu = { menu } id = { id } history = { history }
+                                     coffee = { coffee } bubbleTea = { bubbleTea } frappe = { frappe } smoothie = { smoothie }
+                                     ade = { ade } juice = { juice } tea = { tea } dessert = { dessert } coffeeImg = { coffeeImg }
+                                     bubbleTeaImg = { bubbleTeaImg } frappeImg = { frappeImg } smoothieImg = { smoothieImg }
+                                     adeImg = { adeImg } juiceImg = { juiceImg } teaImg = { teaImg } dessertImg = { dessertImg }
+                                     menuItem = { menuItem } menuImg = { menuImg } orderCountChange = { orderCountChange } orderPriceChange = { orderPriceChange }
+
                         />
 
                     </div>
@@ -150,7 +156,7 @@ function Order() {
 
                 {/* 음료 이동 버튼 */}
                 <div className = "moveButtons">
-                    <Button className={" leftBtn "} onClick={() => {
+                    <Button className={ "leftBtn btn btn-primary"} onClick={() => {
                         /*history.push("/");*/
                     }}>
                         <div className="leftArrow"></div>
@@ -170,10 +176,28 @@ function Order() {
             {/* footer */}
             <div className="footer">
                 <div>
-                    <p> 메뉴를 선택해주세요 </p>
-                </div>
-                <div>
-                    <img src = { background } style={{ objectFit: "contain", width: "fit-content", height: "600px"}}/>
+                    {/*<img src = { background } style={{ objectFit: "contain", width: "fit-content", height: "600px"}}/>*/}
+                    <table className="table table-striped table-bordered orderTable ">
+                        <tr className = "tableHeader" >
+                            <th> # </th>
+                            <th colSpan={5}> 메뉴명 </th>
+                            <th> 수량 </th>
+                            <th> 가격 </th>
+                            <th> 취소 </th>
+                        </tr>
+                        { tableIndex.map(function (num, index) {
+                            return (
+                                <tr>
+                                    <td> { index + 1 } </td>
+                                    <td colSpan={5}> # </td>
+                                    <td> # </td>
+                                    <td> # </td>
+                                    <td> X </td>
+                                </tr>
+                            )
+                        })}
+
+                    </table>
                 </div>
                 <div className="payment">
                     <div className="payState">
@@ -182,17 +206,17 @@ function Order() {
                             <span> 총 가격 : </span>
                         </div>
                         <div style={{display: "flex", flexDirection: "column"}}>
-                            <span> 0 </span>
-                            <span> 0 </span>
+                            <span> { orderCount } </span>
+                            <span> { orderPrice } </span>
                         </div>
 
                     </div>
                     <div className="payBtn">
-                        <Button onClick = { () => {
+                        <Button variant="secondary" className = "payBtnText" onClick = { () => {
                             history.push("/");
-                        }}>뒤로가기</Button>
-                        <Button>현금결제</Button>
-                        <Button>카드결제</Button>
+                        }}>뒤로<br/>가기</Button>
+                        <Button variant="warning" className = "payBtnText">현금<br/>결제</Button>
+                        <Button variant="warning" className = "payBtnText">카드<br/>결제</Button>
                     </div>
                 </div>
             </div>
@@ -226,34 +250,49 @@ function MenuDisplay(props) {
 
     const menuIndex = props.menuItem[props.id].length - 1
     let [clickNum, clickNumChange] = useState(0);
+    let [totalCount, totalCountChange] = useState(0);
+    let [totalPrice, totalPriceChange] = useState(0);
 
     return (
         props.menuItem[props.id].map(function (num, index) {
             return (
                 <>
-                    <div className="col-sm-4 menuBox " onClick={ () => {
+                    <div className="col-lg-3 menuBox " onClick={ () => {
                         handleShow();
                         clickNumChange(index);
                     } }>
-
-                        <div>
-                            {/*{ console.log("menuItem : " + props.menuItem[0][0].title) }*/}
-                            <img className = "coffeeImg" src = { props.menuImg[props.id][index] } />
-                        </div>
-                        <div>
-                            <p> { props.menuItem[props.id][index].title } </p>
-                            <p> { props.menuItem[props.id][index].price + " 원"} </p>
-                        </div>
+                        { index < 3 ?
+                            <div>
+                                <div>
+                                    <img className = "menuImg" src = { props.menuImg[props.id][index] } />
+                                </div>
+                                <div className = "menuContext">
+                                    <p> { props.menuItem[props.id][index].title } </p>
+                                    <p> { props.menuItem[props.id][index].price + " 원"} </p>
+                                </div>
+                            </div>
+                            : <div>
+                                <div>
+                                    <img className = "menuImg" src = { props.menuImg[props.id][index] } />
+                                </div>
+                                <div className = "menuContext">
+                                    <p> { props.menuItem[props.id][index].title } </p>
+                                    <p> { props.menuItem[props.id][index].price + " 원"} </p>
+                                </div>
+                            </div>
+                        }
 
                     </div>
 
                     {/*{ console.log( "clickNum : " + clickNum) }*/}
                     { index === menuIndex ? <MenuSelectModal show = { show } setShow = { setShow } clickNum = { clickNum } handleClose = { handleClose }
-                                                     handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
-                                                     id = { props.id } coffeeImg = { props.coffeeImg } menuImg = { props.menuImg } menuItem = { props.menuItem }
+                                                             handleShow = { handleShow } count = { count } setCount = { setCount }
+                                                             id = { props.id } menuImg = { props.menuImg } menuItem = { props.menuItem }
+                                                             totalCountChange = { totalCountChange } totalPriceChange = { totalPriceChange }
 
                     /> : null}
-
+                    { props.orderCountChange(totalCount) }
+                    { props.orderPriceChange(totalPrice) }
                 </>
             )
         })

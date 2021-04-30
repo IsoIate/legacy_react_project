@@ -21,10 +21,21 @@
 }
 
 .menuContainer {
-    background-color: #A6A6A6;
+    background-color: #e9ecef;
 
     display: flex;
     flex-direction: column;
+}
+
+.storeBanner {
+    margin: 10px;
+}
+
+.storeBanner h1 {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin-bottom: 20px;
 }
 
 .homeBtn {
@@ -75,6 +86,28 @@
 
 .cursorDisable {
     cursor: default;
+}
+
+.commentDiv {
+    background-color: #e9ecef;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.comment {
+    margin : 30px;
+    padding : 0;
+
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.menuSelectDiv {
+    margin: 0 6%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
 }
 
 .moveButtons {
@@ -148,21 +181,49 @@
 }
 
 .menuBox {
-    margin: 30px 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    margin: 30px 5px;
+    padding : 0px;
     cursor: pointer;
+
+    border: 1px solid #A6A6A6;
+    border-radius: 25px;
 }
 
 .menuBox p {
+
     font-weight: bold;
-    font-size: 30px;
-    margin-top: 15px;
+    font-size: 26px;
+    margin: 0px;
+    padding: 10px 0px;
     color : #A6A6A6;
+
 }
 
-.coffeeImg {
+
+.menuImg {
     object-fit: contain;
-    width: 250px;
-    height: 300px;
+    width: 90%;
+}
+
+.menuContext {
+    background-color: #e9ecef;
+    border-radius: 0px 0px 25px 25px;
+}
+
+.orderTable {
+    width : 97%;
+    margin : 20px;
+
+}
+
+.tableHeader {
+    background-color: #FEC800;
+    color : white;
+    font-size: 20px;
 }
 
 .payment {
@@ -197,13 +258,21 @@
     justify-content: center;
     align-items: center;
     margin: 0px 10px;
+    border : none;
+}
+
+.payBtnText {
+    color : white;
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.payBtnText:hover {
+    color : white;
+    border : none;
 }
 
 .test {
     display: flex;
     flex-grow: 1;
-}
-
-.test1 {
-    margin: 0 6%;
 }

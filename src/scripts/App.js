@@ -25,24 +25,24 @@ function App() {
                 <Route exact path = { "/order/:id" }>
                     <Order />
                 </Route>
-                <Route exact path = { "/SimpleOrder:/id" }>
+                <Route exact path = { "/SimpleOrder/:id" }>
                     <SimpleOrder />
                 </Route>
-                {/*<Route exact path = { "/MainPage:/id" }>
+                <Route exact path = { "/MainPage/:id" }>
                     <Title/>
                     <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
                 </Route>
                 <Route exact path = {"/"}>
                     <FrontPage />
                 </Route>
-                <Route exact path = { "/MainPage:/id" }>
-                    <Title/>
-                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
-                </Route>*/}
-                <Route exact path = {"/"}>
+                <Route exact path = { "/MainPage/:id" }>
                     <Title/>
                     <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
                 </Route>
+                {/*<Route exact path = {"/"}>
+                    <Title/>
+                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
+                </Route>*/}
             </Switch>
 
         </div>

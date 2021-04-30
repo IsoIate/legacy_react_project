@@ -1,0 +1,45 @@
+.header {
+    display: flex;
+    flex-grow: 1;
+}
+
+.jumbo {
+    margin: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.body {
+
+}
+
+.qrcodeImg {
+    width:100%;
+    opacity: 75%;
+}
+
+.guideImg {
+    width : 100%;
+}
+
+.footer {
+
+}
+
+.btnDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.writeBtn {
+    flex-grow: 1;
+    margin : 20px;
+    padding : 20px;
+    font-size: 30px;
+    font-weight: bold;
+
+    background-color : deepskyblue;
+    border: none;
+
+}

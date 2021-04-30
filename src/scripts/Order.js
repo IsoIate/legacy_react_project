@@ -224,26 +224,31 @@ function MenuDisplay(props) {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    const menuIndex = props.menuItem[props.id].length - 1
+    let [clickNum, clickNumChange] = useState(0);
+
     return (
         props.menuItem[props.id].map(function (num, index) {
             return (
                 <>
-                    <div className="col-sm-3 menuBox " onClick={ handleShow }>
+                    <div className="col-sm-4 menuBox " onClick={ () => {
+                        handleShow();
+                        clickNumChange(index);
+                    } }>
 
-                        <div >
-                            {/*{ console.log("menuItem : " + props.menuItem[0][0].title) }Z*/}
+                        <div>
+                            {/*{ console.log("menuItem : " + props.menuItem[0][0].title) }*/}
                             <img className = "coffeeImg" src = { props.menuImg[props.id][index] } />
                         </div>
                         <div>
-
                             <p> { props.menuItem[props.id][index].title } </p>
                             <p> { props.menuItem[props.id][index].price + " 원"} </p>
                         </div>
 
                     </div>
 
-
-                    { index === 6 ? <MenuSelectModal show = { show } setShow = { setShow } handleClose = { handleClose }
+                    {/*{ console.log( "clickNum : " + clickNum) }*/}
+                    { index === menuIndex ? <MenuSelectModal show = { show } setShow = { setShow } clickNum = { clickNum } handleClose = { handleClose }
                                                      handleShow = { handleShow } coffee = { props.coffee } count = { count } setCount = { setCount }
                                                      id = { props.id } coffeeImg = { props.coffeeImg } menuImg = { props.menuImg } menuItem = { props.menuItem }
 

@@ -149,19 +149,20 @@
 
 .menuBox {
     margin: 30px 0px;
+    cursor: pointer;
 }
 
 .menuBox p {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 30px;
     margin-top: 15px;
     color : #A6A6A6;
 }
 
 .coffeeImg {
     object-fit: contain;
-    width: 70px;
-    height: 80px;
+    width: 250px;
+    height: 300px;
 }
 
 .payment {

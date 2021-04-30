@@ -33,12 +33,12 @@ function MenuSelectModal(props) {
                 </Jumbotron>
                 <Modal.Header className = "header" >
                     <div className="menuImageDiv">
-                        { console.log("log : " + props.menuImg[props.id][props.id]) }
-                        <img className="menuImage" src={ props.menuImg[props.id][2] }/>
+                        {/*{ console.log("log : " + props.menuImg[props.id][props.id]) }*/}
+                        <img className="menuImage" src={ props.menuImg[props.id][props.clickNum] }/>
                     </div>
                     <div className="menuInfoDiv">
                         <div className="menuTitleDiv">
-                            <h2> { props.coffee[0].title } </h2>
+                            <h2> { props.menuItem[props.id][props.clickNum].title } </h2>
                         </div>
                         <div className="menuCountDiv">
                             <div className = { props.count === 1 ? "countBtnDisable" : "countDownBtn" } onClick={ () => {
@@ -59,12 +59,12 @@ function MenuSelectModal(props) {
                                 <div className="plus"></div>
                             </div>
                             <div className = "menuPriceDiv">
-                                <h3> { props.coffee[0].price } 원 </h3>
+                                <h3> { props.menuItem[props.id][props.clickNum].price } 원 </h3>
                             </div>
                         </div>
                         <div className="totalPriceDiv">
                             <h3> 총 : </h3>
-                            <h2> { (props.coffee[0].price) * props.count } </h2>
+                            <h2> { ( props.menuItem[props.id][props.clickNum].price ) * props.count } </h2>
                             <h3> 원 </h3>
                         </div>
 
@@ -192,11 +192,11 @@ function MenuSelectModal(props) {
 
 
                 <Modal.Footer className = "modalFooter">
-                    <Button variant="secondary" onClick={ props.handleClose }>
-                        돌아가기
+                    <Button className = "backBtn" variant="secondary" onClick={ props.handleClose }>
+                        <p> 돌아가기 </p>
                     </Button>
-                    <Button variant="primary" onClick={ props.handleClose }>
-                        주문추가
+                    <Button  className = "orderAddBtn" onClick={ props.handleClose }>
+                        <p> 주문추가 </p>
                     </Button>
                 </Modal.Footer>
             </Modal>

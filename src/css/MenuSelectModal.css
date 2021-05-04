@@ -270,8 +270,8 @@
     align-items: center;
     justify-content: center;
 
-    width : 150px;
-    height : 150px;
+    width : 160px;
+    height : 160px;
     padding : 10px 30px 0px 30px;
     cursor: pointer;
 }
@@ -286,8 +286,8 @@
     align-items: center;
     justify-content: center;
 
-    width : 150px;
-    height : 150px;
+    width : 160px;
+    height : 160px;
     padding : 10px 30px 0px 30px;
     cursor: pointer;
     background-color: moccasin;
@@ -304,6 +304,19 @@
 
 .upgradeP {
     color : tomato;
+}
+
+.commentDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 375px;
+}
+
+.sizeComment {
+    font-size: 20px;
+    text-align: center;
+    margin : 5px;
 }
 
 .modalFooter {

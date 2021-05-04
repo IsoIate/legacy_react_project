@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import MenuSelectModal from "./MenuSelectModal";
 
 
@@ -69,12 +69,6 @@ import '../css/MenuDisplay.css'
 
 function MenuDisplay(props) {
 
-    const [show, setShow] = useState(false);
-    const [count, setCount] = useState(1);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
-
     let [coffee] = useState(coffeeData);
     let [bubbleTea] = useState(bubbleTeaData);
     let [frappe] = useState(frappeData);
@@ -101,11 +95,25 @@ function MenuDisplay(props) {
     let [totalCount, totalCountChange] = useState(0);
     let [totalPrice, totalPriceChange] = useState(0);
 
+    let [pageCheck, pageCheckChange] = useState(0);
+
+    const [show, setShow] = useState(false);
+    const [count, setCount] = useState(1);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
+
+
+    useEffect(() => {
+        pageCheckChange(props.pageNum);
+    })
+
     return (
         menuItem[props.id].map(function (num, index) {
             return (
                 <>
-                    <div className="col-lg-3 menuBox " onClick={ () => {
+                    <div className={ pageCheck === 0 ? "col-lg-3 menuBox" : "col-lg-4 menuBox"} onClick={ () => {
                         handleShow();
                         clickNumChange(index);
                     } }>
@@ -136,7 +144,7 @@ function MenuDisplay(props) {
                     { index === menuIndex ? <MenuSelectModal show = { show } setShow = { setShow } clickNum = { clickNum } handleClose = { handleClose }
                                                              handleShow = { handleShow } count = { count } setCount = { setCount }
                                                              id = { props.id } menuImg = { menuImg } menuItem = { menuItem }
-                                                             totalCountChange = { totalCountChange } totalPriceChange = { totalPriceChange }
+                                                             totalCountChange = { totalCountChange } totalPriceChange = { totalPriceChange } pageCheck = { pageCheck }
 
                     /> : null}
                     { props.orderCountChange(totalCount) }

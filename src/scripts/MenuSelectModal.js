@@ -13,6 +13,8 @@ import takeAway from '../img/takeAway.png'
 import mediumCup from '../img/mediumCup.png'
 import largeCup from '../img/largeCup.png'
 
+import size from '../img/size.png'
+
 function MenuSelectModal(props) {
 
     let [sizeSelect, sizeChange] = useState(1);
@@ -33,12 +35,15 @@ function MenuSelectModal(props) {
                 </Jumbotron>
                 <Modal.Header className = "header" >
                     <div className="menuImageDiv">
-                        {/*{ console.log("log : " + props.menuImg[props.id][props.id]) }*/}
                         <img className="menuImage" src={ props.menuImg[props.id][props.clickNum] }/>
                     </div>
                     <div className="menuInfoDiv">
                         <div className="menuTitleDiv">
                             <h2> { props.menuItem[props.id][props.clickNum].title } </h2>
+                            <h3> { props.menuItem[0][0].comment } </h3>
+
+                            {console.log(props.menuItem[0][0].comment)}
+
                         </div>
                         <div className="menuCountDiv">
                             <div className = { props.count === 1 ? "countBtnDisable" : "countDownBtn" } onClick={ () => {
@@ -73,12 +78,12 @@ function MenuSelectModal(props) {
                 </Modal.Header>
                 <Modal.Body style={ { padding : "0" } }>
                     <div className="titleDiv">
-                        <h4> 사이즈를 선택해 주세요 </h4>
+                        { props.pageCheck === 0 ? <h4> 사이즈를 선택해 주세요 </h4> : <h4> 컵의 크기를 선택해 주세요 </h4> }
                     </div>
                     <div className = "optionDiv">
                         <div className = "packageOption">
                             <div className = "optionName">
-                                <p>  사이즈 </p>
+                                { props.pageCheck === 0 ? <p> 사이즈 </p> : <p> 컵 크기 </p> }
                             </div>
                             <div className="optionSelect">
                                 <div className = "optionImages">
@@ -87,7 +92,7 @@ function MenuSelectModal(props) {
 
                                     }}>
                                         <img className = "selectBtnImg" src = { mediumCup }/>
-                                        <p> 미디엄 </p>
+                                        { props.pageCheck === 0 ? <p> 미디엄 </p> : <p> 중간 크기 </p> }
                                         <p className = "upgradeP"> + 0 </p>
                                     </div>
                                     <div className = { sizeSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
@@ -95,15 +100,35 @@ function MenuSelectModal(props) {
 
                                     }}>
                                         <img className = "selectBtnImg" src = { largeCup }/>
-                                        <p> 라지 </p>
+                                        { props.pageCheck === 0 ? <p> 라지 </p> : <p> 큰 크기 </p> }
                                         <p className = "upgradeP"> + 0 </p>
+                                    </div>
+                                    <div className = "commentDiv">
+                                        { props.pageCheck === 1 ?
+                                            <div className = "sizeComment">
+                                                <table >
+                                                    <tr>
+                                                        <th > 중간 크기 </th>
+                                                        <th > 큰 크기 </th>
+                                                    </tr>
+                                                    <tr >
+                                                        <td > 작은 물병 크기</td>
+                                                        <td > 큰 물병 크기 </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td> 약 300ml </td>
+                                                        <td> 약 500ml </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            : null }
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="titleDiv">
-                        <h4> 옵션을 선택해 주세요 </h4>
+                        { props.pageCheck === 0 ? <h4> 옵션을 선택해 주세요 </h4> : <h4> 기호를 선택해 주세요 </h4> }
                     </div>
                     <div className = "optionDiv">
                         <div className = "iceOption">
@@ -123,7 +148,7 @@ function MenuSelectModal(props) {
                                         iceChange(2);
                                     }}>
                                         <img className = "selectBtnImg" src = { Drink }/>
-                                        <p> 얼음 적게 </p>
+                                        <p> 얼음 조금 </p>
                                         <p className = "upgradeP"> + 0 </p>
                                     </div>
                                     <div className = { iceSelect === 3 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
@@ -138,7 +163,7 @@ function MenuSelectModal(props) {
                         </div>
                         <div className = "syrupOption">
                             <div className = "optionName">
-                                <p> 시럽 </p>
+                                { props.pageCheck === 0 ? <p> 시럽 </p> : <p> 당도 </p> }
                             </div>
                             <div className="optionSelect">
                                 <div className = "optionImages">
@@ -146,14 +171,14 @@ function MenuSelectModal(props) {
                                         syrupChange(1);
                                     }}>
                                         <img className = "selectBtnImg" src = { noSyrup }/>
-                                        <p> 시럽 없음 </p>
+                                        { props.pageCheck === 0 ? <p> 시럽 없음 </p> : <p> 달지 않게 </p> }
                                         <p className = "upgradeP"> + 0 </p>
                                     </div>
                                     <div className = { syrupSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
                                         syrupChange(2);
                                     }}>
                                         <img className = "selectBtnImg" src = { syrup }/>
-                                        <p> 시럽 추가 </p>
+                                        { props.pageCheck === 0 ? <p> 시럽 추가 </p> : <p> 더 달게 </p> }
                                         <p className = "upgradeP"> + 0 </p>
                                     </div>
                                 </div>
@@ -161,7 +186,7 @@ function MenuSelectModal(props) {
                         </div>
                     </div>
                     <div className="titleDiv">
-                        <h4> 포장 하시겠습니까? </h4>
+                        { props.pageCheck === 0 ? <h4> 테이크아웃 하시겠습니까? </h4> : <h4> 포장 하시겠습니까? </h4> }
                     </div>
                     <div className = "optionDiv">
                         <div className = "packageOption">
@@ -174,7 +199,7 @@ function MenuSelectModal(props) {
                                         packageChange(1);
                                     }}>
                                         <img className = "selectBtnImg" src = { takeAway }/>
-                                        <p> 포장 주문 </p>
+                                        { props.pageCheck === 0 ? <p> 테이크아웃 </p> : <p> 포장하기 </p> }
                                     </div>
                                     <div className = { packageSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
                                         packageChange(2);

@@ -4,7 +4,8 @@ export default
         id: 0,
         title : "아메리카노",
         content : "아메리카노",
-        price : 1500
+        price : 1500,
+        comment : 30
     },
 
     {

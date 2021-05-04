@@ -9,3 +9,6 @@
 - JavaScript
 - Node.js
 - MongoDB
+
+## 진행과정
+- 0504 : 간단 주문 페이지 생성, QR모달 생성

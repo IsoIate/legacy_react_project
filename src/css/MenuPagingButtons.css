@@ -1,0 +1,69 @@
+.moveButtons {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+}
+
+.moveButtons Button:hover {
+    background-color: #FEC800;
+}
+
+.leftBtn {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Spacing */
+    padding: 8px;
+
+    background-color: #FEC800;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.leftArrow {
+    /* Transparent background */
+    background-color: transparent;
+
+    /* Edges */
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    margin-right: 10px;
+    transform: translateX(25%) rotate(45deg);
+
+    /* Size */
+    height: 12px;
+    width: 12px;
+}
+
+.rightBtn {
+    /* Center the content */
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    /* Spacing */
+    padding: 8px;
+
+    background-color: #FEC800;
+    border: none;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.rightArrow {
+    /* Transparent background */
+    background-color: transparent;
+
+    /* Edges */
+    border-bottom: 3px solid white;
+    border-left: 3px solid white;
+    margin-right: 10px;
+    transform: translateX(25%) rotate(225deg);
+
+    /* Size */
+    height: 12px;
+    width: 12px;
+}

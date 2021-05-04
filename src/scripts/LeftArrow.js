@@ -1,4 +1,5 @@
 import React from "react";
+import '../css/Arrows.css'
 
 function LeftArrow(props) {
     let left = "fas fa-chevron-circle-left fa-2x"
@@ -10,7 +11,7 @@ function LeftArrow(props) {
             </p>
             : <p className = "menuArrow"  onClick={() => {
                 props.history.push("/");
-            }}> <i className={left}></i> </p>
+            }}> <i className = { left } ></i> </p>
     )
 }
 

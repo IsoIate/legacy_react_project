@@ -40,10 +40,11 @@ function MenuSelectModal(props) {
                     <div className="menuInfoDiv">
                         <div className="menuTitleDiv">
                             <h2> { props.menuItem[props.id][props.clickNum].title } </h2>
-                            <h3> { props.menuItem[0][0].comment } </h3>
-
-                            {console.log(props.menuItem[0][0].comment)}
-
+                            {
+                                props.pageCheck === 1 ?
+                                    <h4> { props.menuItem[props.id][props.clickNum].comment } </h4>
+                                    : null
+                            }
                         </div>
                         <div className="menuCountDiv">
                             <div className = { props.count === 1 ? "countBtnDisable" : "countDownBtn" } onClick={ () => {

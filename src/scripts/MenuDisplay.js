@@ -137,15 +137,12 @@ function MenuDisplay(props) {
                                 </div>
                             </div>
                         }
-
                     </div>
 
-                    {/*{ console.log( "clickNum : " + clickNum) }*/}
                     { index === menuIndex ? <MenuSelectModal show = { show } setShow = { setShow } clickNum = { clickNum } handleClose = { handleClose }
                                                              handleShow = { handleShow } count = { count } setCount = { setCount }
                                                              id = { props.id } menuImg = { menuImg } menuItem = { menuItem }
                                                              totalCountChange = { totalCountChange } totalPriceChange = { totalPriceChange } pageCheck = { pageCheck }
-
                     /> : null}
                     { props.orderCountChange(totalCount) }
                     { props.orderPriceChange(totalPrice) }

@@ -1,7 +1,7 @@
 /*eslint-disable*/
 import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button, Card, Modal } from "react-bootstrap";
-import { Link, Route, Switch } from "react-router-dom";
+import {Link, Route, Switch, useParams} from "react-router-dom";
 
 import Data from '../data/coffeeData.js'
 import Title from './Title';
@@ -18,6 +18,8 @@ function App() {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
+    let { id } = useParams();
+    console.log("app id : " + id);
     return (
         <div className="App">
 
@@ -34,10 +36,6 @@ function App() {
                 </Route>
                 <Route exact path = {"/"}>
                     <FrontPage />
-                </Route>
-                <Route exact path = { "/MainPage/:id" }>
-                    <Title/>
-                    <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
                 </Route>
             </Switch>
 

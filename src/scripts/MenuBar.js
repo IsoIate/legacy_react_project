@@ -15,7 +15,7 @@ function MenuBar(props) {
             <div className = "storeBanner">
                 <div className="homeBtn">
                     <p className="cursorAble" onClick={() => {
-                        props.history.push("/MainPage/0")
+                        props.history.push("/")
                     }}><i className="fas fa-home fa-2x"></i>  처음으로</p>
                 </div>
 

@@ -9,7 +9,7 @@ import guide from '../img/guide.png'
 import QRModal from "./QRModal";
 import SelfModal from "./SelfModal";
 
-function FrontPage() {
+function FrontPage(props) {
     let history = useHistory();
 
     const [show, setShow] = useState(false);
@@ -21,8 +21,7 @@ function FrontPage() {
     const selfOpen = () => selfSetShow(true);
 
     useEffect(() => {
-        console.log("show : " + show)
-        console.log("selfShow : " + selfShow)
+        console.log("id : " + props.id)
     })
 
     return (

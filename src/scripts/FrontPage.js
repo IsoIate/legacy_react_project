@@ -21,7 +21,7 @@ function FrontPage(props) {
     const selfOpen = () => selfSetShow(true);
 
     useEffect(() => {
-        console.log("id : " + props.id)
+        /*console.log("id : " + props.id)*/
     })
 
     return (

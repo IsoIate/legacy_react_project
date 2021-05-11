@@ -4,14 +4,19 @@ import { useHistory } from 'react-router-dom';
 import '../css/Payment.css'
 import QRModal from "./QRModal";
 import CardPayment from "./CardPayment";
+import CashPayment from "./CashPayment";
 
 function Payment (props) {
 
     let history = useHistory();
 
-    const [show, setShow] = useState(false);
-    const cardPayClose = () => setShow(false);
-    const cardPayOpen = () => setShow(true);
+    const [cashShow, setCashShow] = useState(false);
+    const cashPayClose = () => setCashShow(false);
+    const cashPayOpen = () => setCashShow(true);
+
+    const [cardShow, setCardShow] = useState(false);
+    const cardPayClose = () => setCardShow(false);
+    const cardPayOpen = () => setCardShow(true);
 
     return (
         <div className="payment">
@@ -31,7 +36,7 @@ function Payment (props) {
                     history.push("/MainPage/0");
                 }}>뒤로<br/>가기</Button>
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
-
+                    cashPayOpen();
                 }}>현금<br/>결제</Button>
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
                     cardPayOpen();
@@ -39,8 +44,10 @@ function Payment (props) {
             </div>
 
             {
-                show === true ?
-                    <CardPayment show = { show } onHide = { cardPayClose }/>
+                cashShow === true ?
+                    <CashPayment show = { cashShow } onHide = { cashPayClose }/>
+                    : cardShow === true ?
+                    <CardPayment show = { cardShow } onHide = { cardPayClose }/>
                     : null
             }
         </div>

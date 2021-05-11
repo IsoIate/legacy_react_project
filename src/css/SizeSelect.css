@@ -1,0 +1,112 @@
+.titleDiv {
+    background-color: #e9ecef;
+    padding: 10px 5px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.titleDiv h4 {
+    font-weight: bold;
+    margin : 0px;
+}
+
+.optionDiv {
+    display: flex;
+    flex-direction: column;
+}
+
+.sizeOption {
+    display: flex;
+    flex-direction: row;
+}
+
+.optionName {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width : 100px;
+
+    font-size: 28px;
+    font-weight: bold;
+    color : white;
+    background-color: #FEC800;
+}
+
+.optionName p {
+    margin : 0px;
+}
+
+.optionSelect {
+    display: flex;
+    flex-direction: column;
+}
+
+.optionImages {
+    display: flex;
+    flex-direction: row;
+
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.optionSelectedBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width : 160px;
+    height : 160px;
+    padding : 10px 30px 0px 30px;
+    cursor: pointer;
+    background-color: moccasin;
+}
+
+.optionSelectedBtn p {
+    margin : 5px;
+}
+
+.optionSelectBtn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width : 160px;
+    height : 160px;
+    padding : 10px 30px 0px 30px;
+    cursor: pointer;
+}
+
+.optionSelectBtn p {
+    margin : 5px;
+}
+
+.selectBtnImg {
+    width : 40px;
+    height: 60px;
+}
+
+.upgradeP {
+    color : tomato;
+}
+
+.syrupOption {
+    display: flex;
+    flex-direction: row;
+}
+
+.commentDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 375px;
+}
+
+.sizeComment {
+    font-size: 20px;
+    text-align: center;
+    margin : 5px;
+}

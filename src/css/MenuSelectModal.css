@@ -50,18 +50,7 @@
     margin-bottom: 10px;
 }
 
-.titleDiv {
-    background-color: #e9ecef;
-    padding: 10px 5px;
-    display: flex;
-    justify-content: center;
 
-}
-
-.titleDiv h4 {
-    font-weight: bold;
-    margin : 0px;
-}
 
 .menuCountDiv {
     display: flex;
@@ -200,44 +189,6 @@
     margin-bottom: 0px;
 }
 
-.titleDiv {
-
-}
-
-.optionDiv {
-    display: flex;
-    flex-direction: column;
-}
-
-.iceOption {
-    display: flex;
-    flex-direction: row;
-    border-bottom: 2px solid #e9ecef;
-}
-
-.syrupOption {
-    display: flex;
-    flex-direction: row;
-}
-
-.packageOption {
-    display: flex;
-    flex-direction: row;
-}
-
-.optionSelect {
-    display: flex;
-    flex-direction: column;
-}
-
-.optionImages {
-    display: flex;
-    flex-direction: row;
-
-    font-weight: bold;
-    font-size: 18px;
-}
-
 .optionCheck {
     display: flex;
     flex-direction: row;
@@ -245,78 +196,6 @@
 
 .optionCheck p {
     margin: 10px;
-}
-
-.optionName {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    width : 100px;
-
-    font-size: 28px;
-    font-weight: bold;
-    color : white;
-    background-color: #FEC800;
-}
-
-.optionName p {
-    margin : 0px;
-}
-
-.optionSelectBtn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width : 160px;
-    height : 160px;
-    padding : 10px 30px 0px 30px;
-    cursor: pointer;
-}
-
-.optionSelectBtn p {
-    margin : 5px;
-}
-
-.optionSelectedBtn {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    width : 160px;
-    height : 160px;
-    padding : 10px 30px 0px 30px;
-    cursor: pointer;
-    background-color: moccasin;
-}
-
-.optionSelectedBtn p {
-    margin : 5px;
-}
-
-.selectBtnImg {
-    width : 40px;
-    height: 60px;
-}
-
-.upgradeP {
-    color : tomato;
-}
-
-.commentDiv {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 375px;
-}
-
-.sizeComment {
-    font-size: 20px;
-    text-align: center;
-    margin : 5px;
 }
 
 .modalFooter {

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import { Button } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
-import '../css/Payment.css'
-import QRModal from "./QRModal";
+import '../../css/Payment.css'
+import QRModal from "../FrontPage/QRModal";
 import CardPayment from "./CardPayment";
 import CashPayment from "./CashPayment";
 

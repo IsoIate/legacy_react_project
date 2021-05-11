@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {Button, Modal, Jumbotron} from 'react-bootstrap'
 
-import SizeSelect from "./MenuOption/SizeSelect";
-import OptionSelect from "./MenuOption/OptionSelect";
-import PackageSelect from "./MenuOption/PackageSelect";
+import SizeSelect from "../MenuOption/SizeSelect";
+import OptionSelect from "../MenuOption/OptionSelect";
+import PackageSelect from "../MenuOption/PackageSelect";
 
-import '../css/MenuSelectModal.css'
+import '../../css/MenuSelectModal.css'
 
 function MenuSelectModal(props) {
 
@@ -93,6 +93,7 @@ function MenuSelectModal(props) {
                     </Button>
                     <Button  className = "orderAddBtn" onClick={ () => {
                         props.handleClose();
+                        props.getSelectMenuChange(props.menuItem[props.id][props.clickNum].title);
                         props.totalCountChange(props.count);
                         props.totalPriceChange(( props.menuItem[props.id][props.clickNum].price ) * props.count);
                     } }>

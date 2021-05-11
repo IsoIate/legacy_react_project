@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, useHistory} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import qrcode from "../img/qrcode.png"
+import qrcode from "../../img/qrcode.png"
 
 import Title from './Title.js'
-import '../css/FrontPage.css'
-import guide from '../img/guide.png'
+import '../../css/FrontPage.css'
+import guide from '../../img/guide.png'
 import QRModal from "./QRModal";
 import SelfModal from "./SelfModal";
 

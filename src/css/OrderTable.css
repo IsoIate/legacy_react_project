@@ -7,5 +7,10 @@
 .tableHeader {
     background-color: #FEC800;
     color : white;
+    font-size: 24px;
+}
+
+.tableBody {
     font-size: 20px;
+
 }

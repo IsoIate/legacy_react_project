@@ -3,7 +3,7 @@ import React, {useEffect, useState} from 'react';
 import { Jumbotron, Button, Card } from "react-bootstrap";
 import { Link, Route, Switch } from "react-router-dom";
 
-import '../css/MainPage.css'
+import '../../css/MainPage.css'
 /*import imgA from './img/Admin.png';*/
 
 function MainPage() {

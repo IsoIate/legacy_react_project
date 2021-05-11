@@ -1,19 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import {Button, Modal, Jumbotron} from 'react-bootstrap'
 
+import SizeSelect from "./MenuOption/SizeSelect";
+import OptionSelect from "./MenuOption/OptionSelect";
+import PackageSelect from "./MenuOption/PackageSelect";
+
 import '../css/MenuSelectModal.css'
-
-import iceDrink from '../img/iceDrink.png'
-import Drink from '../img/drink.png'
-import hotDrink from '../img/hotDrink.png'
-import syrup from '../img/syrup.png'
-import noSyrup from '../img/noSyrup.png'
-import inStore from '../img/inStore.png'
-import takeAway from '../img/takeAway.png'
-import mediumCup from '../img/mediumCup.png'
-import largeCup from '../img/largeCup.png'
-
-import size from '../img/size.png'
 
 function MenuSelectModal(props) {
 
@@ -22,10 +14,6 @@ function MenuSelectModal(props) {
     let [iceSelect, iceChange] = useState(1);
     let [syrupSelect, syrupChange] = useState(1);
     let [packageSelect, packageChange] = useState(1);
-
-    useEffect(() => {
-
-    })
 
     return (
         <div className="MenuSelectModal">
@@ -73,149 +61,29 @@ function MenuSelectModal(props) {
                             <h2> { ( props.menuItem[props.id][props.clickNum].price ) * props.count } </h2>
                             <h3> 원 </h3>
                         </div>
-
-
                     </div>
                 </Modal.Header>
+
                 <Modal.Body style={ { padding : "0" } }>
-                    <div className="titleDiv">
-                        { props.pageCheck === 0 ? <h4> 사이즈를 선택해 주세요 </h4> : <h4> 컵의 크기를 선택해 주세요 </h4> }
-                    </div>
-                    <div className = "optionDiv">
-                        <div className = "packageOption">
-                            <div className = "optionName">
-                                { props.pageCheck === 0 ? <p> 사이즈 </p> : <p> 컵 크기 </p> }
-                            </div>
-                            <div className="optionSelect">
-                                <div className = "optionImages">
-                                    <div className = { sizeSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        sizeChange(1);
 
-                                    }}>
-                                        <img className = "selectBtnImg" src = { mediumCup }/>
-                                        { props.pageCheck === 0 ? <p> 미디엄 </p> : <p> 중간 크기 </p> }
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                    <div className = { sizeSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        sizeChange(2);
+                    {/* 메뉴 사이즈 선택 */}
+                    {
+                        props.id != 7 ?
+                            <SizeSelect pageCheck = { props.pageCheck } sizeSelect = { sizeSelect } sizeChange = { sizeChange } />
+                            : null
+                    }
 
-                                    }}>
-                                        <img className = "selectBtnImg" src = { largeCup }/>
-                                        { props.pageCheck === 0 ? <p> 라지 </p> : <p> 큰 크기 </p> }
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                    <div className = "commentDiv">
-                                        { props.pageCheck === 1 ?
-                                            <div className = "sizeComment">
-                                                <table >
-                                                    <tr>
-                                                        <th > 중간 크기 </th>
-                                                        <th > 큰 크기 </th>
-                                                    </tr>
-                                                    <tr >
-                                                        <td > 작은 물병 크기</td>
-                                                        <td > 큰 물병 크기 </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td> 약 300ml </td>
-                                                        <td> 약 500ml </td>
-                                                    </tr>
-                                                </table>
-                                            </div>
-                                            : null }
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="titleDiv">
-                        { props.pageCheck === 0 ? <h4> 옵션을 선택해 주세요 </h4> : <h4> 기호를 선택해 주세요 </h4> }
-                    </div>
-                    <div className = "optionDiv">
-                        <div className = "iceOption">
-                            <div className = "optionName">
-                                <p> 얼음 </p>
-                            </div>
-                            <div className="optionSelect">
-                                <div className = "optionImages">
-                                    <div className = { iceSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        iceChange(1);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { iceDrink }/>
-                                        <p> 얼음 많이 </p>
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                    <div className = { iceSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        iceChange(2);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { Drink }/>
-                                        <p> 얼음 조금 </p>
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                    <div className = { iceSelect === 3 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        iceChange(3);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { hotDrink }/>
-                                        <p> 따뜻하게 </p>
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className = "syrupOption">
-                            <div className = "optionName">
-                                { props.pageCheck === 0 ? <p> 시럽 </p> : <p> 당도 </p> }
-                            </div>
-                            <div className="optionSelect">
-                                <div className = "optionImages">
-                                    <div className = { syrupSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        syrupChange(1);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { noSyrup }/>
-                                        { props.pageCheck === 0 ? <p> 시럽 없음 </p> : <p> 달지 않게 </p> }
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                    <div className = { syrupSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        syrupChange(2);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { syrup }/>
-                                        { props.pageCheck === 0 ? <p> 시럽 추가 </p> : <p> 더 달게 </p> }
-                                        <p className = "upgradeP"> + 0 </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="titleDiv">
-                        { props.pageCheck === 0 ? <h4> 테이크아웃 하시겠습니까? </h4> : <h4> 포장 하시겠습니까? </h4> }
-                    </div>
-                    <div className = "optionDiv">
-                        <div className = "packageOption">
-                            <div className = "optionName">
-                                <p> 포장 </p>
-                            </div>
-                            <div className="optionSelect">
-                                <div className = "optionImages">
-                                    <div className = { packageSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        packageChange(1);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { takeAway }/>
-                                        { props.pageCheck === 0 ? <p> 테이크아웃 </p> : <p> 포장하기 </p> }
-                                    </div>
-                                    <div className = { packageSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                        packageChange(2);
-                                    }}>
-                                        <img className = "selectBtnImg" src = { inStore }/>
-                                        <p> 매장 취식 </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    {/* 메뉴 옵션 선택 */}
+                    {
+                        props.id == 7 ? null : props.id == 2 ? null : props.id == 3 ? null
+                        : <OptionSelect pageCheck = { props.pageCheck } iceSelect = { iceSelect } iceChange = { iceChange }
+                                        syrupSelect = { syrupSelect } syrupChange = { syrupChange } id = { props.id } />
+                    }
+
+                    {/* 메뉴 포장 선택 */}
+                    <PackageSelect pageCheck = { props.pageCheck } packageSelect = { packageSelect } packageChange = { packageChange } />
 
                 </Modal.Body>
-
-
 
                 <Modal.Footer className = "modalFooter">
                     <Button className = "backBtn" variant="secondary" onClick={ props.handleClose }>

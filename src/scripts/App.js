@@ -19,7 +19,7 @@ function App() {
     const handleShow = () => setShow(true);
 
     let { id } = useParams();
-    console.log("app id : " + id);
+
     return (
         <div className="App">
 

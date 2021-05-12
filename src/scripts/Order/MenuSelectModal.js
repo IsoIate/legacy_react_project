@@ -100,6 +100,9 @@ function MenuSelectModal(props) {
                             payload : { title : props.menuItem[props.id][props.clickNum].title,
                             count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})
 
+                        props.dispatch({type : "주문추가", payload : { count : props.count,
+                                price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})
+
                     } }>
                         <p> 주문추가 </p>
                     </Button>
@@ -112,7 +115,7 @@ function MenuSelectModal(props) {
 /* state를 props로 변환 */
 function Conversion(state) {
     return {
-        state: state
+        state: state.reducer
     }
 }
 

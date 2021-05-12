@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
 import '../../css/Payment.css'
 import QRModal from "../FrontPage/QRModal";
 import CardPayment from "./CardPayment";
 import CashPayment from "./CashPayment";
+import { connect } from "react-redux";
 
 function Payment (props) {
 
@@ -26,8 +27,8 @@ function Payment (props) {
                     <span> 총 가격 : </span>
                 </div>
                 <div style={{display: "flex", flexDirection: "column"}}>
-                    <span> { props.orderCount } </span>
-                    <span> { props.orderPrice } </span>
+                    <span> { props.orderState[0] } </span>
+                    <span> { props.orderState[1] } </span>
                 </div>
 
             </div>
@@ -58,4 +59,12 @@ function Payment (props) {
     )
 }
 
-export default Payment;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        state : state.reducer,
+        orderState : state.orderReducer
+    }
+}
+
+export default connect(Conversion)(Payment);

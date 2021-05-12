@@ -27,7 +27,7 @@ function QRModal(props) {
                     <Button variant="primary" onClick={() => {
                         history.push("./MainPage/0")
                     }}>
-                    작성 완료 </Button>
+                        작성 완료 </Button>
                 </Modal.Footer>
             </Modal>
         </>

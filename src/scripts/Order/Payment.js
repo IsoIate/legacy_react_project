@@ -32,15 +32,19 @@ function Payment (props) {
 
             </div>
             <div className="payBtn">
+
                 <Button variant="secondary" className = "payBtnText" onClick = { () => {
                     history.push("/MainPage/0");
                 }}>뒤로<br/>가기</Button>
+
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
                     cashPayOpen();
                 }}>현금<br/>결제</Button>
+
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
                     cardPayOpen();
                 }}>카드<br/>결제</Button>
+
             </div>
 
             {

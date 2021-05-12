@@ -5,11 +5,32 @@ import App from './scripts/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import "@fortawesome/fontawesome-free/js/all.js"
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+
+/* defaultParameter */
+let primaryState = [];
+
+function reducer(state = primaryState, action) {
+    if(action.type === "항목추가") {
+        let copy = [...state];
+        copy.push(action.payload);
+        return copy;
+    }
+    else {
+        return state
+    }
+
+}
+
+let store = createStore(reducer);
 
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-        <App />
+          <Provider store = { store }>
+            <App />
+          </Provider>
       </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')

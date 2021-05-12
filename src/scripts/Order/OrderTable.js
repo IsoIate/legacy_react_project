@@ -1,39 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {Button} from 'react-bootstrap'
 import '../../css/OrderTable.css'
+import { connect } from "react-redux";
 
 function OrderTable(props) {
-
-    let [tableIndex, setIndex] = useState([1]);
-    let [orderMenu, setOrderMenu] = useState([]);
-    let [orderCount, setOrderCount] = useState([]);
-    let [orderPrice, setOrderPrice] = useState([]);
-    let tempIndex = [];
-    let tempMenu = [];
-    let tempCount = [];
-    let tempPrice = [];
-
-    useEffect(() => {
-        return (
-            props.orderMenu == "temp" ? null
-                :
-            tempIndex = [...tableIndex],
-            tempIndex[tempIndex.length] = props.orderCount,
-            setIndex(tempIndex),
-
-            tempMenu = [...orderMenu],
-            tempMenu[tempMenu.length] = props.orderMenu,
-            setOrderMenu(tempMenu),
-
-            tempCount = [...orderCount],
-            tempCount[tempCount.length] = props.orderCount,
-            setOrderCount(tempCount),
-
-            tempPrice = [...orderPrice],
-            tempPrice[tempPrice.length] = props.orderPrice,
-            setOrderPrice(tempPrice)
-        )
-    }, [props.orderMenu])
 
     return (
         <div>
@@ -45,17 +15,14 @@ function OrderTable(props) {
                     <th> 가격 </th>
                     <th> 취소 </th>
                 </tr>
-                { tableIndex.map(function (num, index) {
+                { props.state.map(function (num, index) {
                     return (
-                        orderMenu[index] == "temp" ? null
-                            :
                         <tr className = "tableBody">
-                            <td> { index } </td>
-                            <td colSpan={5}> { orderMenu[index] } </td>
-                            <td> { orderCount[index] } </td>
-                            <td> { orderPrice[index] } </td>
+                            <td> { index + 1 } </td>
+                            <td colSpan={5}> { props.state[index].title } </td>
+                            <td> { props.state[index].count } </td>
+                            <td> { props.state[index].price } </td>
                             <td> <Button variant="danger" onClick = {() => {
-
                             }}> X </Button> </td>
                         </tr>
                     )
@@ -65,4 +32,11 @@ function OrderTable(props) {
     )
 }
 
-export default OrderTable;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        state: state
+    }
+}
+
+export default connect(Conversion)(OrderTable);

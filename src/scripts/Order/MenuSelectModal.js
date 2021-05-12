@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {Button, Modal, Jumbotron} from 'react-bootstrap'
-
+import { connect } from "react-redux";
 import SizeSelect from "../MenuOption/SizeSelect";
 import OptionSelect from "../MenuOption/OptionSelect";
 import PackageSelect from "../MenuOption/PackageSelect";
@@ -14,6 +14,7 @@ function MenuSelectModal(props) {
     let [iceSelect, iceChange] = useState(1);
     let [syrupSelect, syrupChange] = useState(1);
     let [packageSelect, packageChange] = useState(1);
+    let [temp, setTemp] = useState(0);
 
     return (
         <div className="MenuSelectModal">
@@ -94,9 +95,11 @@ function MenuSelectModal(props) {
                     </Button>
                     <Button  className = "orderAddBtn" onClick={ () => {
                         props.handleClose();
-                        props.getSelectMenuChange(props.menuItem[props.id][props.clickNum].title);
-                        props.totalCountChange(props.count);
-                        props.totalPriceChange(( props.menuItem[props.id][props.clickNum].price ) * props.count);
+
+                        props.dispatch({type : "항목추가",
+                            payload : { title : props.menuItem[props.id][props.clickNum].title,
+                            count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})
+
                     } }>
                         <p> 주문추가 </p>
                     </Button>
@@ -106,4 +109,11 @@ function MenuSelectModal(props) {
     );
 }
 
-export default MenuSelectModal
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        state: state
+    }
+}
+
+export default connect(Conversion)(MenuSelectModal);

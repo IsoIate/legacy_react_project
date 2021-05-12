@@ -93,10 +93,6 @@ function MenuDisplay(props) {
     const menuIndex = menuItem[props.id].length - 1
     let [clickNum, clickNumChange] = useState(0);
 
-    let [getSelectMenu, getSelectMenuChange] = useState("temp");
-    let [totalCount, totalCountChange] = useState(0);
-    let [totalPrice, totalPriceChange] = useState(0);
-
     let [pageCheck, pageCheckChange] = useState(0);
 
     const [show, setShow] = useState(false);
@@ -143,13 +139,8 @@ function MenuDisplay(props) {
 
                     { index === menuIndex ? <MenuSelectModal show = { show } setShow = { setShow } clickNum = { clickNum } handleClose = { handleClose }
                                                              handleShow = { handleShow } count = { count } setCount = { setCount }
-                                                             id = { props.id } menuImg = { menuImg } menuItem = { menuItem }
-                                                             totalCountChange = { totalCountChange } totalPriceChange = { totalPriceChange }
-                                                             pageCheck = { pageCheck } getSelectMenuChange = { getSelectMenuChange }
+                                                             id = { props.id } menuImg = { menuImg } menuItem = { menuItem } pageCheck = { pageCheck }
                     /> : null}
-                    { props.orderMenuChange(getSelectMenu) }
-                    { props.orderCountChange(totalCount) }
-                    { props.orderPriceChange(totalPrice) }
                 </>
             )
         })

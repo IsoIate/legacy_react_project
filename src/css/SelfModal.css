@@ -1,0 +1,53 @@
+.QRModal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.headerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.headerDiv h2 {
+
+    font-weight: bold;
+    text-align: center;
+}
+
+.selfBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.modalTitle {
+    margin : 10px 0 30px 0;
+}
+
+.inputBox {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.inputBox h2 {
+    margin : 0 auto;
+}
+
+.inputBox input {
+    margin-left: 10px;
+    height: 2.5em;
+    width: 17em;
+
+}
+
+.cafeName {
+    margin-top : 50px;
+}
+

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 
-import '../css/Order.css';
+import '../../css/Order.css';
 
 import MenuBar from "./MenuBar";
 import MenuDisplay from "./MenuDisplay";
@@ -15,8 +15,6 @@ function Order() {
     let history = useHistory();
     let { id } = useParams();       /* 페이지 뒤에 붙는 숫자 */
 
-    let [orderCount, orderCountChange] = useState(0);
-    let [orderPrice, orderPriceChange] = useState(0);
     let [pageNum] = useState(0);
 
     return (
@@ -28,8 +26,8 @@ function Order() {
                 {/* 메뉴 선택 버튼 모듈화 */}
                 <div className="container-fluid ">
                     <div className="row menuSelectDiv">
-                        <MenuDisplay orderCountChange = { orderCountChange } orderPriceChange = { orderPriceChange }
-                                     id = { id } history = { history } pageNum = { pageNum }/>
+                        <MenuDisplay id = { id } history = { history } pageNum = { pageNum }/>
+
                     </div>
                 </div>
 
@@ -43,7 +41,7 @@ function Order() {
                 <OrderTable />
 
                 {/* 주문정보 창 */}
-                <Payment orderCount = { orderCount } orderPrice = { orderPrice } />
+                <Payment />
             </div>
         </div>
     )

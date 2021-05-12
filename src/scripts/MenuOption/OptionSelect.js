@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import iceDrink from "../../img/iceDrink.png";
 import Drink from "../../img/drink.png";
 import hotDrink from "../../img/hotDrink.png";
@@ -8,6 +8,7 @@ import {Modal} from "react-bootstrap";
 import '../../css/OptionSelect.css'
 
 function OptionSelect(props) {
+
     return (
         <>
             <div className="titleDiv">

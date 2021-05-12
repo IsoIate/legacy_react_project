@@ -2,7 +2,7 @@ import {Link} from "react-router-dom";
 import {Jumbotron} from "react-bootstrap";
 import React from "react";
 
-import '../css/FrontPage.css'
+import '../../css/FrontPage.css'
 
 function Title() {
     return (

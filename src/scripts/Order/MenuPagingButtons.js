@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
-import '../css/MenuPagingButtons.css'
+import '../../css/MenuPagingButtons.css'
 
 function MenuPagingButtons () {
     return (

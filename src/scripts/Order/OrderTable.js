@@ -24,7 +24,8 @@ function OrderTable(props) {
                             <td> { props.state[index].price } </td>
                             <td> <Button variant="danger" onClick = {() => {
                                 props.dispatch({ type : "항목제거", payload : index })
-                                props.dispatch({ type : "주문제거", payload : index })
+                                props.dispatch({ type : "주문제거",
+                                    payload : { count: props.state[index].count, price: props.state[index].price } })
                             }}> X </Button> </td>
                         </tr>
                     )

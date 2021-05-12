@@ -14,7 +14,6 @@ function MenuSelectModal(props) {
     let [iceSelect, iceChange] = useState(1);
     let [syrupSelect, syrupChange] = useState(1);
     let [packageSelect, packageChange] = useState(1);
-    let [temp, setTemp] = useState(0);
 
     return (
         <div className="MenuSelectModal">

@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import takeAway from "../../img/takeAway.png";
 import inStore from "../../img/inStore.png";
 import {Modal} from "react-bootstrap";
 import '../../css/PackageSelect.css'
 
 function PackageSelect(props) {
+
     return (
         <>
             <div className="titleDiv">

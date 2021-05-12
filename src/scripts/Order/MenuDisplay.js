@@ -105,6 +105,9 @@ function MenuDisplay(props) {
 
     useEffect(() => {
         pageCheckChange(props.pageNum);
+        return (
+            show === false ? setCount(1) : null
+        )
     })
 
     return (
@@ -141,6 +144,7 @@ function MenuDisplay(props) {
                                                              handleShow = { handleShow } count = { count } setCount = { setCount }
                                                              id = { props.id } menuImg = { menuImg } menuItem = { menuItem } pageCheck = { pageCheck }
                     /> : null}
+
                 </>
             )
         })

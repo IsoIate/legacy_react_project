@@ -1,0 +1,32 @@
+.headerDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.headerDiv h2 {
+
+    font-weight: bold;
+    text-align: center;
+}
+
+.noBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.noPayment {
+    width: 400px;
+    height: 400px;
+
+    margin : 30px 30px 30px 30px;
+}
+
+.cardInsert {
+    animation: slide1 1s ease-in-out infinite;
+    margin-bottom: 30px;
+}

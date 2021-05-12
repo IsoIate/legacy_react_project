@@ -5,6 +5,7 @@ import '../../css/Payment.css'
 import QRModal from "../FrontPage/QRModal";
 import CardPayment from "./CardPayment";
 import CashPayment from "./CashPayment";
+import NoPayment from "./NoPayment";
 import { connect } from "react-redux";
 
 function Payment (props) {
@@ -18,6 +19,10 @@ function Payment (props) {
     const [cardShow, setCardShow] = useState(false);
     const cardPayClose = () => setCardShow(false);
     const cardPayOpen = () => setCardShow(true);
+
+    const [noShow, setNoShow] = useState(false);
+    const noPayClose = () => setNoShow(false);
+    const noPayOpen = () => setNoShow(true);
 
     return (
         <div className="payment">
@@ -39,11 +44,11 @@ function Payment (props) {
                 }}>뒤로<br/>가기</Button>
 
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
-                    cashPayOpen();
+                    props.orderState[0] == 0 ? noPayOpen() : cashPayOpen()
                 }}>현금<br/>결제</Button>
 
                 <Button variant="warning" className = "payBtnText" onClick = {() => {
-                    cardPayOpen();
+                    props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
                 }}>카드<br/>결제</Button>
 
             </div>
@@ -53,6 +58,8 @@ function Payment (props) {
                     <CashPayment show = { cashShow } onHide = { cashPayClose }/>
                     : cardShow === true ?
                     <CardPayment show = { cardShow } onHide = { cardPayClose }/>
+                    : noShow === true ?
+                    <NoPayment show = { noShow } onHide = { noPayClose }/>
                     : null
             }
         </div>

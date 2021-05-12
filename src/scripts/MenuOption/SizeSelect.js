@@ -64,7 +64,7 @@ function SizeSelect(props) {
                     </div>
                 </div>
             </div>
-            { console.log(tempPrice) }
+            {/*{ console.log(tempPrice) }*/}
             { props.costChange(tempPrice) }
         </>
     )

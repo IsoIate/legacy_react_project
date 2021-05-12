@@ -17,6 +17,12 @@ function reducer(state = primaryState, action) {
         copy.push(action.payload);
         return copy;
     }
+    else if (action.type === "항목제거") {
+        let copy = [...state];
+        let temp = action.payload;
+        copy.splice(temp, 1);
+        return copy;
+    }
     else {
         return state
     }

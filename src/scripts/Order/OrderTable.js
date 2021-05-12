@@ -54,7 +54,7 @@ function OrderTable(props) {
                             <td colSpan={5}> { orderMenu[index] } </td>
                             <td> { orderCount[index] } </td>
                             <td> { orderPrice[index] } </td>
-                            <td> <Button onClick = {() => {
+                            <td> <Button variant="danger" onClick = {() => {
 
                             }}> X </Button> </td>
                         </tr>

@@ -1,10 +1,17 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import mediumCup from "../../img/mediumCup.png";
 import largeCup from "../../img/largeCup.png";
 import {Modal} from "react-bootstrap";
 import '../../css/SizeSelect.css'
 
 function SizeSelect(props) {
+
+    let tempPrice = props.menuPrice;
+
+    useEffect(() => {
+        props.sizeChange == 1 ? tempPrice = props.price : tempPrice = props.price + 1000
+    })
+
     return (
         <>
             <div className="titleDiv">
@@ -19,7 +26,7 @@ function SizeSelect(props) {
                         <div className = "optionImages">
                             <div className = { props.sizeSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
                                 props.sizeChange(1);
-
+                                tempPrice = props.menuPrice;
                             }}>
                                 <img className = "selectBtnImg" src = { mediumCup }/>
                                 { props.pageCheck === 0 ? <p> 미디엄 </p> : <p> 중간 크기 </p> }
@@ -27,7 +34,7 @@ function SizeSelect(props) {
                             </div>
                             <div className = { props.sizeSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
                                 props.sizeChange(2);
-
+                                tempPrice = (props.menuPrice + 1000);
                             }}>
                                 <img className = "selectBtnImg" src = { largeCup }/>
                                 { props.pageCheck === 0 ? <p> 라지 </p> : <p> 큰 크기 </p> }
@@ -57,6 +64,8 @@ function SizeSelect(props) {
                     </div>
                 </div>
             </div>
+            { console.log(tempPrice) }
+            { props.costChange(tempPrice) }
         </>
     )
 }

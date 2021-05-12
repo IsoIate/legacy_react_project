@@ -69,7 +69,8 @@ function MenuSelectModal(props) {
                     {/* 메뉴 사이즈 선택 */}
                     {
                         props.id != 7 ?
-                            <SizeSelect pageCheck = { props.pageCheck } sizeSelect = { sizeSelect } sizeChange = { sizeChange } />
+                            <SizeSelect pageCheck = { props.pageCheck } sizeSelect = { sizeSelect } sizeChange = { sizeChange }
+                            menuPrice = { props.menuItem[props.id][props.clickNum].price } costChange = { costChange } />
                             : null
                     }
 

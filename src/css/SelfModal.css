@@ -22,7 +22,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 30px 0;
+    margin: 30px;
 }
 
 .modalTitle {
@@ -47,7 +47,33 @@
 
 }
 
+.messageDiv {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+}
+
+.errorDiv {
+    margin : 20px;
+    width : 100%;
+}
+
+.inputOk {
+    text-align: center;
+    color : transparent;
+    font-weight: bold;
+}
+
+.inputError {
+    text-align: center;
+    color : red;
+    font-weight: bold;
+}
+
 .cafeName {
-    margin-top : 50px;
+
 }
 

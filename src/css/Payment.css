@@ -35,12 +35,14 @@
 }
 
 .payBtnText {
+    background-color: #FEC800;
     color : white;
     font-size: 48px;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 .payBtnText:hover {
-    color : white;
-    border : none;
+    background-color: #efbf0b;
+
 }

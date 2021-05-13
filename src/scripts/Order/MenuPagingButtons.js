@@ -1,8 +1,12 @@
 import React from 'react'
 import { Button } from "react-bootstrap";
+import { useAlert } from "react-alert";
 import '../../css/MenuPagingButtons.css'
 
 function MenuPagingButtons () {
+
+
+
     return (
         <div className = "moveButtons">
             <Button className={ "leftBtn btn btn-primary"} onClick={() => {

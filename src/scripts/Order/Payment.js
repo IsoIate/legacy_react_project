@@ -39,17 +39,17 @@ function Payment (props) {
             </div>
             <div className="payBtn">
 
-                <Button variant="secondary" className = "payBtnText" onClick = { () => {
+                <button variant="secondary" className = "payBtnText" onClick = { () => {
                     history.push("/MainPage/0");
-                }}>뒤로<br/>가기</Button>
+                }}>뒤로<br/>가기</button>
 
-                <Button variant="warning" className = "payBtnText" onClick = {() => {
+                <button variant="warning" className = "payBtnText" onClick = {() => {
                     props.orderState[0] == 0 ? noPayOpen() : cashPayOpen()
-                }}>현금<br/>결제</Button>
+                }}>현금<br/>결제</button>
 
-                <Button variant="warning" className = "payBtnText" onClick = {() => {
+                <button className = "payBtnText" onClick = {() => {
                     props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
-                }}>카드<br/>결제</Button>
+                }}>카드<br/>결제</button>
 
             </div>
 

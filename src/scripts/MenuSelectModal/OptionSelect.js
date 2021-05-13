@@ -1,4 +1,6 @@
 import React, {useEffect} from "react";
+import { connect } from "react-redux";
+
 import iceDrink from "../../img/iceDrink.png";
 import Drink from "../../img/drink.png";
 import hotDrink from "../../img/hotDrink.png";
@@ -21,15 +23,15 @@ function OptionSelect(props) {
                     </div>
                     <div className="optionSelect">
                         <div className = "optionImages">
-                            <div className = { props.iceSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                props.iceChange(1);
+                            <div className = { props.optionState[1] === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "얼음변경", payload : 1 })
                             }}>
                                 <img className = "selectBtnImg" src = { iceDrink }/>
                                 <p> 얼음 많이 </p>
                                 <p className = "upgradeP"> + 0 </p>
                             </div>
-                            <div className = { props.iceSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                props.iceChange(2);
+                            <div className = { props.optionState[1] === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "얼음변경", payload : 2 })
                             }}>
                                 <img className = "selectBtnImg" src = { Drink }/>
                                 <p> 얼음 조금 </p>
@@ -38,8 +40,8 @@ function OptionSelect(props) {
 
                             {
                                 props.id == 1 ? null : props.id == 4 ? null : props.id == 5 ? null :
-                                <div className = { props.iceSelect === 3 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                    props.iceChange(3);
+                                <div className = { props.optionState[1] === 3 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                    props.dispatch({ type : "얼음변경", payload : 3 })
                                 }}>
                                     <img className = "selectBtnImg" src = { hotDrink }/>
                                     <p> 따뜻하게 </p>
@@ -58,17 +60,19 @@ function OptionSelect(props) {
                         </div>
                         <div className="optionSelect">
                             <div className="optionImages">
-                                <div className={props.syrupSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn"}
+                                <div className={props.optionState[2] === 1 ? "optionSelectedBtn" : "optionSelectBtn"}
                                      onClick={() => {
-                                         props.syrupChange(1);
+                                         props.dispatch({ type : "시럽변경", payload : 1 })
+                                         /*props.syrupChange(1);*/
                                      }}>
                                     <img className="selectBtnImg" src={noSyrup}/>
                                     {props.pageCheck === 0 ? <p> 시럽 없음 </p> : <p> 달지 않게 </p>}
                                     <p className="upgradeP"> + 0 </p>
                                 </div>
-                                <div className={props.syrupSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn"}
+                                <div className={props.optionState[2] === 2 ? "optionSelectedBtn" : "optionSelectBtn"}
                                      onClick={() => {
-                                         props.syrupChange(2);
+                                         props.dispatch({ type : "시럽변경", payload : 2 })
+                                         /*props.syrupChange(2);*/
                                      }}>
                                     <img className="selectBtnImg" src={syrup}/>
                                     {props.pageCheck === 0 ? <p> 시럽 추가 </p> : <p> 더 달게 </p>}
@@ -83,4 +87,11 @@ function OptionSelect(props) {
     )
 }
 
-export default OptionSelect;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        optionState: state.optionReducer
+    }
+}
+
+export default connect(Conversion)(OptionSelect);

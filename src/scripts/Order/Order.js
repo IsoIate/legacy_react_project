@@ -21,7 +21,7 @@ function Order() {
         <div className = "order">
             <div className="body">
                 {/* 메뉴 바 모듈화 */}
-                <MenuBar history = { history } />
+                <MenuBar history = { history } pageNum = { pageNum } />
 
                 {/* 메뉴 선택 버튼 모듈화 */}
                 <div className="container-fluid ">

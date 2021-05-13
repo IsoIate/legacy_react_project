@@ -1,4 +1,6 @@
 import React, {useEffect} from "react";
+import { connect } from "react-redux";
+
 import takeAway from "../../img/takeAway.png";
 import inStore from "../../img/inStore.png";
 import {Modal} from "react-bootstrap";
@@ -18,14 +20,14 @@ function PackageSelect(props) {
                     </div>
                     <div className="optionSelect">
                         <div className = "optionImages">
-                            <div className = { props.packageSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                props.packageChange(1);
+                            <div className = { props.optionState[3] === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "포장변경", payload : 1 })
                             }}>
                                 <img className = "selectBtnImg" src = { takeAway }/>
                                 { props.pageCheck === 0 ? <p> 테이크아웃 </p> : <p> 포장하기 </p> }
                             </div>
-                            <div className = { props.packageSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
-                                props.packageChange(2);
+                            <div className = { props.optionState[3] === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "포장변경", payload : 2 })
                             }}>
                                 <img className = "selectBtnImg" src = { inStore }/>
                                 <p> 매장 취식 </p>
@@ -38,4 +40,11 @@ function PackageSelect(props) {
     )
 }
 
-export default PackageSelect;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        optionState: state.optionReducer
+    }
+}
+
+export default connect(Conversion)(PackageSelect);

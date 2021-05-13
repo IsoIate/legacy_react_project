@@ -6,15 +6,12 @@
 }
 
 .storeBanner {
+    display: flex;
+    justify-content: space-between;
     margin: 10px;
 }
 
-.storeBanner h1 {
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
-    margin-bottom: 20px;
-}
+
 
 .homeBtn {
     display: flex;
@@ -30,6 +27,18 @@
 
 .cursorAble {
     cursor: pointer;
+}
+
+.searchMenu {
+    display: flex;
+    flex-direction: row;
+}
+
+.storeTitle {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+    margin-bottom: 20px;
 }
 
 .cursorDisable {

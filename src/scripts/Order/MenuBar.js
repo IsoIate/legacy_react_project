@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Nav} from "react-bootstrap";
+import {Nav, Button} from "react-bootstrap";
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
 import '../../css/MenuContainer.css'
@@ -9,6 +9,7 @@ function MenuBar(props) {
 
     let menu = ['커피', '버블티', '프라페', '스무디', '에이드', '주스', '차', '디저트'];
     let [menuState] = useState(false);
+    let [search, setSearch] = useState("");
 
     return (
         <div className="menuContainer">
@@ -19,6 +20,13 @@ function MenuBar(props) {
                     }}><i className="fas fa-home fa-2x"></i>  처음으로</p>
                 </div>
 
+                {/*<div className = "searchMenu">
+                    <h2> 메뉴 검색 </h2>
+                    <input onChange = {(e) => { setSearch(e.target.value) } }/>
+                    <Button> 검색 </Button>
+                </div>*/}
+            </div>
+            <div className = "storeTitle">
                 <h1> ABC Cafe </h1>
             </div>
             <div className = "menuTitle" >      {/* 메뉴 선택 버튼 */}

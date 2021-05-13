@@ -1,4 +1,6 @@
 import React, {useEffect, useState} from "react";
+import { connect } from "react-redux";
+
 import mediumCup from "../../img/mediumCup.png";
 import largeCup from "../../img/largeCup.png";
 import {Modal} from "react-bootstrap";
@@ -7,10 +9,9 @@ import '../../css/SizeSelect.css'
 function SizeSelect(props) {
 
     let tempPrice = props.menuPrice;
-
-    useEffect(() => {
-        props.sizeChange == 1 ? tempPrice = props.price : tempPrice = props.price + 1000
-    })
+    /*useEffect(() => {
+        props.optionState[0] ? tempPrice = props.price : tempPrice = props.price + 1000
+    })*/
 
     return (
         <>
@@ -24,7 +25,8 @@ function SizeSelect(props) {
                     </div>
                     <div className="optionSelect">
                         <div className = "optionImages">
-                            <div className = { props.sizeSelect === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                            <div className = { props.optionState[0] === 1 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "사이즈변경", payload : 1 })
                                 props.sizeChange(1);
                                 tempPrice = props.menuPrice;
                             }}>
@@ -32,7 +34,8 @@ function SizeSelect(props) {
                                 { props.pageCheck === 0 ? <p> 미디엄 </p> : <p> 중간 크기 </p> }
                                 <p className = "upgradeP"> + 0 </p>
                             </div>
-                            <div className = { props.sizeSelect === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                            <div className = { props.optionState[0] === 2 ? "optionSelectedBtn" : "optionSelectBtn" } onClick={() => {
+                                props.dispatch({ type : "사이즈변경", payload : 2 })
                                 props.sizeChange(2);
                                 tempPrice = (props.menuPrice + 1000);
                             }}>
@@ -41,23 +44,17 @@ function SizeSelect(props) {
                                 <p className = "upgradeP"> + 0 </p>
                             </div>
                             <div className = "commentDiv">
-                                { props.pageCheck === 1 ?
-                                    <div className = "sizeComment">
-                                        <table >
-                                            <tr>
-                                                <th > 중간 크기 </th>
-                                                <th > 큰 크기 </th>
-                                            </tr>
-                                            <tr >
-                                                <td > 작은 물병 크기</td>
-                                                <td > 큰 물병 크기 </td>
-                                            </tr>
-                                            <tr>
-                                                <td> 약 300ml </td>
-                                                <td> 약 500ml </td>
-                                            </tr>
-                                        </table>
-                                    </div>
+                                {
+                                    props.pageCheck === 1 ?
+                                    props.sizeSelect === 1 ?
+                                        <div className = "sizeComment">
+                                            <h3> 작은 물병 사이즈에요 </h3>
+                                            <h3> 큰 컵에 비해서<br/> 300ml정도 양이 적어요 </h3>
+                                        </div>
+                                        : <div className = "sizeComment">
+                                            <h3> 큰 물병 사이즈에요 </h3>
+                                            <h3> 작은 컵에 비해서<br/> 300ml정도 양이 많아요 </h3>
+                                        </div>
                                     : null }
                             </div>
                         </div>
@@ -70,4 +67,11 @@ function SizeSelect(props) {
     )
 }
 
-export default SizeSelect;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        optionState: state.optionReducer
+    }
+}
+
+export default connect(Conversion)(SizeSelect);

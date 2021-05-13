@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import { connect } from "react-redux";
 import MenuSelectModal from "./MenuSelectModal";
 
 
@@ -106,9 +107,13 @@ function MenuDisplay(props) {
     useEffect(() => {
         pageCheckChange(props.pageNum);
         return (
-            show === false ? setCount(1) : null
+            show === false ? setCount(1) : null,
+            show === false ? props.dispatch({ type : "사이즈초기화" }) : null,
+            show === false ? props.dispatch({ type : "얼음초기화" }) : null,
+            show === false ? props.dispatch({ type : "시럽초기화" }) : null,
+            show === false ? props.dispatch({ type : "포장초기화" }) : null
         )
-    })
+    }, [show === false])
 
     return (
         menuItem[props.id].map(function (num, index) {
@@ -151,4 +156,11 @@ function MenuDisplay(props) {
     )
 }
 
-export default MenuDisplay;
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        optionState: state.optionReducer
+    }
+}
+
+export default connect(Conversion)(MenuDisplay);

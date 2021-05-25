@@ -5,12 +5,26 @@
 
 .jumbo {
     margin: 0px;
+    padding : 32px 32px 64px 32px;
     display: flex;
     flex-direction: column;
 }
 
 .body {
 
+}
+
+.adminDiv {
+    display: flex;
+    justify-content: flex-start;
+    width : 10%;
+    cursor: pointer;
+}
+
+.admin {
+    width : 30%;
+    height : 30%;
+    background-repeat: no-repeat;
 }
 
 .qrcodeImg {
@@ -33,6 +47,7 @@
 }
 
 .writeBtn {
+    width : 50%;
     flex-grow: 1;
     margin : 20px;
     padding : 20px;

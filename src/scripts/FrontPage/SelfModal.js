@@ -61,9 +61,14 @@ function SelfModal(props) {
                                 <h2>전화번호 : </h2>
                             </span>
                             <span>
-                                <input type = "number"
+                                <input type = "text" /*onkeypress = { () => { return checkNumber(e) }}*/
                                        placeholder = {" 전화번호를 ' - ' 빼고 작성해 주세요 "}
-                                       onChange={(e) => { setPhone(e.target.value) }} />
+                                       onChange={(e) => {
+                                           const regex = /^[0-9\b -]{0,13}$/;
+                                           if(regex.test(e.target.value)) {
+                                               setPhone(e.target.value) }}
+                                           }
+                                />
                             </span>
                         </div>
                         <div className = "messageDiv">
@@ -80,7 +85,11 @@ function SelfModal(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="primary" disabled = { show } onClick={() => {
-                        history.push("./MainPage/0")
+                        history.push("./MainPage/0");
+
+                        console.log("이름 : " + name);
+                        console.log("주소 : " + location);
+                        console.log("전화번호 : " + phone);
                     }}>
                         작성 완료 </Button>
 

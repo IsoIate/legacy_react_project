@@ -1,0 +1,39 @@
+.pwInput {
+    border : none;
+    width : 84%;
+    border-bottom: 1px solid deepskyblue;
+    outline : none;
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+    letter-spacing: 5px;
+}
+
+.btnDiv {
+    display: flex;
+    justify-content: center;
+}
+
+.valueBtn {
+    padding : 0;
+    margin : 5px;
+
+    width : 125px;
+    height : 125px;
+
+    border : none;
+    font-size: 48px;
+
+}
+
+.loginFooter {
+    display: flex;
+    justify-content: center;
+}
+
+.loginFooter Button {
+    font-size: 20px;
+    font-weight: bold;
+
+    flex-grow: 1;
+}

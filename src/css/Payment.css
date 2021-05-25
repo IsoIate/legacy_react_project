@@ -34,6 +34,18 @@
     border : none;
 }
 
+.backBtnText {
+    background-color: #A6A6A6;
+    color : white;
+    font-size: 48px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.backBtnText:hover {
+    background-color: gray;
+}
+
 .payBtnText {
     background-color: #FEC800;
     color : white;
@@ -43,6 +55,6 @@
 }
 
 .payBtnText:hover {
-    background-color: #efbf0b;
+    background-color: #ffb300;
 
 }

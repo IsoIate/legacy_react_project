@@ -65,6 +65,7 @@ function MenuSelectModal(props) {
 
                     } }>
                         <p> 주문추가 </p>
+
                     </Button>
                 </Modal.Footer>
             </Modal>

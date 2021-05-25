@@ -39,7 +39,7 @@ function Payment (props) {
             </div>
             <div className="payBtn">
 
-                <button variant="secondary" className = "payBtnText" onClick = { () => {
+                <button variant="secondary" className = "backBtnText" onClick = { () => {
                     history.push("/MainPage/0");
                 }}>뒤로<br/>가기</button>
 

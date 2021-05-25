@@ -4,6 +4,7 @@ import { Jumbotron, Button, Card, Modal } from "react-bootstrap";
 import {Link, Route, Switch, useParams} from "react-router-dom";
 
 import Data from '../data/coffeeData.js'
+import AdminPage from "./FrontPage/AdminPage";
 import Title from './FrontPage/Title';
 import Order from './Order/Order.js';
 import SimpleOrder from './Order/SimpleOrder';
@@ -33,6 +34,9 @@ function App() {
                 <Route exact path = { "/MainPage/:id" }>
                     <Title/>
                     <MainPage show = { show } handleShow = { handleShow } handleClose = { handleClose }/>
+                </Route>
+                <Route exact path = { "/AdminPage" }>
+                    <AdminPage />
                 </Route>
                 <Route exact path = {"/"}>
                     <FrontPage />

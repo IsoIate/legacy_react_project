@@ -1,13 +1,14 @@
 import React, {useEffect, useState} from 'react';
 import {Link, Route, useHistory} from "react-router-dom";
 import {Button} from "react-bootstrap";
-import qrcode from "../../img/qrcode.png"
 
-import Title from './Title.js'
-import '../../css/FrontPage.css'
-import guide from '../../img/guide.png'
+import Title from './Title'
 import QRModal from "./QRModal";
 import SelfModal from "./SelfModal";
+
+import '../../css/FrontPage.css'
+import qrcode from "../../img/qrcode.png"
+import guide from '../../img/guide.png'
 
 function FrontPage(props) {
     let history = useHistory();
@@ -22,7 +23,7 @@ function FrontPage(props) {
 
     return (
         <>
-            <Title/>
+            <Title />
             <div className = "header">
 
             </div>
@@ -41,7 +42,7 @@ function FrontPage(props) {
 
                     <Button className = "writeBtn" size = "lg" onClick = {() => {
                         selfOpen();
-                    }}> 수기명부로 작성하기 </Button>
+                    }}> 수기로 출입명부 작성하기 </Button>
 
                 </div>
 

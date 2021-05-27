@@ -11,6 +11,7 @@ import SimpleOrder from './Order/SimpleOrder';
 import MainPage from "./FrontPage/MainPage";
 import '../css/App.css';
 import FrontPage from "./FrontPage/FrontPage";
+import Test from "./FrontPage/Test";
 /*import imgA from './img/Admin.png';*/
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
                 </Route>
                 <Route exact path = { "/AdminPage" }>
                     <AdminPage />
+                </Route>
+                <Route exact path = { "/test" }>
+                    <Test />
                 </Route>
                 <Route exact path = {"/"}>
                     <FrontPage />

@@ -8,6 +8,7 @@ function AdminModal(props) {
     let [password] = useState('1234');
 
     let [value, setValue] = useState('');
+
     return (
         <>
             <Modal show = { props.show } onHide = { props.onHide } >
@@ -69,8 +70,8 @@ function AdminModal(props) {
                     <Button variant="primary" onClick={() => {
                         return (
                             value === password ?
-                                history.push('./AdminPage')
-                                : null
+                                alert('관리자 페이지에 접속합니다.') + history.push('./AdminPage')
+                                : alert('비밀번호가 틀렸습니다.'), setValue('')
                         )
                     }}> 로그인 </Button>
                 </Modal.Footer>

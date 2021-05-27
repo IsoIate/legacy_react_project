@@ -18,7 +18,7 @@ function Title(props) {
                 {/*<Link as = { Link } to = { "/AdminPage" } className = "link" >*/}
                     <div className = "adminDiv" onClick = {() => {
                         Open();
-                        console.log(Show);
+                        /*console.log(Show);*/
                     }}>
                         <img src = { Admin } className = "admin"/>
                     </div>

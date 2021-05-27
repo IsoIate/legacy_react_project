@@ -7,11 +7,18 @@ import { BrowserRouter } from "react-router-dom";
 import "@fortawesome/fontawesome-free/js/all.js"
 import { Provider } from 'react-redux'
 import {combineReducers, createStore} from 'redux'
+import { positions } from "react-alert";
+import AlertTemplate from "react-alert-template-basic";
 
 /* defaultParameter */
 let primaryState = [];
 let orderState = [0, 0];
 let optionState = [0, 0, 0, 0];
+
+const options = {
+    timeout: 5000,
+    position: positions.BOTTOM_CENTER
+};
 
 /* 주문 표 생성, 제거 */
 function reducer(state = primaryState, action) {
@@ -108,7 +115,7 @@ let store = createStore(combineReducers({ reducer, orderReducer, optionReducer }
 ReactDOM.render(
   <React.StrictMode>
       <BrowserRouter>
-          <Provider store = { store }>
+          <Provider store = { store } template={AlertTemplate} {...options}>
             <App />
           </Provider>
       </BrowserRouter>

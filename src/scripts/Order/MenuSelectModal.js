@@ -58,7 +58,8 @@ function MenuSelectModal(props) {
 
                         props.dispatch({type : "항목추가",
                             payload : { title : props.menuItem[props.id][props.clickNum].title,
-                            count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})
+                            count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
+                            temp : 123456789012345678901234567890 }})
 
                         props.dispatch({type : "주문추가", payload : { count : props.count,
                                 price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})

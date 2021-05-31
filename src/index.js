@@ -24,7 +24,34 @@ const options = {
 function reducer(state = primaryState, action) {
     if(action.type === "항목추가") {
         let copy = [...state];
-        copy.push(action.payload);
+
+        if(copy[0] != null) {
+            copy.map((num, index) => {
+                return (
+
+                    ((copy[index].title).includes(action.payload.title)) ?
+                        console.log(copy) +
+                        console.log(copy[index].title) +
+                        console.log(action.payload.title) +
+                        console.log(index) +
+                        console.log("num") +
+                        console.log(copy.length) +
+                        console.log(action.payload.temp) +
+                        (copy[index].count = copy[index].count + action.payload.count) +
+                        (copy[index].price = copy[index].price + action.payload.price)
+                        : (index + 1) == copy.length && (!(copy[index].title).includes(action.payload.title)) ?
+                        copy.push(action.payload) + console.log("push")
+                        : null
+
+
+                )
+            })
+
+        }
+        else if(copy[0] == null) {
+            copy.push(action.payload)
+        }
+
         return copy;
     }
     else if (action.type === "항목제거") {

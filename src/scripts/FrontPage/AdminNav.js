@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Nav() {
+function AdminNav() {
     return (
         <>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -28,4 +28,4 @@ function Nav() {
     )
 }
 
-export default Nav;
+export default AdminNav;

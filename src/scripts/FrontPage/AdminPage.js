@@ -1,13 +1,13 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
-import Nav from "./Nav";
+import AdminNav from "./AdminNav";
 import '../../css/AdminPage.css'
 import drink from '../../img/drink.png';
 
 function AdminPage() {
     let history = useHistory();
     let title = ['공지사항', '게시판', '매출관리', '설정'];
-    let titleLink = ['#', '#', '#', '#'];
+    let titleLink = ['', '', './AdminPage/Revenue', ''];
 
     return (
         <div className = "totalDiv">
@@ -21,7 +21,9 @@ function AdminPage() {
                             return (
                                 <div className = "navBtn">
                                     <img className = "navImg" src = { drink } />
+
                                     <a href = { titleLink[index] } > { title[index] } </a>
+                                    { console.log( )}
                                     <span className = "arrowIcon">
                                         <i className="fas fa-angle-right fa-2x"></i>
                                     </span>
@@ -37,7 +39,7 @@ function AdminPage() {
                 </div>
             </div>
             <div className = "rightDiv">
-                <Nav/>
+                <AdminNav/>
                 <div className = "row abc">
                     <div className = "container col-md-5 status">
                         <h4 className = "titleHeader" onClick = {() => {

@@ -39,33 +39,22 @@ function Payment (props) {
 
             </div>
             <div className="payBtn">
-                {/*<button variant="secondary" className = "backBtnText" onClick = { () => {
-                    history.push("/MainPage/0");
-                }}>뒤로<br/>가기</button>
-
-                <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
-                    return (
-                        props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), console.log(props.state.title)
-                    )
-                }}>현금<br/>결제</button>
-
-                <button className = "payBtnText" onClick = {() => {
-                    props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
-                }}>카드<br/>결제</button>*/}
-
-
 
                 <form action = "/payInfo" method = "post" >
                     {
                         props.state[0] != null ?
                             props.state.map((num, index) => {
                                 return (
-                                    <input type = "text" value = { props.state[index].title }
-                                           name = "title" style={{display: "none"}} /> +
-                                    <input type = "text" value = { props.state[index].count }
-                                           name = "count" style={{display: "none"}} /> +
-                                    <input type = "text" value = { props.state[index].price }
-                                           name = "price" style={{display: "none"}} />
+                                    <div style={{display : "none"}}>
+                                        <input type = "text" value = { props.state[index].title }
+                                               name = "title" /> +
+                                        <input type = "text" value = { props.state[index].count }
+                                               name = "count" /> +
+                                        <input type = "text" value = { props.state[index].price }
+                                               name = "price" />
+                                        <input type = "text" value = { props.state[index].temp }
+                                               name = "temp" />
+                                    </div>
                                 )
                             })
                             : null
@@ -77,7 +66,7 @@ function Payment (props) {
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
                         return (
-                            props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), console.log(props.state.title)
+                            props.orderState[0] == 0 ? noPayOpen() : cashPayOpen()
                         )
                     }}>현금<br/>결제</button>
 

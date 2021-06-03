@@ -3,11 +3,12 @@ import { useHistory } from 'react-router-dom'
 import AdminNav from "./AdminNav";
 import '../../css/AdminPage.css'
 import drink from '../../img/drink.png';
+import axios from "axios";
 
 function AdminPage() {
     let history = useHistory();
     let title = ['공지사항', '게시판', '매출관리', '설정'];
-    let titleLink = ['', '', './AdminPage/Revenue', ''];
+    let titleLink = ['', '', '/AdminPage/Revenue', ''];
 
     return (
         <div className = "totalDiv">
@@ -43,7 +44,9 @@ function AdminPage() {
                 <div className = "row abc">
                     <div className = "container col-md-5 status">
                         <h4 className = "titleHeader" onClick = {() => {
-                            history.push('#');
+                            axios.get('https://codingapple1.github.io/shop/data2.json')
+                                .then((result)=>{ console.log(result.data) })
+                                .catch(()=>{ console.log("error") })
                         }}>
                             매출현황 <i className="fas fa-angle-right fa-1x"></i>
                         </h4>

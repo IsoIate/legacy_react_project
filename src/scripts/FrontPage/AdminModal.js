@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {useHistory} from "react-router-dom";
 import {Button, Modal} from "react-bootstrap";
-import '../../css/AdminModal.css';
+import '../../css/FrontPage/AdminModal.css';
 
 function AdminModal(props) {
     let history = useHistory();
@@ -70,7 +70,7 @@ function AdminModal(props) {
                     <Button variant="primary" onClick={() => {
                         return (
                             value === password ?
-                                alert('관리자 페이지에 접속합니다.') + history.push('./AdminPage')
+                                alert('관리자 페이지에 접속합니다.') + history.push('/AdminPage')
                                 : alert('비밀번호가 틀렸습니다.'), setValue('')
                         )
                     }}> 로그인 </Button>

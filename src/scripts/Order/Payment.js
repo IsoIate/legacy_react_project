@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { Button } from "react-bootstrap";
 import { useHistory } from 'react-router-dom';
-import '../../css/Payment.css'
+import '../../css/Order/Payment.css'
 import QRModal from "../FrontPage/QRModal";
 import CardPayment from "./CardPayment";
 import CashPayment from "./CashPayment";

@@ -1,0 +1,36 @@
+.revenueDiv {
+    display: flex;
+    flex-direction: row;
+    height : 100%;
+}
+
+.rightDiv {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    width: 100vh;
+    height : 100vh;
+}
+
+.revenueHeader {
+    margin : 20px;
+}
+
+.revenueTable {
+    width : 97%;
+    margin : 20px;
+}
+
+.revenueTable th {
+    cursor: pointer;
+}
+
+.tableHeader {
+    background-color: #FEC800;
+    color : white;
+    font-size: 24px;
+}
+
+.tableBody {
+    font-size: 20px;
+}

@@ -66,7 +66,7 @@ import dessert4 from "../../img/dessert/icecreamCroffle.png";
 import dessert5 from "../../img/dessert/coffeeBeanBread.png";
 import dessert6 from "../../img/dessert/custardCreamBread.png";
 
-import '../../css/MenuDisplay.css'
+import '../../css/Order/MenuDisplay.css'
 
 function MenuDisplay(props) {
 

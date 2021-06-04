@@ -1,54 +1,23 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom'
 import AdminNav from "./AdminNav";
-import '../../css/AdminPage.css'
-import drink from '../../img/drink.png';
+import '../../css/AdminPages/AdminPage.css'
 import axios from "axios";
+import LeftNav from "./LeftNav";
 
 function AdminPage() {
     let history = useHistory();
-    let title = ['공지사항', '게시판', '매출관리', '설정'];
-    let titleLink = ['', '', '/AdminPage/Revenue', ''];
+
 
     return (
         <div className = "totalDiv">
-            <div className = "leftDiv">
-                <div className = "banner">
-                    <h2> ABC Cafe </h2>
-                </div>
-                <div className = "navBar">
-                    {
-                        title.map(function (num, index) {
-                            return (
-                                <div className = "navBtn">
-                                    <img className = "navImg" src = { drink } />
-
-                                    <a href = { titleLink[index] } > { title[index] } </a>
-                                    { console.log( )}
-                                    <span className = "arrowIcon">
-                                        <i className="fas fa-angle-right fa-2x"></i>
-                                    </span>
-
-                                    {/*<span className = "navTitle">
-
-                                    </span>
-                                    */}
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-            </div>
+            <LeftNav/>
             <div className = "rightDiv">
                 <AdminNav/>
                 <div className = "row abc">
                     <div className = "container col-md-5 status">
-                        <h4 className = "titleHeader" onClick = {() => {
-                            axios.get('https://codingapple1.github.io/shop/data2.json')
-                                .then((result)=>{ console.log(result.data) })
-                                .catch(()=>{ console.log("error") })
-                        }}>
-                            매출현황 <i className="fas fa-angle-right fa-1x"></i>
+                        <h4 className = "titleHeader">
+                            총 매출 <i className="fas fa-angle-right fa-1x"></i>
                         </h4>
                         <div>
                             <div>
@@ -65,7 +34,7 @@ function AdminPage() {
                         <h4 className = "titleHeader" onClick = {() => {
                             history.push('#');
                         }}>
-                            주간매출 <i className="fas fa-angle-right fa-1x"></i>
+                            최근매출 <i className="fas fa-angle-right fa-1x"></i>
                         </h4>
                         <table className="table table-striped table-bordered orderTable ">
                             <tr className = "" >
@@ -85,9 +54,9 @@ function AdminPage() {
                 </div>
                 <div className="container col-md-10 notice ">
                     <h4 className = "noticeHeader" onClick = {() => {
-                        history.push('#');
+                        history.push('/AdminPage/Revenue');
                     }}>
-                        공지사항 <i className="fas fa-angle-right fa-1x"></i>
+                        매출현황 <i className="fas fa-angle-right fa-1x"></i>
                     </h4>
                     <table className="table table-striped table-bordered orderTable ">
                         <tr className = "" >

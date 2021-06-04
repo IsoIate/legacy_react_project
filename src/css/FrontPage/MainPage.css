@@ -1,11 +1,13 @@
 
 .mainImg {
-    background-image: url(../img/MainImg.png);
+    /*background-image: url('src/img/MainImg.png');*/
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
     opacity: 0.5;
     padding: 0px;
+    width : 100%;
+    height : 100%;
 }
 
 .orderBtn {

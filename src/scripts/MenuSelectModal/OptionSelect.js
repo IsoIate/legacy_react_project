@@ -7,7 +7,7 @@ import hotDrink from "../../img/hotDrink.png";
 import noSyrup from "../../img/noSyrup.png";
 import syrup from "../../img/syrup.png";
 import {Modal} from "react-bootstrap";
-import '../../css/OptionSelect.css'
+import '../../css/MenuSelectModal/OptionSelect.css'
 
 function OptionSelect(props) {
 

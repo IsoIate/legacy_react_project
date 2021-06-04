@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Nav, Button} from "react-bootstrap";
 import LeftArrow from "./LeftArrow";
 import RightArrow from "./RightArrow";
-import '../../css/MenuContainer.css'
+import '../../css/Order/MenuBar.css'
 
 // 메뉴 바 모듈
 function MenuBar(props) {

@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import {Button, Modal} from "react-bootstrap";
 import error from "../../img/error.png";
 
-import '../../css/NoPayment.css'
+import '../../css/Order/NoPayment.css'
 
 function NoPayment(props) {
 

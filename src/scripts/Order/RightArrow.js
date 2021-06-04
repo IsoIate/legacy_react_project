@@ -1,5 +1,5 @@
 import React from "react";
-import '../../css/Arrows.css'
+import '../../css/Order/Arrows.css'
 
 function RightArrow(props) {
     let right = "fas fa-chevron-circle-right fa-2x"

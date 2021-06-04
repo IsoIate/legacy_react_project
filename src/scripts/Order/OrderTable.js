@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {Button} from 'react-bootstrap'
-import '../../css/OrderTable.css'
+import '../../css/Order/OrderTable.css'
 import { connect } from "react-redux";
 
 function OrderTable(props) {

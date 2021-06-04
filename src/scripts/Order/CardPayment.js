@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom'
 import {Button, Modal} from "react-bootstrap";
 import payment from "../../img/payment.png";
 
-import '../../css/CardPayment.css'
+import '../../css/Order/CardPayment.css'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 

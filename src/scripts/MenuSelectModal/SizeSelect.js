@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import mediumCup from "../../img/mediumCup.png";
 import largeCup from "../../img/largeCup.png";
 import {Modal} from "react-bootstrap";
-import '../../css/SizeSelect.css'
+import '../../css/MenuSelectModal/SizeSelect.css'
 
 function SizeSelect(props) {
 

@@ -3,7 +3,7 @@ import {Jumbotron} from "react-bootstrap";
 import React, {useState} from "react";
 import Admin from "../../img/Admin.png"
 
-import '../../css/FrontPage.css'
+import '../../css/FrontPage/FrontPage.css'
 import AdminModal from "./AdminModal";
 
 function Title(props) {

@@ -6,7 +6,7 @@ import Title from './Title'
 import QRModal from "./QRModal";
 import SelfModal from "./SelfModal";
 
-import '../../css/FrontPage.css'
+import '../../css/FrontPage/FrontPage.css'
 import qrcode from "../../img/qrcode.png"
 import guide from '../../img/guide.png'
 

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import { useHistory, useParams } from 'react-router-dom'
 
-import '../../css/Order.css';
+import '../../css/Order/Order.css';
 
 import MenuBar from "./MenuBar";
 import MenuDisplay from "./MenuDisplay";

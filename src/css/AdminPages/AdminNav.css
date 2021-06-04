@@ -1,0 +1,9 @@
+.navDiv {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logoutBtn {
+    margin-right: 20px;
+}

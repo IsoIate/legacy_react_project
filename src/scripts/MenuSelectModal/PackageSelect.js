@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import takeAway from "../../img/takeAway.png";
 import inStore from "../../img/inStore.png";
 import {Modal} from "react-bootstrap";
-import '../../css/PackageSelect.css'
+import '../../css/MenuSelectModal/PackageSelect.css'
 
 function PackageSelect(props) {
 

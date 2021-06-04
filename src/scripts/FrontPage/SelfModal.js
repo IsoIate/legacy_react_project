@@ -3,7 +3,7 @@ import { useAlert } from "react-alert";
 import { useHistory } from 'react-router-dom'
 import { Modal, Button} from "react-bootstrap"
 import qrcodeImg from '../../img/qrcodeImg.png'
-import '../../css/SelfModal.css'
+import '../../css/FrontPage/SelfModal.css'
 
 function SelfModal(props) {
 

@@ -4,14 +4,14 @@ import { Jumbotron, Button, Card, Modal } from "react-bootstrap";
 import {Link, Route, Switch, useParams} from "react-router-dom";
 
 import Data from '../data/coffeeData.js'
-import AdminPage from "./FrontPage/AdminPage";
+import AdminPage from "./AdminPages/AdminPage";
 import Title from './FrontPage/Title';
 import Order from './Order/Order.js';
 import SimpleOrder from './Order/SimpleOrder';
 import MainPage from "./FrontPage/MainPage";
 import '../css/App.css';
 import FrontPage from "./FrontPage/FrontPage";
-import Revenue from "./FrontPage/Revenue";
+import Revenue from "./AdminPages/Revenue";
 /*import imgA from './img/Admin.png';*/
 
 function App() {

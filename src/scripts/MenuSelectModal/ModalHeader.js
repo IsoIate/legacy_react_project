@@ -1,6 +1,6 @@
 import React from "react";
 import {Jumbotron, Modal} from "react-bootstrap";
-import "../../css/ModalHeader.css"
+import "../../css/MenuSelectModal/ModalHeader.css"
 
 function ModalHeader(props) {
     return (

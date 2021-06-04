@@ -10,69 +10,6 @@ html, body {
     height : 100%;
 }
 
-.leftDiv {
-
-    height : 100vh;
-    background-color: #e9ecef;
-}
-
-.banner {
-    margin: 30px 10px;
-}
-
-.storeBanner h2 {
-    margin: 0;
-}
-
-.navBar {
-    display: flex;
-    flex-direction: column;
-    width: 250px;
-}
-
-.navBar a {
-    display: flex;
-
-    color : black;
-    font-size: 24px;
-    text-decoration: none;
-
-    width: 200px;
-    padding: 10px 0;
-}
-
-.navBar a:hover {
-    text-decoration: none;
-}
-
-.navBtn {
-    display: flex;
-    flex-direction: row;
-    background-color: crimson;
-}
-
-.navBtn:hover {
-    background-color: deepskyblue;
-}
-
-.navTitle {
-
-}
-
-.navImg {
-    width: 10%;
-    margin : 10px;
-}
-
-.arrowIcon {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-
-    margin-right: 5px;
-}
-
 .rightDiv {
     display: flex;
     flex-direction: column;

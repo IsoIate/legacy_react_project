@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { Modal, Button} from "react-bootstrap"
 import qrcodeImg from '../../img/qrcodeImg.png'
-import '../../css/QRModal.css'
+import '../../css/FrontPage/QRModal.css'
 
 function QRModal(props) {
 

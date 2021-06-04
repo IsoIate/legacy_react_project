@@ -5,7 +5,7 @@ import SizeSelect from "../MenuSelectModal/SizeSelect";
 import OptionSelect from "../MenuSelectModal/OptionSelect";
 import PackageSelect from "../MenuSelectModal/PackageSelect";
 import ModalHeader from "../MenuSelectModal/ModalHeader";
-import '../../css/MenuSelectModal.css'
+import '../../css/Order/MenuSelectModal.css'
 
 
 function MenuSelectModal(props) {

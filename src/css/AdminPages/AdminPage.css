@@ -17,9 +17,14 @@ html, body {
     width: 100vh;
     height : 100vh;
 }
-.abc {
+
+.contents {
+
+}
+
+.topTables {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 .status {
     border: 1px solid black;
@@ -27,13 +32,18 @@ html, body {
     padding : 0;
 }
 
-.revenue {
+.recentRev {
     border: 1px solid black;
     margin: 30px;
     padding : 0;
 }
 
-.notice {
+.btmTables {
+    display: flex;
+    justify-content: center;
+}
+
+.revenue {
     border: 1px solid black;
     margin: 45px;
     padding : 0;

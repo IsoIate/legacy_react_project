@@ -70,7 +70,7 @@ function Payment (props) {
                         )
                     }}>현금<br/>결제</button>
 
-                    <button className = "payBtnText" onClick = {() => {
+                    <button type = "submit" className = "payBtnText" onClick = {() => {
                         props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
                     }}>카드<br/>결제</button>
                 </form>

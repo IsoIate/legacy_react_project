@@ -1,0 +1,35 @@
+.autoHeader {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.autoHeader > h2 {
+    font-weight: bold;
+    margin: 0 auto;
+}
+
+.autoBody {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    margin: 20px;
+}
+
+.autoBody > h3 {
+    margin: 3px;
+}
+
+.autoFooter {
+    display: flex;
+    justify-content: center;
+    border : none;
+}
+
+.autoFooter Button {
+    font-size: 20px;
+    font-weight: bold;
+    flex-grow: 1;
+    width : 10%;
+}

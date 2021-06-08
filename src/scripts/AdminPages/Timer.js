@@ -17,7 +17,7 @@ function Timer () {
             if (parseInt(seconds) === 0) {
                 if (parseInt(minutes) === 0) {
                     clearInterval(countdown);
-                    open();
+                    /*open();*/
                 } else {
                     setMinutes(parseInt(minutes) - 1);
                     setSeconds(59);

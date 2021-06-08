@@ -1,7 +1,18 @@
 .navDiv {
     width: 100%;
+    padding: 0;
     display: flex;
     justify-content: space-between;
+}
+
+.logoutContents {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.logoutContents > button {
+    margin-left: 20px;
 }
 
 .logoutBtn {

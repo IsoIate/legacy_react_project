@@ -7,7 +7,10 @@ import RevenueTable from "./RevenueTable";
 
 function Revenue() {
 
+    let callPage = 2;
+
     return (
+
         <div className = "revenueDiv">
             <LeftNav/>
 
@@ -18,7 +21,7 @@ function Revenue() {
                     <h2 className="text-center">매출정보 페이지</h2>
                 </div>
 
-                <RevenueTable />
+                <RevenueTable callPage = { callPage } />
             </div>
         </div>
     )

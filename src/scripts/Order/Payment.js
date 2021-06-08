@@ -54,6 +54,8 @@ function Payment (props) {
                                                name = "price" />
                                         <input type = "text" value = { props.state[index].temp }
                                                name = "temp" />
+                                        <input type = "text" value = { props.state[index].payment }
+                                               name = "payment" />
                                     </div>
                                 )
                             })

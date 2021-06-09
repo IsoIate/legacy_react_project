@@ -5,7 +5,7 @@ import '../../css/AdminPages/LeftNav.css'
 function LeftNav() {
 
     let title = ['홈', '매출현황', '메뉴수정', '설정'];
-    let titleLink = ['/AdminPage', '/AdminPage/Revenue', '', ''];
+    let titleLink = ['/AdminPage', '/AdminPage/Revenue', '', '/AdminPage/Setting'];
 
     return (
         <>

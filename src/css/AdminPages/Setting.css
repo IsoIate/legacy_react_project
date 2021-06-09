@@ -1,0 +1,43 @@
+.totalDiv {
+    display: flex;
+    flex-direction: row;
+    height : 100%;
+}
+
+.rightDiv {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    width: 100vh;
+    height : 100vh;
+}
+
+.resetDiv {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.dbReset {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin: 10px;
+}
+
+.dbReset > Button {
+    margin-left: 10px;
+}
+
+.pwReset {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin: 10px;
+}
+
+.pwReset > Button {
+    margin-left: 10px;
+}

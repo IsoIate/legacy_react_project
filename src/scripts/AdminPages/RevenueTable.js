@@ -11,12 +11,11 @@ function RevenueTable(props) {
     /* getRevenue라는 url로 접속했을 때 아래 코드 실행 */
     useEffect(() => {
 
-        console.log("click");
         axios.get('/getRevenue')
 
             .then(( res ) => {
                 setData(res.data.comp)
-                console.log(res.data.comp)
+                /*console.log(res.data.comp)*/
             })
             .catch(( error )=>{ console.log( error ) })
 

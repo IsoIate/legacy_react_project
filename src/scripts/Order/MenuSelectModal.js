@@ -18,10 +18,6 @@ function MenuSelectModal(props) {
 
     return (
         <div className="MenuSelectModal">
-            {
-                console.log(props.id) +
-                console.log(props.menuItem[props.id])
-            }
             <Modal className = "menuModal" size = "lg" show ={ props.show } onHide ={ props.handleClose }>
 
                 {/* 모달 헤더 */}

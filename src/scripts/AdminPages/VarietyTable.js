@@ -8,8 +8,7 @@ function VarietyTable() {
     useEffect(() => {
         axios.get('/getVariety')
             .then((res) => {
-                console.log(res.data.comp);
-                setData(res.data.comp);
+                setData(res.data.jsonArr);
             })
             .catch((error) => { console.log(error) })
     }, [])
@@ -20,7 +19,6 @@ function VarietyTable() {
             <div className = { "tableDiv2" } >
                 <table className="table table-striped table-bordered revenueTable ">
                     <tr className = "tableHeader" >
-                        <th> # </th>
                         <th> 종류 </th>
                         <th> 수량 </th>
                         <th> 가격 </th>
@@ -29,7 +27,9 @@ function VarietyTable() {
                         data != null ?
                             data.map((num, index) => {
                                 return (
-                                    <TableBody data = { data } index = { index } />
+                                    data[index].수량 != 0 ?
+                                        <TableBody data = { data } index = { index } />
+                                        : null
                                 )
                             })
                             : null
@@ -45,9 +45,6 @@ function TableBody(props) {
     return (
         <>
             <tr className = "tableBody">
-                <td>
-                    { props.data[props.index]._id }
-                </td>
                 <td>
                     { props.data[props.index].종류 }
                 </td>

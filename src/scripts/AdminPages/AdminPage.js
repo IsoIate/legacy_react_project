@@ -25,7 +25,7 @@ function AdminPage() {
     }, [])
 
     useEffect(() => {
-        axios.get('/getId')
+        axios.get('/getVisitors')
             .then((res) => {
                 console.log(res.data)
                 setPeople(res.data);

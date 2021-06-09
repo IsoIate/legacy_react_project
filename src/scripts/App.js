@@ -12,6 +12,7 @@ import MainPage from "./FrontPage/MainPage";
 import '../css/App.css';
 import FrontPage from "./FrontPage/FrontPage";
 import Revenue from "./AdminPages/Revenue";
+import Setting from "./AdminPages/Setting";
 /*import imgA from './img/Admin.png';*/
 
 function App() {
@@ -41,6 +42,9 @@ function App() {
                 </Route>
                 <Route exact path = { "/AdminPage/Revenue" }>
                     <Revenue />
+                </Route>
+                <Route exact path = { "/AdminPage/Setting" }>
+                    <Setting />
                 </Route>
                 <Route exact path = {"/"}>
                     <FrontPage />

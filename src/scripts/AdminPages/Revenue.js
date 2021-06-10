@@ -6,6 +6,7 @@ import '../../css/AdminPages/Revenue.css';
 import RevenueTable from "./RevenueTable";
 import { Tabs, Tab } from "react-bootstrap";
 import VarietyTable from "./VarietyTable";
+import PieChart from "./PieChart";
 
 function Revenue() {
 
@@ -42,7 +43,7 @@ function Revenue() {
                          onClick = {() => {
                             setClick(2);
                         }}>
-                        <p>3</p>
+                        <PieChart />
                     </Tab>
 
                 </Tabs>

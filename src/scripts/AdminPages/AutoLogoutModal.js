@@ -9,7 +9,7 @@ function AutoLogoutModal(props) {
 
     return (
         <div>
-            <Modal show = { props.show } onHide = { props.onHide }  keyboard = { false }  >
+            <Modal show = { props.show } onHide = { props.onHide } keyboard = { false }  >
                 <Modal.Header className = "autoHeader">
                     <h2> 자동 로그아웃 </h2>
                 </Modal.Header>

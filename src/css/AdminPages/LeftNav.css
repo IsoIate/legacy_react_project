@@ -32,7 +32,7 @@
 .navBtn {
     display: flex;
     flex-direction: row;
-    background-color: crimson;
+    background-color: #fdb768;
 }
 
 .navBtn:hover {

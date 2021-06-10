@@ -26,30 +26,30 @@ html, body {
 }
 
 .status {
-    border: 1px solid black;
+    border: 1px solid #A6A6A6;
     border-radius: 15px;
-    background-color: #e4e4e4;
+    background-color: #f8f9fa;
     margin: 30px;
     padding : 0;
 }
 
 .status > h2 {
     border-radius: 15px 15px 0 0;
-    background-color: #A6A6A6;
+    background-color: #f6b26b;
     padding: 15px;
 }
 
 .recentRev {
-    border: 1px solid black;
+    border: 1px solid #A6A6A6;
     border-radius: 15px;
-    background-color: #e4e4e4;
+    background-color: #f8f9fa;
     margin: 30px;
     padding : 0;
 }
 
 .recentRev > h2 {
     border-radius: 15px 15px 0 0;
-    background-color: #A6A6A6;
+    background-color: #f6b26b;
     padding: 15px;
 }
 
@@ -84,11 +84,11 @@ html, body {
 }
 
 .leftBox {
-    background-color: #6594ec;
+    background-color: #8eceff;
 }
 
 .leftBox > h2 {
-    background-color: #366ed6;
+    background-color: rgba(88,133,175,0.49);
 }
 
 .getInline {
@@ -105,11 +105,11 @@ html, body {
 }
 
 .centerBox {
-    background-color: #38a3b6;
+    background-color: #ffc9d6;
 }
 
 .centerBox > h2 {
-    background-color: #097d91;
+    background-color: rgba(196,153,163,0.49);
 }
 
 .payMethod {
@@ -123,7 +123,7 @@ html, body {
 .payMethod > div {
     display: flex;
     flex-direction: column;
-    background-color: #47cee6;
+    background-color: #ff838f;
     flex-grow: 1;
     margin: 10px 2% 10px;
     border-radius: 15px;
@@ -131,11 +131,11 @@ html, body {
 }
 
 .rightBox {
-    background-color: #55a812;
+    background-color: #4fcfc0;
 }
 
 .rightBox > h2 {
-    background-color: #3d8205;
+    background-color: rgba(52,140,130,0.38);
 }
 
 .rightBoxContents {

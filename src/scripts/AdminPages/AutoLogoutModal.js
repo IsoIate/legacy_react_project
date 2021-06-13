@@ -9,13 +9,13 @@ function AutoLogoutModal(props) {
 
     return (
         <div>
-            <Modal show = { props.show } onHide = { props.onHide } keyboard = { false }  >
+            <Modal show = { props.show } onHide = { props.onHide } backdrop = { "static" } keyboard = { false }  >
                 <Modal.Header className = "autoHeader">
                     <h2> 자동 로그아웃 </h2>
                 </Modal.Header>
 
                 <Modal.Body className = "autoBody">
-                    <h3> 10분간 사용하지 않아 </h3>
+                    <h3> 일정 시간동안 사용하지 않아 </h3>
                     <h3> 자동으로 로그아웃 됩니다. </h3>
                 </Modal.Body>
 

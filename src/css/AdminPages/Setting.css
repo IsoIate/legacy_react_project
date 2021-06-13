@@ -12,6 +12,10 @@
     height : 100vh;
 }
 
+.settingHeader {
+    margin: 20px;
+}
+
 .resetDiv {
     display: flex;
     flex-direction: column;

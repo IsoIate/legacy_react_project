@@ -4,7 +4,6 @@ import axios from "axios";
 import LeftNav from "./LeftNav";
 import AdminNav from "./AdminNav";
 import '../../css/AdminPages/Setting.css';
-import LogoutModal from "./LogoutModal";
 import DBResetModal from "./DBResetModal";
 
 function Setting() {
@@ -20,7 +19,7 @@ function Setting() {
                 <div className = "rightDiv">
                     <AdminNav/>
                     <div>
-                        <h1> Setting Page </h1>
+                        <h2 className = "settingHeader"> 설정 페이지 </h2>
                         <div className = "resetDiv">
                             <div className = "resetRight">
 

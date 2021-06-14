@@ -56,10 +56,16 @@ function MenuSelectModal(props) {
                     <Button  className = "orderAddBtn" onClick={ () => {
                         props.handleClose();
 
-                        props.dispatch({type : "항목추가",
-                            payload : { title : props.menuItem[props.id][props.clickNum].title,
-                            count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
-                            temp : 123456789012345678901234567890, payment : props.id }})
+                        props.count != 1 ?
+                            props.dispatch({type : "항목추가",
+                                payload : { title : props.menuItem[props.id][props.clickNum].title,
+                                count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
+                                temp : 0, payment : props.id }})
+                            :
+                            props.dispatch({type : "항목추가",
+                                payload : { title : props.menuItem[props.id][props.clickNum].title,
+                                    count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
+                                    temp : 30, payment : props.id }})
 
                         props.dispatch({type : "주문추가", payload : { count : props.count,
                                 price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})

@@ -30,6 +30,7 @@ function MenuSelectModal(props) {
                 <Modal.Body style={ { padding : "0" } }>
 
                     {/* 메뉴 사이즈 선택 */}
+                    {/* 디저트는 사이즈 선택 불가 */}
                     {
                         props.id != 7 ?
                             <SizeSelect pageCheck = { props.pageCheck } sizeSelect = { sizeSelect } sizeChange = { sizeChange }
@@ -38,6 +39,7 @@ function MenuSelectModal(props) {
                     }
 
                     {/* 메뉴 옵션 선택 */}
+                    {/* 프라페, 스무디, 디저트는 얼음 선택 불가 */}
                     {
                         props.id == 7 ? null : props.id == 2 ? null : props.id == 3 ? null
                         : <OptionSelect pageCheck = { props.pageCheck } iceSelect = { iceSelect } iceChange = { iceChange }

@@ -35,7 +35,8 @@ function DBResetModal(props) {
                     </div>
                 </Modal.Body>
 
-                <Modal.Footer className = "logoutFooter">
+                <Modal.Footer className = { loading == true ? "hiddenText" : "logoutFooter" }>
+
                     <Button variant="danger" onClick={() => {
                         setLoading(true);
                         axios.delete('/dbReset', {data: {}})
@@ -49,6 +50,7 @@ function DBResetModal(props) {
                     <Button variant="success" onClick={() => {
                         props.onHide();
                     }}> 취소 </Button>
+
                 </Modal.Footer>
             </Modal>
         </div>

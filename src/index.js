@@ -14,6 +14,7 @@ import AlertTemplate from "react-alert-template-basic";
 let primaryState = [];
 let orderState = [0, 0];
 let optionState = [0, 0, 0, 0];
+let counterState = [];
 
 const options = {
     timeout: 5000,
@@ -138,6 +139,11 @@ function optionReducer(state = optionState, action) {
 }
 
 let store = createStore(combineReducers({ reducer, orderReducer, optionReducer }));
+
+/* 주문 메뉴 카운터로 전송 */
+function counterReducer(state = counterState, action) {
+
+}
 
 ReactDOM.render(
   <React.StrictMode>

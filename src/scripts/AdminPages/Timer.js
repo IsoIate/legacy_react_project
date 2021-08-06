@@ -3,7 +3,7 @@ import AutoLogoutModal from "./AutoLogoutModal";
 
 function Timer () {
 
-    const [minutes, setMinutes] = useState(2);
+    const [minutes, setMinutes] = useState(59);
     const [seconds, setSeconds] = useState(59);
     const [show, setShow] = useState(false);
     const close = () => setShow(false);

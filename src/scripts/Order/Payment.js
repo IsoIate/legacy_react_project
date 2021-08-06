@@ -39,8 +39,33 @@ function Payment (props) {
 
             </div>
             <div className="payBtn">
+                {
+                    props.state[0] != null ?
+                        props.state.map((num, index) => {
+                            console.log(props.state[index].title)
+                            console.log(props.state[index].count)
+                            console.log(props.state[index].price)
+                            console.log(props.state[index].temp)
+                            console.log(props.state[index].payment)
+                        })
+                        : null
+                }
 
-                <form action = "/payInfo" method = "post" >
+                <button variant="secondary" className = "backBtnText" onClick = { () => {
+                    history.push("/MainPage/0");
+                }}>뒤로<br/>가기</button>
+
+                <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
+                    return (
+                        props.orderState[0] == 0 ? noPayOpen() : cashPayOpen()
+                    )
+                }}>현금<br/>결제</button>
+
+                <button type = "submit" className = "payBtnText" onClick = {() => {
+                    props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
+                }}>카드<br/>결제</button>
+
+                {/*<form action = "/payInfo" method = "post" >
                     {
                         props.state[0] != null ?
                             props.state.map((num, index) => {
@@ -75,7 +100,7 @@ function Payment (props) {
                     <button type = "submit" className = "payBtnText" onClick = {() => {
                         props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
                     }}>카드<br/>결제</button>
-                </form>
+                </form>*/}
             </div>
 
             {

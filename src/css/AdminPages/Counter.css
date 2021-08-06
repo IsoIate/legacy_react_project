@@ -1,0 +1,34 @@
+.counterDiv {
+    display: flex;
+    flex-direction: row;
+    height : 100%;
+}
+
+.rightDiv {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 3;
+    width: 100vh;
+    height : 100vh;
+}
+
+.tableDiv {
+    width: 100%;
+    border-radius: 0 0 15px 15px;
+    /*background-color: #e9ecef;*/
+}
+
+.counterTable {
+    width : 97%;
+    margin : 20px;
+}
+
+.counterTable th {
+    cursor: default;
+}
+
+.tableHeader {
+    background-color: #FEC800;
+    color : white;
+    font-size: 24px;
+}

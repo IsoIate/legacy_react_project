@@ -1,10 +1,27 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import LeftNav from "./LeftNav";
 import AdminNav from "./AdminNav";
 import '../../css/AdminPages/Counter.css';
 import { Button } from "react-bootstrap";
+import axios from "axios";
 
 function Counter() {
+
+    let [data, setData] = useState(null);
+
+    /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
+    useEffect(() => {
+
+        axios.get('/getCounter')
+
+            .then(( res ) => {
+                setData(res.data.comp)
+                console.log(res.data.comp)
+            })
+            .catch(( error )=>{ console.log( error ) })
+
+    }, [])
+
     return (
         <div className = "counterDiv">
             <LeftNav/>
@@ -21,7 +38,13 @@ function Counter() {
                             <th style={{width : "40%"}}> 옵션 </th>
                             <th> 제조완료 </th>
                         </tr>
-                        <TableBody/>
+
+                        {
+                            data != null ?
+                                <TableBody data = { data } />
+                                : null
+                        }
+
                     </table>
                 </div>
             </div>
@@ -45,23 +68,21 @@ function Primary (props) {
 function TableBody(props) {
     return (
         <>
-            <tr className = "tableBody">
-                <td>
-                    1
-                </td>
-                <td>
-                    아메리카노
-                </td>
-                <td>
-                    1
-                </td>
-                <td>
-                    옵션 없음
-                </td>
-                <td>
-                    <Button> 확인 </Button>
-                </td>
-            </tr>
+            {
+                props.data.map((num, index) => {
+                    return (
+                        <tr className = "tableBody">
+                            <td> { props.data[index]._id } </td>
+                            <td> { props.data[index].메뉴이름 } </td>
+                            <td> { props.data[index].수량 } </td>
+                            <td> 옵션 </td>
+                            <td>
+                                <Button> 확인 </Button>
+                            </td>
+                        </tr>
+                    )
+                })
+            }
         </>
     )
 }

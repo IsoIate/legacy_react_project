@@ -32,8 +32,8 @@ function PieChart() {
     let [count, setCount] = useState({
         options: {
             series: [],
-            colors:['#FFADAD', '#FFD6A5', '#FDFFB6', "#CAFFBF", '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'],
             labels: [],
+            colors:['#FFADAD', '#FFD6A5', '#FDFFB6', "#CAFFBF", '#9BF6FF', '#A0C4FF', '#BDB2FF', '#FFC6FF'],
             title: {
                 text: "메뉴별 매출정보",
                 align: "center",
@@ -115,8 +115,10 @@ function PieChart() {
                 {
                     (function () {
                         if (cntData != null) {
-                            count.options.series.pop();
-                            count.options.labels.pop();
+                            /*count.options.series.pop();
+                            count.options.labels.pop();*/
+
+                            console.log(cntData);
 
                             cntData.map((num, index) => {
                                 return (
@@ -124,8 +126,11 @@ function PieChart() {
                                     count.options.labels.push(cntData[index].메뉴이름)
                                 )
                             })
-                            console.log(count.options.series);
-                            console.log(count.options.labels);
+
+                            console.log(cntData);
+
+                            /*console.log(count.options.series);
+                            console.log(count.options.labels);*/
                         }
                         else return null;
                     })()
@@ -143,8 +148,9 @@ function PieChart() {
                                 )
                             })
 
-                            console.log(variety.options.series);
-                            console.log(variety.options.labels);
+
+                            /*console.log(variety.options.series);
+                            console.log(variety.options.labels);*/
                         }
                         else return null;
                     })()

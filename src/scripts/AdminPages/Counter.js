@@ -16,7 +16,7 @@ function Counter() {
 
             .then(( res ) => {
                 setData(res.data.comp)
-                console.log(res.data.comp)
+                /*console.log(res.data.comp)*/
             })
             .catch(( error )=>{ console.log( error ) })
 
@@ -35,9 +35,20 @@ function Counter() {
                             <th> # </th>
                             <th style={{width : "30%"}}> 메뉴명 </th>
                             <th> 수량 </th>
+                            <th style={{width : "10%"}}> 가격 </th>
                             <th style={{width : "40%"}}> 옵션 </th>
                             <th> 제조완료 </th>
                         </tr>
+                        {/*
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>
+                                <button type = "submit" className = "submitBtn"> 확인 </button>
+                            </td>
+                        */}
 
                         {
                             data != null ?
@@ -52,19 +63,6 @@ function Counter() {
     )
 }
 
-function Primary (props) {
-    return (
-        props.data.map((num, index) => {
-            return (
-                props.callPage == 1 ?
-                    index >= 3 ? null
-                        : <TableBody data = { props.data } index = { index } />
-                    : <TableBody data = { props.data } index = { index } />
-            )
-        })
-    )
-}
-
 function TableBody(props) {
     return (
         <>
@@ -75,9 +73,22 @@ function TableBody(props) {
                             <td> { props.data[index]._id } </td>
                             <td> { props.data[index].메뉴이름 } </td>
                             <td> { props.data[index].수량 } </td>
+                            <td> { props.data[index].가격 } </td>
                             <td> 옵션 </td>
                             <td>
-                                <Button> 확인 </Button>
+                                <form action = '/makeComp' method = "post" >
+                                    <div style={{display : "none"}}>
+                                        <input type = "text" value = { props.data[index]._id }
+                                            name = "_id"/>
+                                        <input type = "text" value = { props.data[index].메뉴이름 }
+                                               name = "title"/>
+                                        <input type = "text" value = { props.data[index].수량 }
+                                               name = "count"/>
+                                        <input type = "text" value = { props.data[index].가격 }
+                                               name = "price"/>
+                                    </div>
+                                    <button type = "submit" className = "submitBtn"> 확인 </button>
+                                </form>
                             </td>
                         </tr>
                     )

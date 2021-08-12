@@ -32,3 +32,12 @@
     color : white;
     font-size: 24px;
 }
+
+.submitBtn {
+    border : none;
+    background-color: lightsalmon;
+
+    width: 100%;
+    font-size: 20px;
+    color : white;
+}

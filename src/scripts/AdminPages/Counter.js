@@ -37,18 +37,33 @@ function Counter() {
                             <th> 수량 </th>
                             <th style={{width : "10%"}}> 가격 </th>
                             <th style={{width : "40%"}}> 옵션 </th>
-                            <th> 제조완료 </th>
                         </tr>
-                        {/*
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                        <tr>
+                            <td rowSpan={4}>1</td>
+                            <td> 아메리카노 </td>
+                            <td> 1 </td>
+                            <td> 1500 </td>
+                            <td> 없음 </td>
+                        </tr>
+                        <tr>
+                            <td> 아메리카노 </td>
+                            <td> 1 </td>
+                            <td> 1500 </td>
+                            <td> 없음 </td>
+                        </tr>
+                        <tr>
+                            <td> 아메리카노 </td>
+                            <td> 1 </td>
+                            <td> 1500 </td>
+                            <td> 없음 </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={3}> 제조완료 </td>
                             <td>
                                 <button type = "submit" className = "submitBtn"> 확인 </button>
                             </td>
-                        */}
+                        </tr>
+
 
                         {
                             data != null ?

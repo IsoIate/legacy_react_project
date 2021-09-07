@@ -8,6 +8,10 @@ import axios from "axios";
 function Counter() {
 
     let [data, setData] = useState(null);
+    let groupNum = [];
+    let count = -1;
+    let arr1 = [];  // 11 222
+    let arr2 = [];  //
 
     /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
     useEffect(() => {
@@ -29,87 +33,208 @@ function Counter() {
             <div className="container mt-3" className = "rightDiv">
                 <AdminNav/>
 
-                <div className = 'container-fluid tableDiv' >
-                    <table className="table table-striped table-bordered counterTable ">
-                        <tr className = "tableHeader" >
-                            <th> # </th>
-                            <th style={{width : "30%"}}> 메뉴명 </th>
-                            <th> 수량 </th>
-                            <th style={{width : "10%"}}> 가격 </th>
-                            <th style={{width : "40%"}}> 옵션 </th>
-                        </tr>
-                        <tr>
-                            <td rowSpan={4}>1</td>
-                            <td> 아메리카노 </td>
-                            <td> 1 </td>
-                            <td> 1500 </td>
-                            <td> 없음 </td>
-                        </tr>
-                        <tr>
-                            <td> 아메리카노 </td>
-                            <td> 1 </td>
-                            <td> 1500 </td>
-                            <td> 없음 </td>
-                        </tr>
-                        <tr>
-                            <td> 아메리카노 </td>
-                            <td> 1 </td>
-                            <td> 1500 </td>
-                            <td> 없음 </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={3}> 제조완료 </td>
-                            <td>
-                                <button type = "submit" className = "submitBtn"> 확인 </button>
-                            </td>
-                        </tr>
-
-
+                <div className = 'container-fluid bodyContents'>
+                    <div className = "contentsHeader">
+                        <div className = "contentsDiv">
+                            <div className = "groupCount">
+                                <div> # </div>
+                            </div>
+                            <div className = "menuDetail">
+                                <div className = "md1"> 메뉴명 </div>
+                                <div className = "md2"> 수량 </div>
+                                <div className = "md2"> 가격 </div>
+                                <div className = "md1"> 옵션 </div>
+                            </div>
+                        </div>
+                    </div>
+                    {/*<div className = "contentsBody">
+                        <div className = "contentsDiv">
+                            <div className = "groupCount">
+                                <div> # </div>
+                            </div>
+                            <div className = "menuDetail">
+                                <div className = "md1"> 메뉴명 </div>
+                                <div className = "md2"> 수량 </div>
+                                <div className = "md2"> 가격 </div>
+                                <div className = "md1"> 옵션 </div>
+                            </div>
+                        </div>
+                        <div className = "payDetail">
+                            <div>
+                                <div>
+                                    카드 : 0원
+                                    현금 : 0원
+                                </div>
+                                <div>
+                                    확인
+                                </div>
+                            </div>
+                        </div>
+                    </div>*/}
+                    {
+                        data != null ?
+                            <MenuDetail data = { data } />
+                            : null
+                    }
+                    {/*<div>
                         {
                             data != null ?
                                 <TableBody data = { data } />
                                 : null
                         }
-
-                    </table>
+                    </div>*/}
                 </div>
             </div>
         </div>
     )
 }
 
-function TableBody(props) {
+
+function MenuDetail(props) {
+    let count = -1;
+    let group = [];  // 11 222
+    let groupCount = [];  //
+
+    console.log(props.data)
+    console.log(props.data.length)
+    for(let i = 0; i < props.data.length; i++) {
+        if(!group.includes(props.data[i].group)) {
+            group.push(props.data[i].group)
+            groupCount.push(1)
+            count++
+        }
+        else groupCount[count] += 1
+    }
+
+    console.log(group)
+    console.log(groupCount)
+
+    let result = [];
+
+    for(let i = 0; i < group.length; i++) {
+        result.push(
+            <div className = "divLeft">
+                <div className = "groupCountBody">
+                    <div> { group[i] } </div>
+                </div>
+            </div>
+        )
+        for(let j = 0; j < groupCount[i]; j++) {
+            result.push(
+                <div className = "divRight">
+                    <div className = "contentsBody">
+                        <div className = "contentsDiv">
+                            <div className = "groupCount">
+                                <div>  </div>
+                            </div>
+                            <div className = "menuDetail">
+                                <div className = "md1"> { props.data[j].메뉴이름 } </div>
+                                <div className = "md2"> { props.data[j].수량 } </div>
+                                <div className = "md2"> { props.data[j].가격 } </div>
+                                <div className = "md1"> 옵션 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        }
+        result.push(
+            <div className = "orderDiv">
+                <div className = "orderDetail">
+                    <div className = "payDetail">
+                        <div>
+                            현금 : 3000원
+                        </div>
+                        <div>
+                            카드 : 0원
+                        </div>
+                    </div>
+                    <div>
+                        수량 : 2개
+                    </div>
+                    <div>
+                        합계 : 150원
+                    </div>
+                </div>
+                <div className = "confirmDiv">
+                    <div>
+                        확인
+                    </div>
+                </div>
+            </div>
+        )
+    }
+
+    return <div className = "divs"> { result } </div>;
+}
+
+function SubmitBtn(props) {
     return (
-        <>
-            {
-                props.data.map((num, index) => {
+        props.data.map((num, index) => {
+            return (
+                <tr>
+                    <td colSpan={3}> 제조완료</td>
+                    <td>
+                        <form action='/makeComp' method="post">
+                            <div style={{display: "none"}}>
+                                <input type="text" value={props.data[index]._id}
+                                       name="_id"/>
+                                <input type="text" value={props.data[index].메뉴이름}
+                                       name="title"/>
+                                <input type="text" value={props.data[index].수량}
+                                       name="count"/>
+                                <input type="text" value={props.data[index].가격}
+                                       name="price"/>
+                            </div>
+                            <button type="submit" className="submitBtn"> 확인</button>
+                        </form>
+                    </td>
+                </tr>
+            )
+        })
+    )
+}
+
+function TableBody(props) {
+    let count = -1;
+    let group = [];  // 11 222
+    let groupCount = [];  //
+
+    console.log(props.data)
+    console.log(props.data.length)
+    for(let i = 0; i < props.data.length; i++) {
+        if(!group.includes(props.data[i].group)) {
+            group.push(props.data[i].group)
+            groupCount.push(1)
+            count++
+        }
+        else groupCount[count] += 1
+    }
+
+    console.log(group)
+    console.log(groupCount)
+
+    return (
+        group.map((num, idx1) => {
+            return (
+                groupCount.map((num, idx2) => {
                     return (
-                        <tr className = "tableBody">
-                            <td> { props.data[index]._id } </td>
-                            <td> { props.data[index].메뉴이름 } </td>
-                            <td> { props.data[index].수량 } </td>
-                            <td> { props.data[index].가격 } </td>
-                            <td> 옵션 </td>
-                            <td>
-                                <form action = '/makeComp' method = "post" >
-                                    <div style={{display : "none"}}>
-                                        <input type = "text" value = { props.data[index]._id }
-                                            name = "_id"/>
-                                        <input type = "text" value = { props.data[index].메뉴이름 }
-                                               name = "title"/>
-                                        <input type = "text" value = { props.data[index].수량 }
-                                               name = "count"/>
-                                        <input type = "text" value = { props.data[index].가격 }
-                                               name = "price"/>
-                                    </div>
-                                    <button type = "submit" className = "submitBtn"> 확인 </button>
-                                </form>
-                            </td>
-                        </tr>
+                        <>
+                            <div className = "contentsDiv">
+                                <div className = "visCount" >
+                                    { group[idx1] } 번</div>
+                                <div> { props.data[idx2].메뉴이름 } </div>
+                                <div> { props.data[idx2].수량 } </div>
+                                <div> { props.data[idx2].가격 } </div>
+                                <div> 옵션 </div>
+
+                            </div>
+
+                        </>
                     )
                 })
-            }
-        </>
+            )
+        })
     )
 }
 

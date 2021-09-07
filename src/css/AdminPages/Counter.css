@@ -12,13 +12,8 @@
     height : 100vh;
 }
 
-.tableDiv {
-    width: 100%;
+.bodyContents {
     border-radius: 0 0 15px 15px;
-    /*background-color: #e9ecef;*/
-}
-
-.counterTable {
     width : 97%;
     margin : 20px;
 }
@@ -27,10 +22,85 @@
     cursor: default;
 }
 
-.tableHeader {
+.contentsHeader {
     background-color: #FEC800;
     color : white;
     font-size: 24px;
+}
+
+.contentsDiv {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentsDiv > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.groupCount {
+    width: 5%;
+    padding : 1%;
+    flex-grow: 1;
+}
+
+.groupCount div {
+    flex-grow: 1;
+}
+
+.groupCountBody {
+    width: 5%;
+    padding : 1%;
+    flex-grow: 1;
+}
+
+.menuDetail {
+    flex-grow: 10;
+}
+
+.md1 {
+    flex-grow: 4;
+    width : 10%;
+}
+
+.md2 {
+    flex-grow: 1;
+    width : 10%;
+}
+
+.orderDiv {
+    display: flex;
+    flex-direction: row;
+    padding: 1% 0 1% 0;
+    margin: 1% 0 1% 0;
+    background-color: #fec800;
+    color : white;
+    align-items: center;
+}
+
+.orderDetail {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-grow: 5;
+    align-items: center;
+}
+
+.payDetail {
+    display: flex;
+    flex-direction: column;
+}
+
+.confirmDiv {
+    display: flex;
+    flex-grow: 2;
+    justify-content: center;
+}
+
+.visCount {
+    font-size: 24px;
+
 }
 
 .submitBtn {
@@ -40,4 +110,19 @@
     width: 100%;
     font-size: 20px;
     color : white;
+}
+
+.divLeft {
+
+}
+
+.divRight {
+
+}
+
+.divs {
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    font-family: "나눔스퀘어라운드 Regular";
 }

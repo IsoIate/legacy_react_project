@@ -64,9 +64,12 @@ function MenuDetail(props) {
     let count = -1;
     let group = [];  // 11 222
     let groupCount = [];  //
+    let arr = new Array(group.length);
+    let indexArr = [];
+    let totalRes = 0;
+    let totalCnt = 0;
 
-    /*console.log(props.data)
-    console.log(props.data.length)*/
+
     for(let i = 0; i < props.data.length; i++) {
         if(!group.includes(props.data[i].group)) {
             group.push(props.data[i].group)
@@ -76,19 +79,22 @@ function MenuDetail(props) {
         else groupCount[count] += 1
     }
 
-    /*console.log(group)
-    console.log(groupCount)*/
-
-    let arr = new Array(group.length);
-
     for (let i = 0; i < groupCount.length; i++) {
-        arr[i] = new Array(groupCount[i]).fill(0);
+        arr[i] = new Array(groupCount[i]).fill(1);
     }
 
-    /*console.log(arr)*/
+    props.data.map((num, index) => {
+        return (
+            indexArr.push(props.data[index]._id)
+        )
+    })
+
+    console.log(indexArr)
 
     return (
         group.map((num, index) => {
+            totalCnt = 0
+            totalRes = 0
             return (
                 <>
                     <div className = "divLeft">
@@ -96,32 +102,56 @@ function MenuDetail(props) {
                             <div> { group[index] } </div>
                         </div>
                     </div>
-                    <Receipt  arr = { arr } data = { props.data } index = { index } />
+                    {/*<Receipt  arr = { arr } data = { props.data } index = { index } indexArr = { indexArr }
+                    setTotalRes = { setTotalRes } setTotalCnt = { setTotalCnt } />*/}
+                    {
+                        arr[index].map((num, idx2) => {
+                            totalCnt += props.data[idx2].수량
+                            totalRes += props.data[idx2].가격
+                            return (
+                                <div className = "divRight">
+                                    <div className = "contentsBody">
+                                        <div className = "contentsDiv">
+                                            <div className = "groupCount">
+                                                <div>  </div>
+                                            </div>
+                                            <div className = "menuDetail">
+                                                <div className = "md1"> { props.data[idx2].메뉴이름 } </div>
+                                                <div className = "md2"> { props.data[idx2].수량 } </div>
+                                                <div className = "md2"> { props.data[idx2].가격 } </div>
+                                                <div className = "md1"> 옵션 </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
                     <div className = "orderDiv">
                         <div className = "orderDetail">
                             <div className = "payDetail">
-                                <div>
-                                    현금 : { 0 } 원
-                                </div>
-                                <div>
-                                    카드 : 0원
-                                </div>
+                                {console.log(totalRes, totalCnt)}
+                                {
+                                    props.data[index].payment == 0 ?
+                                        <div>
+                                            현금 : { totalRes } 원
+                                        </div>
+                                        :
+                                        <div>
+                                            카드 : { totalRes } 원
+                                        </div>
+                                }
                             </div>
                             <div>
-                                수량 : { 0 } 개
+                                수량 : { totalCnt } 개
                             </div>
                             <div>
-                                합계 : { 0 } 원
+                                합계 : { totalRes } 원
                             </div>
                         </div>
                         <div className = "confirmDiv">
                             <Button onClick = { () => {
-                                for(let j = 0; j < groupCount[index]; j++) {
-                                    console.log(props.data[j].메뉴이름)
-                                    console.log(props.data[j].수량)
-                                    console.log(props.data[j].가격)
-                                }
-                                group.splice(index, 1);
+
                             }}>
                                 확인
                             </Button>
@@ -134,6 +164,7 @@ function MenuDetail(props) {
 }
 
 function Receipt(props) {
+
     return (
         props.arr[props.index].map((num, idx2) => {
             return (

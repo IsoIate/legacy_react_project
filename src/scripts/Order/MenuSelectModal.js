@@ -60,12 +60,12 @@ function MenuSelectModal(props) {
                             props.dispatch({type : "항목추가",
                                 payload : { title : props.menuItem[props.id][props.clickNum].title,
                                 count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
-                                temp : 0, payment : props.id }})
+                                temp : 0, menuIndex : props.id }})
                             :
                             props.dispatch({type : "항목추가",
                                 payload : { title : props.menuItem[props.id][props.clickNum].title,
                                     count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
-                                    temp : 30, payment : props.id }})
+                                    temp : 30, menuIndex : props.id }})
 
                         props.dispatch({type : "주문추가", payload : { count : props.count,
                                 price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})

@@ -25,6 +25,8 @@ function Payment (props) {
     const noPayClose = () => setNoShow(false);
     const noPayOpen = () => setNoShow(true);
 
+    let [ payment, setPayment ] = useState(0);
+
     return (
         <div className="payment">
             <div className="payState">
@@ -54,7 +56,9 @@ function Payment (props) {
                                                name = "price" />
                                         <input type = "text" value = { props.state[index].temp }
                                                name = "temp" />
-                                        <input type = "text" value = { props.state[index].payment }
+                                        <input type = "text" value = { props.state[index].menuIndex }
+                                               name = "menuIndex" />
+                                        <input type = "text" value = { payment }
                                                name = "payment" />
                                     </div>
                                 )
@@ -68,12 +72,14 @@ function Payment (props) {
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
                         return (
-                            props.orderState[0] == 0 ? noPayOpen() : cashPayOpen()
+                            props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), setPayment(0)
                         )
                     }}>현금<br/>결제</button>
 
                     <button type = "submit" className = "payBtnText" onClick = {() => {
-                        props.orderState[0] == 0 ? noPayOpen() : cardPayOpen()
+                        return (
+                            props.orderState[0] == 0 ? noPayOpen() : cardPayOpen(), setPayment(1)
+                        )
                     }}>카드<br/>결제</button>
                 </form>
             </div>

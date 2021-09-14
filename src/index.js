@@ -14,7 +14,9 @@ import AlertTemplate from "react-alert-template-basic";
 let primaryState = [];
 let orderState = [0, 0];
 let optionState = [0, 0, 0, 0];
+let receiptState = [];
 let counterState = [];
+let counterConfirmState = [];
 
 const options = {
     timeout: 5000,
@@ -138,11 +140,30 @@ function optionReducer(state = optionState, action) {
     }
 }
 
-let store = createStore(combineReducers({ reducer, orderReducer, optionReducer }));
+let store = createStore(combineReducers({
+    reducer, orderReducer, optionReducer, counterConfirmReducer
+}));
+
+/* 카운터 레시피 삭제 */
+function receiptReducer(state = receiptState, action) {
+    if(action.type == "값 삭제") {
+
+    }
+}
 
 /* 주문 메뉴 카운터로 전송 */
 function counterReducer(state = counterState, action) {
 
+
+}
+
+/* 카운터에서 매출로 전송 */
+function counterConfirmReducer(state = counterConfirmState, action) {
+    if(action == null) {
+        return 0
+    }
+
+    return 0;
 }
 
 ReactDOM.render(

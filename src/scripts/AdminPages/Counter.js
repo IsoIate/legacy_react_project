@@ -4,8 +4,9 @@ import AdminNav from "./AdminNav";
 import '../../css/AdminPages/Counter.css';
 import { Button } from "react-bootstrap";
 import axios from "axios";
+import {connect} from "react-redux";
 
-function Counter() {
+function Counter(props) {
 
     let [data, setData] = useState(null);
     let groupNum = [];
@@ -47,42 +48,11 @@ function Counter() {
                             </div>
                         </div>
                     </div>
-                    {/*<div className = "contentsBody">
-                        <div className = "contentsDiv">
-                            <div className = "groupCount">
-                                <div> # </div>
-                            </div>
-                            <div className = "menuDetail">
-                                <div className = "md1"> 메뉴명 </div>
-                                <div className = "md2"> 수량 </div>
-                                <div className = "md2"> 가격 </div>
-                                <div className = "md1"> 옵션 </div>
-                            </div>
-                        </div>
-                        <div className = "payDetail">
-                            <div>
-                                <div>
-                                    카드 : 0원
-                                    현금 : 0원
-                                </div>
-                                <div>
-                                    확인
-                                </div>
-                            </div>
-                        </div>
-                    </div>*/}
                     {
                         data != null ?
                             <MenuDetail data = { data } />
                             : null
                     }
-                    {/*<div>
-                        {
-                            data != null ?
-                                <TableBody data = { data } />
-                                : null
-                        }
-                    </div>*/}
                 </div>
             </div>
         </div>
@@ -95,8 +65,8 @@ function MenuDetail(props) {
     let group = [];  // 11 222
     let groupCount = [];  //
 
-    console.log(props.data)
-    console.log(props.data.length)
+    /*console.log(props.data)
+    console.log(props.data.length)*/
     for(let i = 0; i < props.data.length; i++) {
         if(!group.includes(props.data[i].group)) {
             group.push(props.data[i].group)
@@ -106,21 +76,67 @@ function MenuDetail(props) {
         else groupCount[count] += 1
     }
 
-    console.log(group)
-    console.log(groupCount)
+    /*console.log(group)
+    console.log(groupCount)*/
 
-    let result = [];
+    let arr = new Array(group.length);
 
-    for(let i = 0; i < group.length; i++) {
-        result.push(
-            <div className = "divLeft">
-                <div className = "groupCountBody">
-                    <div> { group[i] } </div>
-                </div>
-            </div>
-        )
-        for(let j = 0; j < groupCount[i]; j++) {
-            result.push(
+    for (let i = 0; i < groupCount.length; i++) {
+        arr[i] = new Array(groupCount[i]).fill(0);
+    }
+
+    /*console.log(arr)*/
+
+    return (
+        group.map((num, index) => {
+            return (
+                <>
+                    <div className = "divLeft">
+                        <div className = "groupCountBody">
+                            <div> { group[index] } </div>
+                        </div>
+                    </div>
+                    <Receipt  arr = { arr } data = { props.data } index = { index } />
+                    <div className = "orderDiv">
+                        <div className = "orderDetail">
+                            <div className = "payDetail">
+                                <div>
+                                    현금 : { 0 } 원
+                                </div>
+                                <div>
+                                    카드 : 0원
+                                </div>
+                            </div>
+                            <div>
+                                수량 : { 0 } 개
+                            </div>
+                            <div>
+                                합계 : { 0 } 원
+                            </div>
+                        </div>
+                        <div className = "confirmDiv">
+                            <Button onClick = { () => {
+                                for(let j = 0; j < groupCount[index]; j++) {
+                                    console.log(props.data[j].메뉴이름)
+                                    console.log(props.data[j].수량)
+                                    console.log(props.data[j].가격)
+                                }
+                                group.splice(index, 1);
+                            }}>
+                                확인
+                            </Button>
+                        </div>
+                    </div>
+                </>
+            )
+        })
+    )
+}
+
+function Receipt(props) {
+    return (
+        props.arr[props.index].map((num, idx2) => {
+            return (
                 <div className = "divRight">
                     <div className = "contentsBody">
                         <div className = "contentsDiv">
@@ -128,44 +144,17 @@ function MenuDetail(props) {
                                 <div>  </div>
                             </div>
                             <div className = "menuDetail">
-                                <div className = "md1"> { props.data[j].메뉴이름 } </div>
-                                <div className = "md2"> { props.data[j].수량 } </div>
-                                <div className = "md2"> { props.data[j].가격 } </div>
+                                <div className = "md1"> { props.data[idx2].메뉴이름 } </div>
+                                <div className = "md2"> { props.data[idx2].수량 } </div>
+                                <div className = "md2"> { props.data[idx2].가격 } </div>
                                 <div className = "md1"> 옵션 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             )
-        }
-        result.push(
-            <div className = "orderDiv">
-                <div className = "orderDetail">
-                    <div className = "payDetail">
-                        <div>
-                            현금 : 3000원
-                        </div>
-                        <div>
-                            카드 : 0원
-                        </div>
-                    </div>
-                    <div>
-                        수량 : 2개
-                    </div>
-                    <div>
-                        합계 : 150원
-                    </div>
-                </div>
-                <div className = "confirmDiv">
-                    <div>
-                        확인
-                    </div>
-                </div>
-            </div>
-        )
-    }
-
-    return <div className = "divs"> { result } </div>;
+        })
+    )
 }
 
 function SubmitBtn(props) {
@@ -195,47 +184,12 @@ function SubmitBtn(props) {
     )
 }
 
-function TableBody(props) {
-    let count = -1;
-    let group = [];  // 11 222
-    let groupCount = [];  //
-
-    console.log(props.data)
-    console.log(props.data.length)
-    for(let i = 0; i < props.data.length; i++) {
-        if(!group.includes(props.data[i].group)) {
-            group.push(props.data[i].group)
-            groupCount.push(1)
-            count++
-        }
-        else groupCount[count] += 1
+/* state를 props로 변환 */
+function Conversion(state) {
+    return {
+        receiptState : state.receiptReducer,
+        counterConfirmState : state.counterConfirmReducer
     }
-
-    console.log(group)
-    console.log(groupCount)
-
-    return (
-        group.map((num, idx1) => {
-            return (
-                groupCount.map((num, idx2) => {
-                    return (
-                        <>
-                            <div className = "contentsDiv">
-                                <div className = "visCount" >
-                                    { group[idx1] } 번</div>
-                                <div> { props.data[idx2].메뉴이름 } </div>
-                                <div> { props.data[idx2].수량 } </div>
-                                <div> { props.data[idx2].가격 } </div>
-                                <div> 옵션 </div>
-
-                            </div>
-
-                        </>
-                    )
-                })
-            )
-        })
-    )
 }
 
-export default Counter;
+export default connect(Conversion)(Counter);

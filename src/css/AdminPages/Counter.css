@@ -28,6 +28,11 @@
     font-size: 24px;
 }
 
+.menuDiv {
+    border: 1px solid #fdb768;
+    border-top : none;
+}
+
 .contentsDiv {
     display: flex;
     flex-direction: row;
@@ -42,7 +47,6 @@
 .groupCount {
     width: 5%;
     padding : 1%;
-    flex-grow: 1;
 }
 
 .groupCount div {
@@ -69,14 +73,19 @@
     width : 10%;
 }
 
+.md2 p {
+    margin: 0 0.2em 0 0.2em;
+}
+
 .orderDiv {
-    display: flex;
-    flex-direction: row;
+
     padding: 1% 0 1% 0;
-    margin: 1% 0 1% 0;
+    margin-top: 1%;
     background-color: #fec800;
     color : white;
-    align-items: center;
+    /*display: flex;
+    flex-direction: row;
+    align-items: center;*/
 }
 
 .orderDetail {
@@ -87,9 +96,35 @@
     align-items: center;
 }
 
+.orderCount {
+    width: 5%;
+    padding : 1%;
+    flex-grow: 3;
+}
+
 .payDetail {
     display: flex;
     flex-direction: column;
+    flex-grow: 3;
+}
+
+.payDivs {
+    /*display: flex;*/
+    flex-direction: row;
+}
+
+.payDivs p {
+    margin: 0 0.2em 0 0.2em;
+}
+
+.totalDetail {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 3;
+}
+
+.totalDetail p {
+    margin: 0 1em 0 1em;
 }
 
 .confirmDiv {

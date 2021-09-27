@@ -38,6 +38,11 @@
     flex-direction: row;
 }
 
+.contentsBorder {
+    border-bottom: 1px solid #dedede;
+    margin-bottom: 1em;
+}
+
 .contentsDiv > div {
     display: flex;
     flex-direction: row;
@@ -140,19 +145,14 @@
 
 .submitBtn {
     border : none;
-    background-color: lightsalmon;
-
-    width: 100%;
-    font-size: 20px;
-    color : white;
+    background-color: floralwhite;
+    color: black;
 }
 
-.divLeft {
-
-}
-
-.divRight {
-
+.submitBtn:hover {
+    border : none!important;
+    background-color: floralwhite!important;
+    color: black;
 }
 
 .divs {

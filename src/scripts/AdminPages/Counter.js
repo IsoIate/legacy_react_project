@@ -6,15 +6,11 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import {connect} from "react-redux";
 
-let sum = -1;
+let globalSum = -1;
 
 function Counter(props) {
 
     let [data, setData] = useState(null);
-    let groupNum = [];
-    let count = -1;
-    let arr1 = [];  // 11 222
-    let arr2 = [];  //
 
     /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
     useEffect(() => {
@@ -67,10 +63,6 @@ function MenuDetail(props) {
     let group = [];  // 11 222
     let groupCount = [];  //
     let arr = new Array(group.length);
-    let indexArr = [];
-    let totalRes = 0;
-    let totalCnt = 0;
-
 
     for(let i = 0; i < props.data.length; i++) {
         if(!group.includes(props.data[i].group)) {
@@ -92,88 +84,86 @@ function MenuDetail(props) {
         group.map((num1, index) => {
             let totalCnt = 0
             let totalRes = 0
-
             return (
                 <div className = "menuDiv">
+                    {/* 손님 그룹 Number */}
                     <div>
                         <div className = "contentsDiv">
-                            <div className = "groupCount">
-                                <div> { group[index] } </div>
-                            </div>
-                            <div className = "menuDetail">
-                                <div className = "md1">   </div>
-                                <div className = "md2">   </div>
-                                <div className = "md2">   </div>
-                                <div className = "md1">   </div>
-                            </div>
+
+                                <div className = "groupCount">
+                                    <div> { group[index] } </div>
+                                </div>
+
+                                <div className = "menuDetail">
+                                    <div className = "md1">   </div>
+                                    <div className = "md2">   </div>
+                                    <div className = "md2">   </div>
+                                    <div className = "md1">   </div>
+                                </div>
                         </div>
                     </div>
 
+                    {/* 손님 그룹별 주문내역 */}
                     {
                         arr[index].map((num2, idx2) => {
-                            sum++
+                            globalSum++
 
-                            totalCnt += props.data[sum].수량
-                            totalRes += props.data[sum].가격
+                            totalCnt += props.data[globalSum].수량
+                            totalRes += props.data[globalSum].가격
                             return (
-                                <div className = "divRight">
-                                    <div className = "contentsBody">
-                                        <div className = "contentsDiv">
-                                            <div className = "groupCount">
-                                                <div>  </div>
-                                            </div>
-                                            <div className = "menuDetail">
-                                                <div className = "md1"> { props.data[sum].메뉴이름 } </div>
-                                                <div className = "md2"> { props.data[sum].수량 } </div>
-                                                <div className = "md2"> { props.data[sum].가격 } </div>
-                                                <div className = "md1"> 옵션 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                    }
-                    <div className = "orderDiv">
-                        <div className = "divRight">
-                            <div className = "contentsBody">
                                 <div className = "contentsDiv">
                                     <div className = "groupCount">
                                         <div>  </div>
                                     </div>
                                     <div className = "menuDetail">
-                                        <div className = "md1">
-                                            {
-                                                props.data[index].지불 === 0 ?
-                                                    <div className = "payDivs">
-                                                        <p> 현금 : { totalRes } 원 </p>
-                                                        <p> 카드 : { 0 } 원 </p>
-                                                    </div>
-                                                    :
-                                                    <div className = "payDivs">
-                                                        <p> 현금 : { 0 } 원 </p>
-                                                        <p> 카드 : { totalRes } 원 </p>
-                                                    </div>
-                                            }
-                                        </div>
-                                        <div className = "md2">
-                                            <p> 수량 : { totalCnt } 개 </p>
-                                        </div>
-                                        <div className = "md2">
-                                            <p> 합계 : { totalRes } 원 </p>
-                                        </div>
-                                        <div className = "md1">
-                                            <Button onClick = { () => {
-
-                                            }}>
-                                                확인
-                                            </Button>
-                                        </div>
+                                        <div className = "md1"> { props.data[globalSum].메뉴이름 } </div>
+                                        <div className = "md2"> { props.data[globalSum].수량 } </div>
+                                        <div className = "md2"> { props.data[globalSum].가격 } </div>
+                                        <div className = "md1"> 옵션 </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
+                            )
+                        })
+                    }
+
+                    {/* 주문확인 및 버튼튼 */}
+                   <div className = "orderDiv">
+                       <div className = "contentsDiv">
+                           <div className = "groupCount">
+                               <div>  </div>
+                           </div>
+                           <div className = "menuDetail">
+                               <div className = "md1">
+                                   {
+                                       props.data[index].지불 === 0 ?
+                                           <div className = "payDivs">
+                                               <p> 현금 : { totalRes } 원 </p>
+                                               <p> 카드 : { 0 } 원 </p>
+                                           </div>
+                                           :
+                                           <div className = "payDivs">
+                                               <p> 현금 : { 0 } 원 </p>
+                                               <p> 카드 : { totalRes } 원 </p>
+                                           </div>
+                                   }
+                               </div>
+                               <div className = "md2">
+                                   <p> 수량 : { totalCnt } 개 </p>
+                               </div>
+                               <div className = "md2">
+                                   <p> 합계 : { totalRes } 원 </p>
+                               </div>
+                               <div className = "md1">
+                                   <Button className = "submitBtn" onClick = { () => {
+                                       console.log(index)
+                                       console.log(globalSum)
+                                   }}>
+                                       확인
+                                   </Button>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
                 </div>
             )
         })

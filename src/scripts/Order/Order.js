@@ -10,11 +10,8 @@ import OrderTable from "./OrderTable";
 import Payment from "./Payment";
 
 function Order() {
-
-
     let history = useHistory();
     let { id } = useParams();       /* 페이지 뒤에 붙는 숫자 */
-
     let [pageNum] = useState(0);
 
     return (
@@ -27,10 +24,8 @@ function Order() {
                 <div className="container-fluid ">
                     <div className="row menuSelectDiv">
                         <MenuDisplay id = { id } history = { history } pageNum = { pageNum }/>
-
                     </div>
                 </div>
-
                 {/* 음료 이동 버튼 */}
                 <MenuPagingButtons />
             </div>

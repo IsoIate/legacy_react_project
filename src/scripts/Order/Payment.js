@@ -38,10 +38,9 @@ function Payment (props) {
                     <span> { props.orderState[0] } </span>
                     <span> { props.orderState[1] } </span>
                 </div>
-
             </div>
             <div className="payBtn">
-
+                {/* 결제 정보를 서버로 보내는 코드 */}
                 <form action = "/payInfo" method = "post" style={{display : "flex", flexGrow : "1"}}>
                     {
                         props.state[0] != null ?

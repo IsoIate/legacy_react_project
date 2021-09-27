@@ -7,6 +7,19 @@ import CardPayment from "./CardPayment";
 import CashPayment from "./CashPayment";
 import NoPayment from "./NoPayment";
 import { connect } from "react-redux";
+import io from 'socket.io-client';
+
+const socketClient = io("http://localhost:8080");
+
+socketClient.on("connect", () => {
+    console.log("connection server")
+});
+
+socketClient.emit("first Request", { data : "first Request" });
+
+socketClient.on("first Respond", req => {
+    console.log(req);
+})
 
 function Payment (props) {
     var testArr = [1,2,3,4];
@@ -70,6 +83,7 @@ function Payment (props) {
                     }}>뒤로<br/>가기</button>
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
+
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), setPayment(0)
                         )

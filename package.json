@@ -29,6 +29,7 @@
     "react-test-render": "^1.1.2",
     "react-transition-group": "^4.4.1",
     "redux": "^4.1.0",
+    "socket.io-client": "^4.2.0",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

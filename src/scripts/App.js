@@ -14,6 +14,7 @@ import FrontPage from "./FrontPage/FrontPage";
 import Revenue from "./AdminPages/Revenue";
 import Setting from "./AdminPages/Setting";
 import Counter from "./AdminPages/Counter";
+import TempPage from "./AdminPages/TempPage";
 /*import imgA from './img/Admin.png';*/
 
 function App() {
@@ -46,6 +47,9 @@ function App() {
                 </Route>
                 <Route exact path = { "/AdminPage/Counter" }>
                     <Counter />
+                </Route>
+                <Route exact path = { "/AdminPage/TempPage" }>
+                    <TempPage />
                 </Route>
                 <Route exact path = { "/AdminPage/Setting" }>
                     <Setting />

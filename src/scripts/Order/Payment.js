@@ -75,6 +75,7 @@ function Payment (props) {
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
                         socketClient.emit("payButton", props.state);
+                        props.dispatch({ type : "주문작성", payload : { data : props.state }})
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), setPayment(0)
                         )
@@ -124,6 +125,7 @@ function Conversion(state) {
     return {
         state : state.reducer,
         orderState : state.orderReducer,
+        counterState : state.counterReducer
     }
 }
 

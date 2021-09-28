@@ -6,8 +6,12 @@ import { Button } from "react-bootstrap";
 import axios from "axios";
 import {connect} from "react-redux";
 import io from 'socket.io-client';
+import logo from '../../img/cafelogo.png'
+import LiveClock from 'react-live-clock'
 
 const socketClient = io("http://localhost:8080");
+const date = new Date();
+
 /*let tempReq = null;*/
 
 /*socketClient.on("payRespond", req => {
@@ -47,30 +51,65 @@ function Counter(props) {
 
     return (
         <div className = "counterDiv">
-            <LeftNav/>
+            <div className = "leftNav">
 
-            <div className="container mt-3" className = "rightDiv">
-                <AdminNav/>
+            </div>
 
-                <div className = 'container-fluid bodyContents'>
-                    <div className = "contentsHeader">
-                        <div className = "contentsDiv">
-                            <div className = "groupCount">
-                                <div> # </div>
+            <div className = "counterBody">
+                <div className = "topNav">
+                    <img className = "logoImg" src = { logo }/>
+                    <div className = "date">
+                        <div>
+                            { date.getMonth() + 1 + "월 "}
+                            { date.getDate() + "일"}
+                        </div>
+                        <div>
+                            <LiveClock format ={"HH:mm:ss"} interval = { 1000 } ticking = { true } />
+                        </div>
+                    </div>
+                </div>
+                <div className="container mt-3" className = "bodyDiv">
+
+                    <div className = 'container-fluid bodyContents'>
+                        <div className = "contentsHeader">
+                            <div className = "contentsDiv">
+                                <div className = "groupCount">
+                                    <div> # </div>
+                                </div>
+                                <div className = "menuDetail">
+                                    <div className = "md1"> 메뉴명 </div>
+                                    <div className = "md2"> 수량 </div>
+                                    <div className = "md2"> 가격 </div>
+                                    <div className = "md1"> 옵션 </div>
+                                </div>
                             </div>
-                            <div className = "menuDetail">
-                                <div className = "md1"> 메뉴명 </div>
-                                <div className = "md2"> 수량 </div>
-                                <div className = "md2"> 가격 </div>
-                                <div className = "md1"> 옵션 </div>
+                        </div>
+                        {
+                            socketReq != null ?
+                                <MenuDetail req = { socketReq } />
+                                : null
+                        }
+                    </div>
+                    <div className = "rightNav">
+                        <div className = "payDetail">
+                            <div >
+                                <p> 가격 </p>
+                                <p> 5000 </p>
+                            </div>
+                            <div>
+                                <p> 수량 </p>
+                                <p> 2 </p>
+                            </div>
+                            <div>
+                                <p> 할인 </p>
+                                <p> 0 </p>
+                            </div>
+                            <div>
+                                <p> 총 가격 </p>
+                                <p> 5000 </p>
                             </div>
                         </div>
                     </div>
-                    {
-                        socketReq != null ?
-                            <MenuDetail req = { socketReq } />
-                            : null
-                    }
                 </div>
             </div>
         </div>

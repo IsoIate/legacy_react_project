@@ -61,7 +61,7 @@ function reducer(state = primaryState, action) {
         return copy;
     }
     else {
-        return state
+        return state;
     }
 
 }
@@ -146,9 +146,18 @@ function receiptReducer(state = receiptState, action) {
 
 /* 카운터 주문 테이블 */
 function counterReducer(state = counterState, action) {
-    if(action.type == "주문확인") {
-        let copy = [...primaryState]
+    if(action.type === "주문작성") {
+        let copy = [...state];
+        copy.push(action.payload)
 
+        console.log("copy??")
+        /*action.payload.map((num, i) => {
+            console.log(copy[0].data[i])
+            console.log(copy[0].data[i].title)
+            console.log("---------------------")
+            console.log(copy[i].data[i])
+            console.log(copy[i].data[i].title)
+        })*/
 
         return copy;
     }

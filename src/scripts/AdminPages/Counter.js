@@ -5,12 +5,24 @@ import '../../css/AdminPages/Counter.css';
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import {connect} from "react-redux";
+import io from 'socket.io-client';
+
+const socketClient = io("http://localhost:8080");
+/*let tempReq = null;*/
+
+/*socketClient.on("payRespond", req => {
+    console.log("pay?")
+    console.log(req)
+
+    tempReq = req;
+})*/
 
 let globalSum = -1;
 
 function Counter(props) {
 
     let [data, setData] = useState(null);
+    let [socketReq, setSocketReq] = useState(null);
 
     /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
     useEffect(() => {
@@ -24,6 +36,14 @@ function Counter(props) {
             .catch(( error )=>{ console.log( error ) })
 
     }, [])
+
+    useEffect(() => {
+        socketClient.on("payRespond", req => {
+            console.log("pay?")
+            console.log(req)
+            setSocketReq(req)
+        })
+    }, [socketClient.on])
 
     return (
         <div className = "counterDiv">
@@ -47,8 +67,8 @@ function Counter(props) {
                         </div>
                     </div>
                     {
-                        data != null ?
-                            <MenuDetail data = { data } />
+                        socketReq != null ?
+                            <MenuDetail req = { socketReq } />
                             : null
                     }
                 </div>
@@ -57,8 +77,81 @@ function Counter(props) {
     )
 }
 
-
 function MenuDetail(props) {
+    return (
+        <>
+            <div className = "menuDiv">
+                {/* 손님 그룹 Number */}
+                <div>
+                    <div className = "contentsDiv">
+
+                        <div className = "groupCount">
+                            <div> { 1 } </div>
+                        </div>
+
+                        <div className = "menuDetail">
+                            <div className = "md1">   </div>
+                            <div className = "md2">   </div>
+                            <div className = "md2">   </div>
+                            <div className = "md1">   </div>
+                        </div>
+                    </div>
+                </div>
+
+                {
+                    props.req.map((num, index) => {
+                        return (
+                            <div className = "contentsDiv">
+                                <div className = "groupCount">
+                                    <div>  </div>
+                                </div>
+                                <div className = "menuDetail">
+                                    <div className = "md1"> { props.req[index].title } </div>
+                                    <div className = "md2"> { props.req[index].count } </div>
+                                    <div className = "md2"> { props.req[index].price } </div>
+                                    <div className = "md1"> 옵션 </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+
+
+                {/* 주문확인 및 버튼튼 */}
+                <div className = "orderDiv">
+                    <div className = "contentsDiv">
+                        <div className = "groupCount">
+                            <div>  </div>
+                        </div>
+                        <div className = "menuDetail">
+                            <div className = "md1">
+                                <div className = "payDivs">
+                                    <p> 현금 : { 0 } 원 </p>
+                                    <p> 카드 : { 0 } 원 </p>
+                                </div>
+                            </div>
+                            <div className = "md2">
+                                <p> 수량 : { 0 } 개 </p>
+                            </div>
+                            <div className = "md2">
+                                <p> 합계 : { 0 } 원 </p>
+                            </div>
+                            <div className = "md1">
+                                <Button className = "submitBtn" onClick = { () => {
+
+                                }}>
+                                    확인
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+/*function MenuDetail(props) {
     let count = -1;
     let group = [];  // 11 222
     let groupCount = [];  //
@@ -73,7 +166,7 @@ function MenuDetail(props) {
         else groupCount[count] += 1
     }
 
-    /* groupCount를 배열화 시킨 것 */
+    /!* groupCount를 배열화 시킨 것 *!/
     for (let i = 0; i < groupCount.length; i++) {
         arr[i] = new Array(groupCount[i]).fill(i + 1);
     }
@@ -86,7 +179,7 @@ function MenuDetail(props) {
             let totalRes = 0
             return (
                 <div className = "menuDiv">
-                    {/* 손님 그룹 Number */}
+                    {/!* 손님 그룹 Number *!/}
                     <div>
                         <div className = "contentsDiv">
 
@@ -103,7 +196,7 @@ function MenuDetail(props) {
                         </div>
                     </div>
 
-                    {/* 손님 그룹별 주문내역 */}
+                    {/!* 손님 그룹별 주문내역 *!/}
                     {
                         arr[index].map((num2, idx2) => {
                             globalSum++
@@ -126,7 +219,7 @@ function MenuDetail(props) {
                         })
                     }
 
-                    {/* 주문확인 및 버튼튼 */}
+                    {/!* 주문확인 및 버튼튼 *!/}
                    <div className = "orderDiv">
                        <div className = "contentsDiv">
                            <div className = "groupCount">
@@ -168,7 +261,7 @@ function MenuDetail(props) {
             )
         })
     )
-}
+}*/
 
 function SubmitBtn(props) {
     return (
@@ -200,6 +293,7 @@ function SubmitBtn(props) {
 /* state를 props로 변환 */
 function Conversion(state) {
     return {
+        state : state.reducer,
         receiptState : state.receiptReducer,
         counterConfirmState : state.counterConfirmReducer
     }

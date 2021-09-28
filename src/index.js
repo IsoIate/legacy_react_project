@@ -23,6 +23,10 @@ const options = {
     position: positions.BOTTOM_CENTER
 };
 
+let store = createStore(combineReducers({
+    reducer, orderReducer, optionReducer, counterConfirmReducer, counterReducer
+}));
+
 /* 주문 표 생성, 제거 */
 function reducer(state = primaryState, action) {
     if(action.type === "항목추가") {
@@ -31,22 +35,15 @@ function reducer(state = primaryState, action) {
         if(copy[0] != null) {
             copy.map((num, index) => {
                 return (
-
+                    // 기존 메뉴와 추가 주문 메뉴가 중복되었을 때
                     ((copy[index].title).includes(action.payload.title)) ?
-                        console.log(copy) +
-                        console.log(copy[index].title) +
-                        console.log(action.payload.title) +
-                        console.log(index) +
-                        console.log("num") +
-                        console.log(copy.length) +
-                        console.log(action.payload.temp) +
+                        // 주문 테이블에서 기본 메뉴의 값에 수량과 가격을 더함
                         (copy[index].count = copy[index].count + action.payload.count) +
                         (copy[index].price = copy[index].price + action.payload.price)
+                        // 수정 필요
                         : (index + 1) == copy.length && (!(copy[index].title).includes(action.payload.title)) ?
                         copy.push(action.payload) + console.log("push")
                         : null
-
-
                 )
             })
 
@@ -140,10 +137,6 @@ function optionReducer(state = optionState, action) {
     }
 }
 
-let store = createStore(combineReducers({
-    reducer, orderReducer, optionReducer, counterConfirmReducer
-}));
-
 /* 카운터 레시피 삭제 */
 function receiptReducer(state = receiptState, action) {
     if(action.type == "값 삭제") {
@@ -151,10 +144,17 @@ function receiptReducer(state = receiptState, action) {
     }
 }
 
-/* 주문 메뉴 카운터로 전송 */
+/* 카운터 주문 테이블 */
 function counterReducer(state = counterState, action) {
+    if(action.type == "주문확인") {
+        let copy = [...primaryState]
 
 
+        return copy;
+    }
+    else {
+        return state;
+    }
 }
 
 /* 카운터에서 매출로 전송 */

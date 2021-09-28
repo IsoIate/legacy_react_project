@@ -10,16 +10,7 @@ import { connect } from "react-redux";
 import io from 'socket.io-client';
 
 const socketClient = io("http://localhost:8080");
-
-socketClient.on("connect", () => {
-    console.log("connection server")
-});
-
-socketClient.emit("first Request", { data : "first Request" });
-
-socketClient.on("first Respond", req => {
-    console.log(req);
-})
+let temp = null;
 
 function Payment (props) {
     var testArr = [1,2,3,4];
@@ -83,13 +74,14 @@ function Payment (props) {
                     }}>뒤로<br/>가기</button>
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
-
+                        socketClient.emit("payButton", props.state);
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), setPayment(0)
                         )
                     }}>현금<br/>결제</button>
 
                     <button type = "submit" className = "payBtnText" onClick = {() => {
+                        socketClient.emit("payButton", props.state);
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cardPayOpen(), setPayment(1)
                         )
@@ -110,11 +102,28 @@ function Payment (props) {
     )
 }
 
+function PayInfo(props) {
+    let tempArr = [];
+
+    console.log(props.state)
+    console.log(props.state.length)
+
+    for(let i = 0; i < props.state.length; i++) {
+        tempArr.push(props.state[i].title, props.state[i].count, props.state[i].price,
+            props.state[i].temp, props.state[i].menuIndex, props.payment )
+    }
+
+    console.log("tempArr?")
+    console.log(tempArr)
+
+    return tempArr;
+}
+
 /* state를 props로 변환 */
 function Conversion(state) {
     return {
         state : state.reducer,
-        orderState : state.orderReducer
+        orderState : state.orderReducer,
     }
 }
 

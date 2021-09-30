@@ -4,62 +4,142 @@
 }
 
 .leftNav {
-    background-color: deepskyblue;
-    width: 6vw;
+    background-color: #2d4e68e6;
+    width: 70px;
     height: 100vh;
-    border-radius: 25px 0 0 0;
+}
+
+.btnDivs {
+    flex-direction: column;
+}
+
+.btnDivs > button {
+    margin: 10px 0 10px 0;
+}
+
+.btnDivs > button:first-child {
+    margin: 23px 0 5px 0;
+}
+
+[tooltip-text]:focus {
+    outline: none;
+}
+
+[tooltip-text]:hover {
+    position: relative;
+}
+
+[tooltip-text]:hover:after {
+    background-color: gray;
+
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+    box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    color: #FFFFFF;
+    font-size: 12px;
+    content: attr(tooltip-text);
+
+    margin-bottom: 10px;
+    top: 15%;
+    left: 120%;
+    padding: 7px 12px;
+    position: absolute;
+    width: auto;
+    min-width: 50px;
+    max-width: 300px;
+    word-wrap: break-word;
+
+    z-index: 9999;
 }
 
 .topNav {
-    background-color: moccasin;
+    background-color: white;
+    box-shadow: 0 2px lightgrey;
 
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 
-    height: 10vh;
-    width: 94vw;
-    padding: 0 3vw 0 1vw;
+    height: 95px;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.topNavImgDIv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.topNavImgDIv > p {
+    font-size: 54px;
+    font-family: Gabriola;
+    margin: 5px 0 5px 30px;
 }
 
 .logoImg {
-    width: 5vw;
+    width: 80px;
+}
+
+.topNavLeft {
+    display: flex;
+    flex-direction: row;
+    width: 20%;
 }
 
 .date {
+    flex-direction: column;
     font-family: "나눔스퀘어라운드 Bold";
     font-size: 20px;
+    width: 70%;
+    padding-top: 17px;
+}
+
+.closeBtn {
+    padding: 17px 10px 3px 10px;
+    width: 70%;
+    cursor: pointer;
 }
 
 .counterBody {
     flex-direction: row;
+    width: 100%;
+    background-color: #f0f0f087;
 }
 
 .bodyDiv {
     display: flex;
     flex-direction: row;
-    flex-grow: 3;
 }
 
 .bodyContents {
     border-radius: 0 0 15px 15px;
-    width : 60vw;
     padding : 20px;
+    margin: 20px 2.5% 0 5%;
 }
 
 .counterTable th {
     cursor: default;
 }
 
+.bodyBox {
+    background-color : white;
+    box-shadow: 0 0 10px 2px lightgray;
+}
+
 .contentsHeader {
-    background-color: #FEC800;
-    color : white;
+    background-color: #8fff7780;
+    color : dimgrey;
     font-size: 24px;
 }
 
 .menuDiv {
-    border: 1px solid #fdb768;
     border-top : none;
 }
 
@@ -113,11 +193,10 @@
 }
 
 .orderDiv {
-
     padding: 1% 0 1% 0;
     margin-top: 1%;
-    background-color: #fec800;
-    color : white;
+    background-color: rgba(143,255,119,.5019607843137255);
+    color : black;
     /*display: flex;
     flex-direction: row;
     align-items: center;*/
@@ -135,26 +214,6 @@
     width: 5%;
     padding : 1%;
     flex-grow: 3;
-}
-
-.payDetail {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 3;
-}
-
-.payDetail > div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-
-}
-
-.payDetail > div > p {
-    font-size: 20px;
-    font-family: "나눔스퀘어라운드 Regular";
-    text-align: center;
-    margin: 0 3vw 0 3vw;
 }
 
 .payDivs {
@@ -176,11 +235,7 @@
     margin: 0 1em 0 1em;
 }
 
-.confirmDiv {
-    display: flex;
-    flex-grow: 2;
-    justify-content: center;
-}
+
 
 .visCount {
     font-size: 24px;
@@ -188,8 +243,9 @@
 }
 
 .submitBtn {
-    border : none;
-    background-color: floralwhite;
+    background-color: rgba(78,167,59,.5019607843137255)!important;
+    border: none;
+    box-shadow: 1px 2px 3px gray;
     color: black;
 }
 
@@ -199,32 +255,90 @@
     color: black;
 }
 
-.divs {
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    font-family: "나눔스퀘어라운드 Regular";
-}
+
 
 .rightNav {
-    width: 34vw;
-    height: 90vh;
-    background-color: #f6b26b;
+    height: 100%;
+    margin: 40px 2.5% 1% 2.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.arrowDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
 }
 
 .payDetail {
-    margin: 5.5%;
-    height: 86vh;
     flex-direction: column;
-    border: 1px solid black;
+    box-shadow: 0 0 10px 2px lightgray;
+    background-color: white;
 }
 
-.payDetail > div {
-    margin-bottom: 18.5%;
-    border-bottom: 1px solid black;
+.payDetail > div > p {
+    font-family: "나눔스퀘어라운드 Regular";
+    font-size: 20px;
+    margin: 0;
 }
 
-.payDetail > div:last-child {
-    margin-bottom: 0;
-    border-bottom: none;
+.detailMenuDiv {
+    flex-direction: column;
+}
+
+.navHeaders {
+    background-color: #8fff7780;
+
+    font-family: "나눔스퀘어라운드 Regular";
+    font-size: 20px;
+    padding: 15px 0 1px 0;
+}
+
+.detailMenuImg {
+    width: 90%;
+    height: auto;
+}
+
+.detailOptionDiv {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.optionRow {
+    margin: 2vmin 0;
+}
+
+.detailOptionImg {
+    width: 5vmin;
+    height: auto;
+    margin: 1vmin 0;
+}
+
+.confirmDiv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 -1px 0 lightgrey;
+    padding: 15px 0;
+}
+
+.confirmBtn {
+    background-color: #8fff7780;
+    color: black;
+    border: none;
+
+    font-size: 20px;
+    font-family: "나눔스퀘어";
+    font-weight: bold;
+    outline: none;
+}
+
+.confirmBtn:hover, .confirmBtn:active, .confirmBtn:focus, confirmBtn:checked {
+    border: none!important;
+    background-color: #4ea73b80!important;
+    color: black!important;
+    outline: none!important;
+    box-shadow: none!important;
 }

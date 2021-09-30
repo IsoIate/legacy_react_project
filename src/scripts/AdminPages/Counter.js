@@ -5,9 +5,17 @@ import '../../css/AdminPages/Counter.css';
 import { Button } from "react-bootstrap";
 import axios from "axios";
 import {connect} from "react-redux";
+
 import io from 'socket.io-client';
-import logo from '../../img/cafelogo.png'
 import LiveClock from 'react-live-clock'
+
+import logo from '../../img/cafelogo.png'
+import americano from '../../img/coffee/americano.png'
+import mediumCup from '../../img/mediumCup.png'
+import iceDrink from '../../img/iceDrink.png'
+import syrup from '../../img/syrup.png'
+import takeAway from '../../img/takeAway.png'
+import {useHistory} from "react-router-dom";
 
 const socketClient = io("http://localhost:8080");
 const date = new Date();
@@ -25,8 +33,14 @@ let globalSum = -1;
 
 function Counter(props) {
 
+    let history = useHistory();
+
     let [data, setData] = useState(null);
     let [socketReq, setSocketReq] = useState(null);
+    let titleLink = ['/AdminPage', '/AdminPage/Revenue', '/AdminPage/Counter', '/AdminPage/Setting'];
+    let btnClassName = ["fas fa-home", "fas fa-cash-register", "fas fa-shopping-cart", "fas fa-cogs"];
+    let tooltip = ['Home', 'Sales', 'Counter', 'Setting']
+    let arr = [mediumCup, iceDrink, syrup, takeAway]
 
     /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
     useEffect(() => {
@@ -53,61 +67,112 @@ function Counter(props) {
         <div className = "counterDiv">
             <div className = "leftNav">
 
+                <div className = "btnDivs">
+                    <button type="button" className="btn btn-default btn-lg" aria-label="Left Align">
+                        <i style={{color: "white", fontSize: "30px"}}
+                           className = "fas fa-bars"></i>
+                    </button>
+                    <hr style = {{ border : "1px solid white"}}/>
+                    {
+                        btnClassName.map((num, index) => {
+                            return (
+                                <button type="button" tooltip-text = { tooltip[index] }
+                                        className="btn btn-default btn-lg" >
+                                    <a href = { titleLink[index] } >
+                                        <i style={{color: "white", fontSize: "24px"}}
+                                           className = { btnClassName[index] } ></i>
+                                    </a>
+                                </button>
+                            )
+                        })
+                    }
+                </div>
             </div>
 
             <div className = "counterBody">
                 <div className = "topNav">
-                    <img className = "logoImg" src = { logo }/>
-                    <div className = "date">
-                        <div>
-                            { date.getMonth() + 1 + "월 "}
-                            { date.getDate() + "일"}
+                    <div className = "topNavImgDIv">
+                        <img className = "logoImg" src = { logo }/>
+                        <p> Coffee House </p>
+                    </div>
+                    <div className = "topNavLeft">
+                        <div className = "date">
+                            <div>
+                                { date.getMonth() + 1 + "월 "}
+                                { date.getDate() + "일"}
+                            </div>
+                            <div>
+                                <LiveClock format ={"HH:mm:ss"} interval = { 1000 } ticking = { true } />
+                            </div>
                         </div>
-                        <div>
-                            <LiveClock format ={"HH:mm:ss"} interval = { 1000 } ticking = { true } />
+                        <div className = "closeBtn" onClick = { () => {
+                            history.push("/");
+                        }}>
+                            <i className="fas fa-sign-out-alt fa-2x"></i>
+                            <p> 퇴근하기 </p>
                         </div>
                     </div>
                 </div>
                 <div className="container mt-3" className = "bodyDiv">
 
                     <div className = 'container-fluid bodyContents'>
-                        <div className = "contentsHeader">
-                            <div className = "contentsDiv">
-                                <div className = "groupCount">
-                                    <div> # </div>
-                                </div>
-                                <div className = "menuDetail">
-                                    <div className = "md1"> 메뉴명 </div>
-                                    <div className = "md2"> 수량 </div>
-                                    <div className = "md2"> 가격 </div>
-                                    <div className = "md1"> 옵션 </div>
+                        <div className = "bodyBox">
+                            <div className = "contentsHeader">
+                                <div className = "contentsDiv">
+                                    <div className = "groupCount">
+                                        <div> # </div>
+                                    </div>
+                                    <div className = "menuDetail">
+                                        <div className = "md1"> 메뉴명 </div>
+                                        <div className = "md2"> 수량 </div>
+                                        <div className = "md2"> 가격 </div>
+                                        <div className = "md1"> 옵션 </div>
+                                    </div>
                                 </div>
                             </div>
+                            {
+                                socketReq != null ?
+                                    <MenuDetail req = { socketReq } />
+                                    : null
+                            }
                         </div>
-                        {
-                            socketReq != null ?
-                                <MenuDetail req = { socketReq } />
-                                : null
-                        }
                     </div>
                     <div className = "rightNav">
+                        <div className = "arrowDiv">
+                            <i className="fas fa-chevron-circle-left fa-2x"></i>
+                        </div>
                         <div className = "payDetail">
-                            <div >
-                                <p> 가격 </p>
-                                <p> 5000 </p>
+                            <div className = "detailMenuDiv">
+                                <div className = "navHeaders">
+                                    <p> 주문메뉴 </p>
+                                </div>
+                                <div>
+                                    <img className = "detailMenuImg" src = { americano } />
+                                </div>
+                                <p> 아메리카노 </p>
                             </div>
-                            <div>
-                                <p> 수량 </p>
-                                <p> 2 </p>
+                            <div className = "detailOptionDiv">
+                                <div className = "navHeaders">
+                                    <p> 추가옵션 </p>
+                                </div>
+                                <div className = "row optionRow">
+                                    {
+                                        arr.map((num, index) => {
+                                            return (
+                                                <div className = "col-md-6">
+                                                    <img className = "detailOptionImg" src = { arr[index] } />
+                                                </div>
+                                            )
+                                        })
+                                    }
+                                </div>
                             </div>
-                            <div>
-                                <p> 할인 </p>
-                                <p> 0 </p>
+                            <div className = "confirmDiv">
+                                <button className = "btn btn-success confirmBtn"> 제조 완료 </button>
                             </div>
-                            <div>
-                                <p> 총 가격 </p>
-                                <p> 5000 </p>
-                            </div>
+                        </div>
+                        <div className = "arrowDiv">
+                            <i className="fas fa-chevron-circle-right fa-2x"></i>
                         </div>
                     </div>
                 </div>
@@ -179,7 +244,7 @@ function MenuDetail(props) {
                                 <Button className = "submitBtn" onClick = { () => {
 
                                 }}>
-                                    확인
+                                    자세히
                                 </Button>
                             </div>
                         </div>

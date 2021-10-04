@@ -57,7 +57,7 @@ function Payment (props) {
                                                name = "count" /> +
                                         <input type = "text" value = { props.state[index].price }
                                                name = "price" />
-                                        <input type = "text" value = { props.state[index].temp }
+                                        <input type = "text" value = { props.state[index].options }
                                                name = "temp" />
                                         <input type = "text" value = { props.state[index].menuIndex }
                                                name = "menuIndex" />
@@ -69,20 +69,33 @@ function Payment (props) {
                             : null
                     }
 
-                    <button variant="secondary" className = "backBtnText" onClick = { () => {
-                        history.push("/MainPage/0");
+                    <button type = "button" variant="secondary" className = "backBtnText" onClick = { () => {
+                        /*
+                        let temp = [...props.orderState];
+                        temp[2] = 0;
+                        console.log(temp);
+                        history.push("/MainPage/0");*/
                     }}>뒤로<br/>가기</button>
 
                     <button type = "submit" variant="warning" className = "payBtnText" onClick = {() => {
+                        let temp = [...props.orderState];
+                        temp[2] = 0;
+
                         socketClient.emit("payButton", props.state);
-                        props.dispatch({ type : "주문작성", payload : { data : props.state }})
+                        socketClient.emit("payCash", temp);
+
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cashPayOpen(), setPayment(0)
                         )
                     }}>현금<br/>결제</button>
 
                     <button type = "submit" className = "payBtnText" onClick = {() => {
+                        let temp = [...props.orderState];
+                        temp[2] = 1;
+
                         socketClient.emit("payButton", props.state);
+                        socketClient.emit("payCard", temp);
+
                         return (
                             props.orderState[0] == 0 ? noPayOpen() : cardPayOpen(), setPayment(1)
                         )
@@ -125,7 +138,8 @@ function Conversion(state) {
     return {
         state : state.reducer,
         orderState : state.orderReducer,
-        counterState : state.counterReducer
+        counterState : state.counterReducer,
+        optionState : state.optionReducer
     }
 }
 

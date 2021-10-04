@@ -31,24 +31,22 @@ let store = createStore(combineReducers({
 function reducer(state = primaryState, action) {
     if(action.type === "항목추가") {
         let copy = [...state];
+        let check = false;
 
-        if(copy[0] != null) {
-            copy.map((num, index) => {
-                return (
-                    // 기존 메뉴와 추가 주문 메뉴가 중복되었을 때
-                    ((copy[index].title).includes(action.payload.title)) ?
-                        // 주문 테이블에서 기본 메뉴의 값에 수량과 가격을 더함
-                        (copy[index].count = copy[index].count + action.payload.count) +
-                        (copy[index].price = copy[index].price + action.payload.price)
-                        // 수정 필요
-                        : (index + 1) == copy.length && (!(copy[index].title).includes(action.payload.title)) ?
-                        copy.push(action.payload) + console.log("push")
-                        : null
-                )
-            })
+        console.log("options")
+        console.log(action.payload.options);
+        console.log("copy")
+        console.log(copy);
 
+        for(let index = 0; index < copy.length; index++) {
+            if((copy[index].title == action.payload.title)) {
+                check = true;
+                (copy[index].count = copy[index].count + action.payload.count);
+                (copy[index].price = copy[index].price + action.payload.price);
+            }
         }
-        else if(copy[0] == null) {
+
+        if(check != true) {
             copy.push(action.payload)
         }
 
@@ -73,6 +71,7 @@ function orderReducer(state = orderState, action) {
 
         copy[0] += action.payload.count;
         copy[1] += action.payload.price;
+
         return copy;
     }
     else if (action.type === "주문제거") {
@@ -110,26 +109,6 @@ function optionReducer(state = optionState, action) {
     else if (action.type === "포장변경") {
         let copy = [...state];
         copy[3] = action.payload;
-        return copy;
-    }
-    else if (action.type === "사이즈초기화") {
-        let copy = [...state];
-        copy[0] = 1;
-        return copy;
-    }
-    else if (action.type === "얼음초기화") {
-        let copy = [...state];
-        copy[1] = 1;
-        return copy;
-    }
-    else if (action.type === "시럽초기화") {
-        let copy = [...state];
-        copy[2] = 1;
-        return copy;
-    }
-    else if (action.type === "포장초기화") {
-        let copy = [...state];
-        copy[3] = 1;
         return copy;
     }
     else {

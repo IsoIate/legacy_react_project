@@ -15,6 +15,7 @@ function MenuSelectModal(props) {
     let [iceSelect, iceChange] = useState(1);
     let [syrupSelect, syrupChange] = useState(1);
     let [packageSelect, packageChange] = useState(1);
+    let temp = null;
 
     return (
         <div className="MenuSelectModal">
@@ -56,20 +57,26 @@ function MenuSelectModal(props) {
                     <Button  className = "orderAddBtn" onClick={ () => {
                         props.handleClose();
 
-                        props.count != 1 ?
+                        console.log("state");
+                        console.log(props.optionState)
+
+                        props.dispatch({type : "항목추가",
+                            payload : { title : props.menuItem[props.id][props.clickNum].title,
+                                count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
+                                options : props.optionState, menuIndex : props.id }})
+                        /*props.count != 1 ?
                             props.dispatch({type : "항목추가",
                                 payload : { title : props.menuItem[props.id][props.clickNum].title,
-                                count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
-                                temp : 0, menuIndex : props.id }})
+                                    count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
+                                    temp : 0, menuIndex : props.id }})
                             :
                             props.dispatch({type : "항목추가",
                                 payload : { title : props.menuItem[props.id][props.clickNum].title,
                                     count : props.count, price : ( props.menuItem[props.id][props.clickNum].price ) * props.count,
-                                    temp : 30, menuIndex : props.id }})
+                                    temp : 30, menuIndex : props.id }})*/
 
                         props.dispatch({type : "주문추가", payload : { count : props.count,
                                 price : ( props.menuItem[props.id][props.clickNum].price ) * props.count }})
-
                     } }>
                         <p> 주문추가 </p>
 
@@ -83,7 +90,8 @@ function MenuSelectModal(props) {
 /* state를 props로 변환 */
 function Conversion(state) {
     return {
-        state: state.reducer
+        state: state.reducer,
+        optionState: state.optionReducer
     }
 }
 

@@ -106,13 +106,13 @@ function MenuDisplay(props) {
 
     useEffect(() => {
         pageCheckChange(props.pageNum);
-        return (
+        /*return (
             show === false ? setCount(1) : null,
             show === false ? props.dispatch({ type : "사이즈초기화" }) : null,
             show === false ? props.dispatch({ type : "얼음초기화" }) : null,
             show === false ? props.dispatch({ type : "시럽초기화" }) : null,
             show === false ? props.dispatch({ type : "포장초기화" }) : null
-        )
+        )*/
     }, [show === false])
 
     return (

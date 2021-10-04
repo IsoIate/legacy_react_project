@@ -37,6 +37,8 @@ function Counter(props) {
 
     let [data, setData] = useState(null);
     let [socketReq, setSocketReq] = useState(null);
+    let [cashSocket, setCashSocket] = useState(null);
+    let [cardSocket, setCardSocket] = useState(null);
     let titleLink = ['/AdminPage', '/AdminPage/Revenue', '/AdminPage/Counter', '/AdminPage/Setting'];
     let btnClassName = ["fas fa-home", "fas fa-cash-register", "fas fa-shopping-cart", "fas fa-cogs"];
     let tooltip = ['Home', 'Sales', 'Counter', 'Setting']
@@ -60,6 +62,22 @@ function Counter(props) {
             console.log("pay?")
             console.log(req)
             setSocketReq(req)
+        })
+    }, [socketClient.on])
+
+    useEffect(() => {
+        socketClient.on("payCash", req => {
+            console.log("cash!")
+            console.log(req)
+            setCashSocket(req)
+        })
+    }, [socketClient.on])
+
+    useEffect(() => {
+        socketClient.on("payCard", req => {
+            console.log("card!")
+            console.log(req)
+            setCardSocket(req)
         })
     }, [socketClient.on])
 
@@ -132,7 +150,11 @@ function Counter(props) {
                             </div>
                             {
                                 socketReq != null ?
-                                    <MenuDetail req = { socketReq } />
+                                    cashSocket != null ?
+                                        <CashMenuDetail req = { socketReq } cash = { cashSocket } />
+                                        : cardSocket != null ?
+                                            <CardMenuDetail req = { socketReq } card = { cardSocket } />
+                                        : null
                                     : null
                             }
                         </div>
@@ -155,7 +177,7 @@ function Counter(props) {
                                 <div className = "navHeaders">
                                     <p> 추가옵션 </p>
                                 </div>
-                                <div className = "row optionRow">
+                                <div className = " optionColumn">
                                     {
                                         arr.map((num, index) => {
                                             return (
@@ -181,7 +203,7 @@ function Counter(props) {
     )
 }
 
-function MenuDetail(props) {
+function CashMenuDetail(props) {
     return (
         <>
             <div className = "menuDiv">
@@ -213,7 +235,81 @@ function MenuDetail(props) {
                                     <div className = "md1"> { props.req[index].title } </div>
                                     <div className = "md2"> { props.req[index].count } </div>
                                     <div className = "md2"> { props.req[index].price } </div>
-                                    <div className = "md1"> 옵션 </div>
+                                    <div className = "md1"> { props.req[index].options } </div>
+                                </div>
+                            </div>
+                        )
+                    })
+                }
+
+
+                {/* 주문확인 및 버튼튼 */}
+                <div className = "orderDiv">
+                    <div className = "contentsDiv">
+                        <div className = "groupCount">
+                            <div>  </div>
+                        </div>
+                        <div className = "menuDetail">
+                            <div className = "md1">
+                                <div className = "payDivs">
+                                    <p> 현금 : { props.cash[1] } 원 </p>
+                                    <p> 카드 : { 0 } 원 </p>
+                                </div>
+                            </div>
+                            <div className = "md2">
+                                <p> 수량 : { props.cash[2] } 개 </p>
+                            </div>
+                            <div className = "md2">
+                                <p> 합계 : { props.cash[1] } 원 </p>
+                            </div>
+                            <div className = "md1">
+                                <Button className = "submitBtn" onClick = { () => {
+
+                                }}>
+                                    자세히
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}
+
+function CardMenuDetail(props) {
+    return (
+        <>
+            <div className = "menuDiv">
+                {/* 손님 그룹 Number */}
+                <div>
+                    <div className = "contentsDiv">
+
+                        <div className = "groupCount">
+                            <div> { 1 } </div>
+                        </div>
+
+                        <div className = "menuDetail">
+                            <div className = "md1">   </div>
+                            <div className = "md2">   </div>
+                            <div className = "md2">   </div>
+                            <div className = "md1">   </div>
+                        </div>
+                    </div>
+                </div>
+
+                {
+                    props.req.map((num, index) => {
+                        return (
+                            <div className = "contentsDiv">
+                                <div className = "groupCount">
+                                    <div>  </div>
+                                </div>
+                                <div className = "menuDetail">
+                                    <div className = "md1"> { props.req[index].title } </div>
+                                    <div className = "md2"> { props.req[index].count } </div>
+                                    <div className = "md2"> { props.req[index].price } </div>
+                                    <div className = "md1"> { props.req[index].options } </div>
                                 </div>
                             </div>
                         )
@@ -231,14 +327,14 @@ function MenuDetail(props) {
                             <div className = "md1">
                                 <div className = "payDivs">
                                     <p> 현금 : { 0 } 원 </p>
-                                    <p> 카드 : { 0 } 원 </p>
+                                    <p> 카드 : { props.card[1] } 원 </p>
                                 </div>
                             </div>
                             <div className = "md2">
-                                <p> 수량 : { 0 } 개 </p>
+                                <p> 수량 : { props.card[2] } 개 </p>
                             </div>
                             <div className = "md2">
-                                <p> 합계 : { 0 } 원 </p>
+                                <p> 합계 : { props.card[1] } 원 </p>
                             </div>
                             <div className = "md1">
                                 <Button className = "submitBtn" onClick = { () => {

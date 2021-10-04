@@ -13,8 +13,10 @@ function OrderTable(props) {
                     <th colSpan={5}> 메뉴명 </th>
                     <th> 수량 </th>
                     <th> 가격 </th>
+                    <th> 옵션 </th>
                     <th> 취소 </th>
                 </tr>
+
                 { props.state.map(function (num, index) {
                     return (
                         <tr className = "tableBody">
@@ -22,6 +24,7 @@ function OrderTable(props) {
                             <td colSpan={5}> { props.state[index].title } </td>
                             <td> { props.state[index].count } </td>
                             <td> { props.state[index].price } </td>
+                            <td> { props.state[index].options } </td>
                             <td> <Button variant="danger" onClick = {() => {
                                 props.dispatch({ type : "항목제거", payload : index })
                                 props.dispatch({ type : "주문제거",
@@ -39,7 +42,8 @@ function OrderTable(props) {
 function Conversion(state) {
     return {
         state : state.reducer,
-        orderState : state.orderReducer
+        orderState : state.orderReducer,
+        optionState : state.optionReducer
     }
 }
 

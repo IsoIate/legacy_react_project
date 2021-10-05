@@ -1,42 +1,36 @@
 import React from 'react'
-import drink from "../../img/drink.png";
 import '../../css/AdminPages/LeftNav.css'
 
 function LeftNav() {
 
-    let title = ['홈', '매출현황', '카운터', '메뉴수정', '설정'];
-    let titleLink = ['/AdminPage', '/AdminPage/Revenue', '/AdminPage/Counter', '', '/AdminPage/Setting'];
+    let titleLink = ['/AdminPage', '/AdminPage/Revenue', '/AdminPage/Counter', '/AdminPage/Setting'];
+    let btnClassName = ["fas fa-home", "fas fa-cash-register", "fas fa-shopping-cart", "fas fa-cogs"];
+    let tooltip = ['Home', 'Sales', 'Counter', 'Setting']
 
     return (
-        <>
-            <div className = "leftDiv">
-                <div className = "banner">
-                    <h2> ABC Cafe </h2>
-                </div>
-                <div className = "navBar">
-                    {
-                        title.map(function (num, index) {
-                            return (
-                                <div className = "navBtn">
-                                    <img className = "navImg" src = { drink } />
+        <div className = "leftNav">
 
-                                    <a href = { titleLink[index] } > { title[index] } </a>
-                                    { console.log( )}
-                                    <span className = "arrowIcon">
-                                            <i className="fas fa-angle-right fa-2x"></i>
-                                        </span>
-
-                                    {/*<span className = "navTitle">
-
-                                        </span>
-                                        */}
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+            <div className = "btnDivs">
+                <button type="button" className="btn btn-default btn-lg" aria-label="Left Align">
+                    <i style={{color: "white", fontSize: "30px"}}
+                       className = "fas fa-bars"></i>
+                </button>
+                <hr style = {{ border : "1px solid white"}}/>
+                {
+                    btnClassName.map((num, index) => {
+                        return (
+                            <button type="button" tooltip-text = { tooltip[index] }
+                                    className="btn btn-default btn-lg" >
+                                <a href = { titleLink[index] } >
+                                    <i style={{color: "white", fontSize: "24px"}}
+                                       className = { btnClassName[index] } ></i>
+                                </a>
+                            </button>
+                        )
+                    })
+                }
             </div>
-        </>
+        </div>
     )
 }
 

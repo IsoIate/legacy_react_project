@@ -15,7 +15,7 @@ let primaryState = [];
 let orderState = [0, 0];
 let optionState = [0, 0, 0, 0];
 let receiptState = [];
-let counterState = [];
+let detailState = [];
 let counterConfirmState = [];
 
 const options = {
@@ -24,7 +24,7 @@ const options = {
 };
 
 let store = createStore(combineReducers({
-    reducer, orderReducer, optionReducer, counterConfirmReducer, counterReducer
+    reducer, orderReducer, optionReducer, counterConfirmReducer, detailReducer
 }));
 
 /* 주문 표 생성, 제거 */
@@ -124,19 +124,13 @@ function receiptReducer(state = receiptState, action) {
 }
 
 /* 카운터 주문 테이블 */
-function counterReducer(state = counterState, action) {
-    if(action.type === "주문작성") {
+function detailReducer(state = detailState, action) {
+    if(action.type === "값 전송") {
         let copy = [...state];
-        copy.push(action.payload)
 
-        console.log("copy??")
-        /*action.payload.map((num, i) => {
-            console.log(copy[0].data[i])
-            console.log(copy[0].data[i].title)
-            console.log("---------------------")
-            console.log(copy[i].data[i])
-            console.log(copy[i].data[i].title)
-        })*/
+        copy.push(action.payload);
+        console.log("copy : ")
+        console.log(copy)
 
         return copy;
     }

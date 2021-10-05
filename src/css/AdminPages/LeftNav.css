@@ -1,58 +1,53 @@
-.leftDiv {
-
-    height : 100vh;
-    background-color: #e9ecef;
+.leftNav {
+    background-color: #2d4e68e6;
+    width: 70px;
+    height: 100vh;
 }
 
-.banner {
-    margin: 30px 10px;
-}
-
-.navBar {
-    display: flex;
+.btnDivs {
     flex-direction: column;
-    width: 250px;
 }
 
-.navBar a {
-    display: flex;
-
-    color : black;
-    font-size: 24px;
-    text-decoration: none;
-
-    width: 200px;
-    padding: 10px 0;
+.btnDivs > button {
+    margin: 10px 0 10px 0;
 }
 
-.navBar a:hover {
-    text-decoration: none;
+.btnDivs > button:first-child {
+    margin: 23px 0 5px 0;
 }
 
-.navBtn {
-    display: flex;
-    flex-direction: row;
-    background-color: #fdb768;
+[tooltip-text]:focus {
+    outline: none;
 }
 
-.navBtn:hover {
-    background-color: deepskyblue;
+[tooltip-text]:hover {
+    position: relative;
 }
 
-.navTitle {
+[tooltip-text]:hover:after {
+    background-color: gray;
 
-}
+    -webkit-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+    -moz-box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
+    box-shadow: 0px 0px 3px 1px rgba(50, 50, 50, 0.4);
 
-.navImg {
-    width: 10%;
-    margin : 10px;
-}
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
 
-.arrowIcon {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    color: #FFFFFF;
+    font-size: 12px;
+    content: attr(tooltip-text);
 
+    margin-bottom: 10px;
+    top: 15%;
+    left: 120%;
+    padding: 7px 12px;
+    position: absolute;
+    width: auto;
+    min-width: 50px;
+    max-width: 300px;
+    word-wrap: break-word;
 
-    margin-right: 5px;
+    z-index: 9999;
 }

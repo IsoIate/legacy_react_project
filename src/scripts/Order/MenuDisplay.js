@@ -124,7 +124,7 @@ function MenuDisplay(props) {
                         clickNumChange(index);
                     } }>
                         { index < 3 ?
-                            <div>
+                            <div className = "menuDisplays">
                                 <div>
                                     <img className = "menuImg" src = { menuImg[props.id][index] } />
                                 </div>

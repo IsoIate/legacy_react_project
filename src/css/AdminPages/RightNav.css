@@ -1,0 +1,90 @@
+
+.rightNav {
+    height: 100%;
+    margin: 40px 2.5% 1% 2.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+.arrowDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5%;
+}
+
+.payDetail {
+    flex-direction: column;
+    box-shadow: 0 0 10px 2px lightgray;
+    background-color: white;
+}
+
+.payDetail > div > p {
+    font-family: "나눔스퀘어라운드 Regular";
+    font-size: 20px;
+    margin: 0;
+}
+
+.detailMenuDiv {
+    flex-direction: column;
+}
+
+.navHeaders {
+    background-color: #8fff7780;
+
+    font-family: "나눔스퀘어라운드 Regular";
+    font-size: 20px;
+    padding: 15px 0 1px 0;
+}
+
+.detailMenuImg {
+    width: 90%;
+    height: auto;
+}
+
+.detailOptionDiv {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.optionColumn {
+    margin: 2vmin 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detailOptionImg {
+    width: 5vmin;
+    height: auto;
+    margin: 1vmin 0;
+}
+
+.confirmDiv {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 -1px 0 lightgrey;
+    padding: 15px 0;
+}
+
+.confirmBtn {
+    background-color: #8fff7780;
+    color: black;
+    border: none;
+
+    font-size: 20px;
+    font-family: "나눔스퀘어";
+    font-weight: bold;
+    outline: none;
+}
+
+.confirmBtn:hover, .confirmBtn:active, .confirmBtn:focus, confirmBtn:checked {
+    border: none!important;
+    background-color: #4ea73b80!important;
+    color: black!important;
+    outline: none!important;
+    box-shadow: none!important;
+}

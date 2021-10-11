@@ -107,7 +107,7 @@ function RightNav(props) {
                         <div>
                             {
                                 result == null
-                                    ? <div className ={ 'slide-container'} style = {{ visibility : "hidden"}}>
+                                    ? <div className ={ 'slide-container'} style = {{ opacity : "0%"}}>
                                         <div className = "slide-box">
                                             <img src={ result }/>
                                         </div>
@@ -115,12 +115,6 @@ function RightNav(props) {
                                     : <div className = {'slide-container'} >
                                         <ImageSlide result = { result }/>
                                       </div>
-                            }
-                            { console.log(result) }
-                            {
-                                props.detailState[0] != null
-                                    ? <p> { props.detailState[0][0].title } </p>
-                                    : null
                             }
                         </div>
                     </div>
@@ -164,16 +158,14 @@ function RightNav(props) {
 function ImageSlide(props) {
     let imageArray = props.result;
 
-    return (
-        imageArray.map((num, index) => {
-                return (
-                    <div className = "slide-box">
-                        <img src = { props.result[index] } />
-                    </div>
-                )
-            })
-
-    )
+    imageArray.map((num, index) => {
+        return (
+            <div className = "slide-box">
+                <img src = { props.result[index].image } />
+                <p> { props.result[index].title } </p>
+            </div>
+        )
+    })
 }
 
 function Temp(detailState, menu) {
@@ -193,9 +185,6 @@ function Temp(detailState, menu) {
     let titleArray = [];
     let imageArray = [];
 
-    let temp = null;
-    let result = null;
-
     console.log(detailState);
 
     if(detailState[0][tempIndex] != null) {
@@ -206,11 +195,15 @@ function Temp(detailState, menu) {
         detailArray.push(0);
     }
 
+    console.log(detailArray.length)
+
+    /* 메뉴명 삽입 */
     detailArray.map((num, index) => {
-        titleArray[index] = detailState[0][index].title;
+        titleArray.push(detailState[0][index].title);
         console.log(titleArray[index])
     })
-    console.log("--------------")
+
+    /* 이미지 고유주소 삽입 */
     menuInfo.map((num, idx1) => {
         titleArray.map((num, idx2) => {
             if(menuInfo[tempIndex][idx1] == titleArray[idx2]) {
@@ -218,6 +211,18 @@ function Temp(detailState, menu) {
             }
         })
     })
+
+    let resultList = new Array();
+
+    titleArray.map((num, index) => {
+        let data = new Object();
+        data.title = titleArray[index];
+        data.image = imageArray[index];
+
+        resultList.push(data);
+    })
+
+    console.log(resultList);
 
     return imageArray;
 }

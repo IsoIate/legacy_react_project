@@ -129,8 +129,8 @@ function detailReducer(state = detailState, action) {
         let copy = [...state];
 
         copy.push(action.payload);
-        console.log("copy : ")
-        console.log(copy)
+        /*console.log("copy : ")
+        console.log(copy)*/
 
         return copy;
     }

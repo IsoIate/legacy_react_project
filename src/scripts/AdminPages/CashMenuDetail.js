@@ -63,8 +63,8 @@ function CashMenuDetail(props) {
                             </div>
                             <div className = "md1">
                                 <Button className = "submitBtn" onClick = { () => {
-                                    console.log("req?")
-                                    console.log(props.req)
+                                    /*console.log("req?")
+                                    console.log(props.req)*/
                                     props.dispatch({ type : "값 전송", payload : props.req })
                                 }}>
                                     자세히

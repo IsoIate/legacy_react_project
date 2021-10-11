@@ -5,6 +5,9 @@ import LeftNav from "./LeftNav";
 import AdminNav from "./AdminNav";
 import '../../css/AdminPages/Setting.css';
 import DBResetModal from "./DBResetModal";
+import multer from 'multer';
+import fs from 'fs';
+
 
 function Setting() {
 
@@ -41,9 +44,8 @@ function Setting() {
                                     }}> 초기화 </Button>
                                 </div>
                             </div>
-
-
                         </div>
+
 
                     </div>
                 </div>

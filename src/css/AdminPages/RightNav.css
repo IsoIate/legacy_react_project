@@ -4,6 +4,7 @@
     margin: 40px 2.5% 1% 2.5%;
     display: flex;
     flex-direction: row;
+    overflow: hidden;
 }
 
 .arrowDiv {
@@ -14,6 +15,7 @@
 }
 
 .payDetail {
+    overflow: hidden;
     flex-direction: column;
     box-shadow: 0 0 10px 2px lightgray;
     background-color: white;
@@ -26,6 +28,7 @@
 }
 
 .detailMenuDiv {
+    overflow: hidden;
     flex-direction: column;
 }
 
@@ -37,9 +40,19 @@
     padding: 15px 0 1px 0;
 }
 
-.detailMenuImg {
-    width: 90%;
-    height: auto;
+.slide-container {
+    width: 42vw;
+    transition: all 1s;
+}
+
+.slide-box {
+    width: 10vw;
+    margin-left: 4vw;
+    float: left;
+}
+
+.slide-box img {
+    width: 100%;
 }
 
 .detailOptionDiv {

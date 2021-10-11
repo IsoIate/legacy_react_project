@@ -1,5 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
+import $ from 'jquery';
 import '../../css/AdminPages/RightNav.css';
 
 import americano from "../../img/coffee/americano.png";
@@ -62,7 +63,6 @@ import 아이스크림크로플 from "../../img/dessert/icecreamCroffle.png";
 import 커피콩빵 from "../../img/dessert/coffeeBeanBread.png";
 import 슈크림커피콩빵 from "../../img/dessert/custardCreamBread.png";
 
-
 let coffee = [아메리카노, 카페라떼, 바닐라라떼, 카페모카, 헤이즐넛, 카라멜마끼아또, 티라미수라떼]
 let bubbleTea = [밀크티버블라떼, 흑당버블라떼, 달고나버블라떼, 흑당고구마라떼]
 let frappe = [자바칩프라푸치노, 쿠앤크프라푸치노, 민트초코프라푸치노, 딸기크림프라푸치노, 녹차프라푸치노]
@@ -76,11 +76,19 @@ let menu = [coffee, bubbleTea,frappe, yogurt, ade, juice, tea, dessert]
 
 function RightNav(props) {
     let arr = [mediumCup, iceDrink, syrup, takeAway]
-    let menuIndex = 0;
+    let translate = 0;
+    let result = null;
 
     return (
         <div className = "rightNav">
-            <div className = "arrowDiv">
+            {/* 왼쪽 이동버튼 */}
+            <div className = "arrowDiv" onClick={() => {
+                /* 이미지 개수 -1 만큼 14를 곱함 */
+                if(translate >= -28 && translate < 0) {
+                    translate = translate + 14;
+                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                }
+            }}>
                 <i className="fas fa-chevron-circle-left fa-2x"></i>
             </div>
             <div className = "payDetail">
@@ -88,25 +96,37 @@ function RightNav(props) {
                     <div className = "navHeaders">
                         <p> 주문메뉴 </p>
                     </div>
-                    <div>
-                        <img className="detailMenuImg"
-                             src={ americano }/>
+                    <div style={{ display : "flex", flexDirection : "column"}}>
+                        <div style={{ display : "none" }}>
+                            {
+                                props.detailState[0] != null ?
+                                    result = Temp( props.detailState, menu )
+                                    : null
+                            }
+                        </div>
+                        <div>
+                            {
+                                result == null
+                                    ? <div className ={ 'slide-container'} style = {{ visibility : "hidden"}}>
+                                        <div className = "slide-box">
+                                            <img src={ result }/>
+                                        </div>
+                                      </div>
+                                    : <div className = {'slide-container'} >
+                                        <ImageSlide result = { result }/>
+                                      </div>
+                            }
+                            { console.log(result) }
+                            {
+                                props.detailState[0] != null
+                                    ? <p> { props.detailState[0][0].title } </p>
+                                    : null
+                            }
+                        </div>
                     </div>
-                    {
-                        props.detailState[0] != null ?
-                            <Temp detailState = { props.detailState } menu = { menu } />
-                            : null
-
-                    }
-
-                    { console.log("detailState")}
-                    { console.log(props.detailState) }
-                    {
-                        props.detailState[0] != null ?
-                            <p> { props.detailState[0][0].title } </p>
-                            : null
-                    }
                 </div>
+
+                {/* 옵션 아이콘 */}
                 <div className = "detailOptionDiv">
                     <div className = "navHeaders">
                         <p> 추가옵션 </p>
@@ -127,28 +147,79 @@ function RightNav(props) {
                     <button className = "btn btn-success confirmBtn"> 제조 완료 </button>
                 </div>
             </div>
-            <div className = "arrowDiv">
+
+            {/* 오른쪽 이동버튼 */}
+            <div className = "arrowDiv" onClick={() => {
+                if(translate > -28  && translate <= 28) {
+                    translate = translate - 14;
+                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                }
+            }}>
                 <i className="fas fa-chevron-circle-right fa-2x"></i>
             </div>
         </div>
     )
 }
 
-function Temp(props) {
-    let tempIndex = props.detailState[0][0].menuIndex
-    if(props.detailState[0][tempIndex] != null) {
-        console.log(props.detailState[0][tempIndex].title)
+function ImageSlide(props) {
+    let imageArray = props.result;
+
+    return (
+        imageArray.map((num, index) => {
+                return (
+                    <div className = "slide-box">
+                        <img src = { props.result[index] } />
+                    </div>
+                )
+            })
+
+    )
+}
+
+function Temp(detailState, menu) {
+    let coffeeInfo = ["아메리카노", "카페라떼", "바닐라라떼", "카페모카", "헤이즐넛", "카라멜마끼아또", "티라미수라떼"]
+    let bubbleTeaInfo  = ['밀크티버블라떼', '흑당버블라떼', '달고나버블라떼', '흑당고구마라떼']
+    let frappeInfo = ['자바칩프라푸치노', '쿠앤크프라푸치노', '민트초코프라푸치노', '딸기크림프라푸치노', '녹차프라푸치노']
+    let yogurtInfo = ['플레인요거트', '딸기요거트', '블루베리요거트', '망고요거트', '딸기바나나요거트', '망고바나나요거트', '애플망고크러쉬']
+    let adeInfo = ['자몽라임에이드', '청포도에이드', '레몬에이드', '블루레몬에이드', '유자에이드', '깔라만시에이드']
+    let juiceInfo = ['바나나주스', '토마토주스', '키위주스']
+    let teaInfo = ['청귤차', '생강차', '레몬차', '자몽차', '유자차', '페퍼민트', '카모마일']
+    let dessertInfo = ['치즈케익', '티라미수케익', '초코크림케익', '플레인크로플', '아이스크림크로플', '커피콩빵', '슈크림커피콩빵']
+
+    let menuInfo = [coffeeInfo, bubbleTeaInfo, frappeInfo, yogurtInfo, adeInfo, juiceInfo, teaInfo, dessertInfo];
+
+    let tempIndex = parseInt(detailState[0][0].menuIndex);  // 메뉴 인덱스
+    let detailArray = [];
+    let titleArray = [];
+    let imageArray = [];
+
+    let temp = null;
+    let result = null;
+
+    console.log(detailState);
+
+    if(detailState[0][tempIndex] != null) {
+        console.log(detailState[0][tempIndex].title)  // 주문메뉴
     }
 
-    props.menu.map((num, index) => {
-        return (
-            menu[tempIndex][index] == props.detailState[0][tempIndex].title ?
-                console.log("true")
-                : console.log("false")
-        )
+    for(let i = 0; i < detailState[0].length; i++) {
+        detailArray.push(0);
+    }
+
+    detailArray.map((num, index) => {
+        titleArray[index] = detailState[0][index].title;
+        console.log(titleArray[index])
+    })
+    console.log("--------------")
+    menuInfo.map((num, idx1) => {
+        titleArray.map((num, idx2) => {
+            if(menuInfo[tempIndex][idx1] == titleArray[idx2]) {
+                imageArray.push(menu[tempIndex][idx1]);
+            }
+        })
     })
 
-    return 0;
+    return imageArray;
 }
 
 /* state를 props로 변환 */

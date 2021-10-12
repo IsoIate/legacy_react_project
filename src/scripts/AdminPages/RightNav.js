@@ -156,7 +156,9 @@ function RightNav(props) {
 }
 
 function ImageSlide(props) {
-    let imageArray = props.result;
+    let imageArray = JSON.parse(props.result);
+
+    console.log(imageArray)
 
     imageArray.map((num, index) => {
         return (
@@ -225,7 +227,21 @@ function Temp(detailState, menu) {
     console.log();
     console.log(resultList);
 
-    return imageArray;
+    let resArray = new Array();
+
+    titleArray.map((num, index) => {
+        let data = new Object();
+
+        data.title = titleArray[index];
+        data.image = imageArray[index];
+
+        resArray.push(data);
+    })
+
+    let result = JSON.stringify(resArray);
+    console.log(result)
+
+    return result;
 }
 
 /* state를 props로 변환 */

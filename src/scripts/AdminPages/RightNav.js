@@ -222,6 +222,7 @@ function Temp(detailState, menu) {
         resultList.push(data);
     })
 
+    console.log();
     console.log(resultList);
 
     return imageArray;

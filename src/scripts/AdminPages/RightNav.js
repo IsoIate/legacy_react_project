@@ -3,11 +3,15 @@ import {connect} from "react-redux";
 import $ from 'jquery';
 import '../../css/AdminPages/RightNav.css';
 
-import americano from "../../img/coffee/americano.png";
 import mediumCup from "../../img/mediumCup.png";
+import largeCup from "../../img/largeCup.png";
 import iceDrink from "../../img/iceDrink.png";
+import drink from '../../img/drink.png'
+import hotDrink from "../../img/hotDrink.png";
 import syrup from "../../img/syrup.png";
+import noSyrup from "../../img/noSyrup.png";
 import takeAway from "../../img/takeAway.png";
+import inStore from "../../img/inStore.png";
 
 import 아메리카노 from "../../img/coffee/americano.png";
 import 카페라떼 from "../../img/coffee/cafelatte.png";
@@ -72,10 +76,14 @@ let juice = [바나나주스, 토마토주스, 키위주스]
 let tea = [청귤차, 생강차, 레몬차, 자몽차, 유자차, 페퍼민트, 카모마일]
 let dessert = [치즈케익, 티라미수케익, 초코크림케익, 플레인크로플, 아이스크림크로플, 커피콩빵, 슈크림커피콩빵]
 
+let cupSize = [mediumCup, largeCup];
+let drinkTemp = [iceDrink, drink, hotDrink];
+let inSyrup = [noSyrup, syrup];
+let delivery = [takeAway, inStore];
+
 let menu = [coffee, bubbleTea,frappe, yogurt, ade, juice, tea, dessert]
 
 function RightNav(props) {
-    let arr = [mediumCup, iceDrink, syrup, takeAway]
     let translate = 0;
     let result = null;
 
@@ -87,6 +95,7 @@ function RightNav(props) {
                 if(translate >= -28 && translate < 0) {
                     translate = translate + 14;
                     $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
                 }
             }}>
                 <i className="fas fa-chevron-circle-left fa-2x"></i>
@@ -109,11 +118,11 @@ function RightNav(props) {
                                 result == null
                                     ? <div className ={ 'slide-container'} style = {{ opacity : "0%"}}>
                                         <div className = "slide-box">
-                                            <img src={ result }/>
+
                                         </div>
                                       </div>
                                     : <div className = {'slide-container'} >
-                                        <ImageSlide result = { result }/>
+                                        <MenuSlide result = { result }/>
                                       </div>
                             }
                         </div>
@@ -121,20 +130,37 @@ function RightNav(props) {
                 </div>
 
                 {/* 옵션 아이콘 */}
-                <div className = "detailOptionDiv">
+                <div className = "detailMenuDiv {/*detailOptionDiv*/}">
                     <div className = "navHeaders">
                         <p> 추가옵션 </p>
                     </div>
-                    <div className = " optionColumn">
-                        {
-                            arr.map((num, index) => {
-                                return (
-                                    <div className = "col-md-6">
-                                        <img className = "detailOptionImg" src = { arr[index] } />
-                                    </div>
-                                )
-                            })
-                        }
+                    <div style={{ display : "flex", flexDirection : "column"}}>
+                    {/*<div className = " optionColumn">*/}
+                        <div>
+                            {/*<div className ={ 'slide-container'}>
+                                <div className = "slide-box1">
+                                    <img src = { hotDrink } />
+                                    <img src = { hotDrink } />
+                                    <img src = { hotDrink } />
+                                    <img src = { hotDrink } />
+                                </div>
+                            </div>*/}
+                            {
+                                result == null
+                                    ? <div className ={ 'slide-container_op'} style = {{ opacity : "0%"}}>
+                                        <div className = "slide-box">
+                                            {/*<img src = { hotDrink } />
+                                            <img src = { hotDrink } />
+                                            <img src = { hotDrink } />
+                                            <img src = { hotDrink } />*/}
+                                        </div>
+                                      </div>
+                                    : <div className = {'slide-container_op'} >
+                                        <OptionSlide result = { result } cupSize = { cupSize } drinkTemp = { drinkTemp }
+                                                     inSyrup = { inSyrup } delivery = { delivery } />
+                                      </div>
+                            }
+                        </div>
                     </div>
                 </div>
                 <div className = "confirmDiv">
@@ -147,6 +173,7 @@ function RightNav(props) {
                 if(translate > -28  && translate <= 28) {
                     translate = translate - 14;
                     $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
                 }
             }}>
                 <i className="fas fa-chevron-circle-right fa-2x"></i>
@@ -155,19 +182,51 @@ function RightNav(props) {
     )
 }
 
-function ImageSlide(props) {
+function OptionSlide(props) {
+    let size = props.cupSize
+    let temp = props.drinkTemp
+    let syrup = props.inSyrup
+    let deli = props.delivery
+    let options = [size, temp, syrup, deli]
+
+    let result = JSON.parse(props.result);
+    console.log(result)
+
+    return (
+        result.map((num, idx1) => {
+            return (
+                <div className = "slide-box-div_op">
+                    {
+                        options.map((num, idx2) => {
+                            console.log(options[idx2][result[idx1].options[idx2] - 1])
+
+                            return (
+                                <div className = "slide-box_op">
+                                    <img src = { options[idx2][result[idx1].options[idx2] - 1] } />
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            )
+        })
+    )
+}
+
+function MenuSlide(props) {
     let imageArray = JSON.parse(props.result);
 
-    console.log(imageArray)
-
-    imageArray.map((num, index) => {
-        return (
-            <div className = "slide-box">
-                <img src = { props.result[index].image } />
-                <p> { props.result[index].title } </p>
-            </div>
-        )
-    })
+    return (
+        imageArray.map((num, index) => {
+            console.log(imageArray[index].image)
+            return (
+                <div className = "slide-box">
+                    <img src = { imageArray[index].image } />
+                    <p> { imageArray[index].title } </p>
+                </div>
+            )
+        })
+    )
 }
 
 function Temp(detailState, menu) {
@@ -186,23 +245,22 @@ function Temp(detailState, menu) {
     let detailArray = [];
     let titleArray = [];
     let imageArray = [];
+    let optionArray = [];
 
+    console.log("주문메뉴들")
     console.log(detailState);
 
-    if(detailState[0][tempIndex] != null) {
-        console.log(detailState[0][tempIndex].title)  // 주문메뉴
-    }
-
+    /* detailArray의 길이만큼 임시 배열 생성 */
     for(let i = 0; i < detailState[0].length; i++) {
         detailArray.push(0);
     }
 
-    console.log(detailArray.length)
-
-    /* 메뉴명 삽입 */
+    /* 메뉴명, 옵션값 삽입 */
     detailArray.map((num, index) => {
         titleArray.push(detailState[0][index].title);
+        optionArray.push(detailState[0][index].options);
         console.log(titleArray[index])
+        console.log(optionArray[index])
     })
 
     /* 이미지 고유주소 삽입 */
@@ -214,19 +272,7 @@ function Temp(detailState, menu) {
         })
     })
 
-    let resultList = new Array();
-
-    titleArray.map((num, index) => {
-        let data = new Object();
-        data.title = titleArray[index];
-        data.image = imageArray[index];
-
-        resultList.push(data);
-    })
-
-    console.log();
-    console.log(resultList);
-
+    /* 메뉴명, 이미지주소, 옵션 값을 JSON형태로 변환 */
     let resArray = new Array();
 
     titleArray.map((num, index) => {
@@ -234,6 +280,7 @@ function Temp(detailState, menu) {
 
         data.title = titleArray[index];
         data.image = imageArray[index];
+        data.options = optionArray[index];
 
         resArray.push(data);
     })

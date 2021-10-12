@@ -55,6 +55,29 @@
     width: 100%;
 }
 
+.slide-container_op {
+    width: 25vw;
+    transition: all 1s;
+    display: flex;
+    flex-direction: row;
+}
+
+.slide-box-div_op {
+    display: flex;
+    flex-direction: column;
+}
+
+.slide-box_op {
+    width: 10vw;
+    margin-left: 4vw;
+    float: left;
+}
+
+.slide-box_op img {
+    width: 50%;
+    margin: 10px 0px;
+}
+
 .detailOptionDiv {
     flex-direction: column;
     justify-content: center;

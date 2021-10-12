@@ -1,15 +1,14 @@
-/*
-
-.slide-container {
-    width: 300vw;
-    transition: all 1s;
+.imgContainer {
+    display: flex;
+    flex-direction: row;
 }
 
-.slide-box {
-    width: 100vw;
-    float: left;
+.imgDiv {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
 }
 
-.slide-box img {
-    width: 50%;
-}*/
+.imgDiv img {
+    width: 40%;
+}

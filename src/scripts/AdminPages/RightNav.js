@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import $ from 'jquery';
 import '../../css/AdminPages/RightNav.css';
@@ -84,41 +84,37 @@ let delivery = [takeAway, inStore];
 let menu = [coffee, bubbleTea,frappe, yogurt, ade, juice, tea, dessert]
 
 function RightNav(props) {
-    let translate = 0;
     let result = null;
-
+    let [trans, setTrans] = useState(0);
     return (
         <div className = "rightNav">
-            {/* 왼쪽 이동버튼 */}
-            <div className = "arrowDiv" onClick={() => {
-                /* 이미지 개수 -1 만큼 14를 곱함 */
-                if(translate >= -28 && translate < 0) {
-                    translate = translate + 14;
-                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
-                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
+            <div style={{ display : "none" }}>
+                {
+                    props.detailState[0] != null ?
+                        result = Temp( props.detailState, menu )
+                        : null
                 }
-            }}>
-                <i className="fas fa-chevron-circle-left fa-2x"></i>
             </div>
+            {/* 왼쪽 이동버튼 */}
+            {
+                result != null
+                    ? <LeftSlideBtn result = { result } trans = { trans } setTrans = { setTrans } />
+                    : <div className = "arrowDiv">
+                        <i className="fas fa-chevron-circle-left fa-2x"></i>
+                      </div>
+            }
             <div className = "payDetail">
                 <div className = "detailMenuDiv">
                     <div className = "navHeaders">
                         <p> 주문메뉴 </p>
                     </div>
                     <div style={{ display : "flex", flexDirection : "column"}}>
-                        <div style={{ display : "none" }}>
-                            {
-                                props.detailState[0] != null ?
-                                    result = Temp( props.detailState, menu )
-                                    : null
-                            }
-                        </div>
                         <div>
                             {
                                 result == null
                                     ? <div className ={ 'slide-container'} style = {{ opacity : "0%"}}>
                                         <div className = "slide-box">
-
+                                            <img src = { 아메리카노 } />
                                         </div>
                                       </div>
                                     : <div className = {'slide-container'} >
@@ -135,24 +131,15 @@ function RightNav(props) {
                         <p> 추가옵션 </p>
                     </div>
                     <div style={{ display : "flex", flexDirection : "column"}}>
-                    {/*<div className = " optionColumn">*/}
                         <div>
-                            {/*<div className ={ 'slide-container'}>
-                                <div className = "slide-box1">
-                                    <img src = { hotDrink } />
-                                    <img src = { hotDrink } />
-                                    <img src = { hotDrink } />
-                                    <img src = { hotDrink } />
-                                </div>
-                            </div>*/}
                             {
                                 result == null
                                     ? <div className ={ 'slide-container_op'} style = {{ opacity : "0%"}}>
-                                        <div className = "slide-box">
-                                            {/*<img src = { hotDrink } />
-                                            <img src = { hotDrink } />
-                                            <img src = { hotDrink } />
-                                            <img src = { hotDrink } />*/}
+                                        <div className = "temp-slide-box">
+                                            <img src = { mediumCup } />
+                                            <img src = { iceDrink } />
+                                            <img src = { noSyrup } />
+                                            <img src = { takeAway } />
                                         </div>
                                       </div>
                                     : <div className = {'slide-container_op'} >
@@ -169,15 +156,53 @@ function RightNav(props) {
             </div>
 
             {/* 오른쪽 이동버튼 */}
-            <div className = "arrowDiv" onClick={() => {
-                if(translate > -28  && translate <= 28) {
-                    translate = translate - 14;
-                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
-                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
-                }
-            }}>
-                <i className="fas fa-chevron-circle-right fa-2x"></i>
-            </div>
+            {
+                result != null
+                    ? <RightSlideBtn result = { result } trans = { trans } setTrans = { setTrans } />
+                    : <div className = "arrowDiv">
+                        <i className="fas fa-chevron-circle-right fa-2x"></i>
+                      </div>
+            }
+        </div>
+    )
+}
+
+function LeftSlideBtn (props) {
+    let temp = JSON.parse(props.result)
+    let slideNum = -(14 * (temp.length - 1));
+    console.log(temp.length)
+
+    return (
+        <div className = "arrowDiv" onClick={() => {
+            console.log("click")
+            if(props.trans >= slideNum && props.trans < 0) {
+                props.setTrans(props.trans + 14);
+                console.log(props.trans)
+
+                $('.slide-container').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
+                $('.slide-container_op').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
+            }
+        }}>
+            <i className="fas fa-chevron-circle-left fa-2x"></i>
+        </div>
+    )
+}
+
+function RightSlideBtn (props) {
+    let temp = JSON.parse(props.result)
+    let slideNum = -(14 * (temp.length - 1));
+    console.log(temp.length)
+
+    return (
+        <div className = "arrowDiv" onClick={() => {
+            if(props.trans > -slideNum  && props.trans <= slideNum) {
+                props.setTrans(props.trans - 14);
+                console.log(props.trans)
+                $('.slide-container').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
+                $('.slide-container_op').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
+            }
+        }}>
+            <i className="fas fa-chevron-circle-right fa-2x"></i>
         </div>
     )
 }
@@ -198,8 +223,6 @@ function OptionSlide(props) {
                 <div className = "slide-box-div_op">
                     {
                         options.map((num, idx2) => {
-                            console.log(options[idx2][result[idx1].options[idx2] - 1])
-
                             return (
                                 <div className = "slide-box_op">
                                     <img src = { options[idx2][result[idx1].options[idx2] - 1] } />
@@ -218,7 +241,6 @@ function MenuSlide(props) {
 
     return (
         imageArray.map((num, index) => {
-            console.log(imageArray[index].image)
             return (
                 <div className = "slide-box">
                     <img src = { imageArray[index].image } />
@@ -247,9 +269,6 @@ function Temp(detailState, menu) {
     let imageArray = [];
     let optionArray = [];
 
-    console.log("주문메뉴들")
-    console.log(detailState);
-
     /* detailArray의 길이만큼 임시 배열 생성 */
     for(let i = 0; i < detailState[0].length; i++) {
         detailArray.push(0);
@@ -259,8 +278,6 @@ function Temp(detailState, menu) {
     detailArray.map((num, index) => {
         titleArray.push(detailState[0][index].title);
         optionArray.push(detailState[0][index].options);
-        console.log(titleArray[index])
-        console.log(optionArray[index])
     })
 
     /* 이미지 고유주소 삽입 */
@@ -286,7 +303,6 @@ function Temp(detailState, menu) {
     })
 
     let result = JSON.stringify(resArray);
-    console.log(result)
 
     return result;
 }

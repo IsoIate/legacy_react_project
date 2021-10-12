@@ -55,6 +55,18 @@
     width: 100%;
 }
 
+.temp-slide-box {
+    width: 10vw;
+    margin-left: 4vw;
+    float: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.temp-slide-box img {
+    width: 25%;
+}
+
 .slide-container_op {
     width: 25vw;
     transition: all 1s;
@@ -74,7 +86,7 @@
 }
 
 .slide-box_op img {
-    width: 50%;
+    width: 25%;
     margin: 10px 0px;
 }
 

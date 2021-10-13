@@ -85,7 +85,9 @@ let menu = [coffee, bubbleTea,frappe, yogurt, ade, juice, tea, dessert]
 
 function RightNav(props) {
     let result = null;
-    let [trans, setTrans] = useState(0);
+    let translate = 0;
+    let slideNum = 0;
+
     return (
         <div className = "rightNav">
             <div style={{ display : "none" }}>
@@ -94,21 +96,29 @@ function RightNav(props) {
                         result = Temp( props.detailState, menu )
                         : null
                 }
+                {/* 이미지 개수만큼 슬라이드 값 조절 */}
+                {
+                    result != null
+                        ? slideNum = ((JSON.parse(result).length - 1) * 14)
+                        : null
+                }
             </div>
             {/* 왼쪽 이동버튼 */}
-            {
-                result != null
-                    ? <LeftSlideBtn result = { result } trans = { trans } setTrans = { setTrans } />
-                    : <div className = "arrowDiv">
-                        <i className="fas fa-chevron-circle-left fa-2x"></i>
-                      </div>
-            }
+            <div className = "arrowDiv" onClick={() => {
+                if(translate >= -slideNum && translate < 0) {
+                    translate = translate + 14;
+                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                }
+            }}>
+                <i className="fas fa-chevron-circle-left fa-2x" style={{ cursor : "pointer" }}></i>
+            </div>
             <div className = "payDetail">
                 <div className = "detailMenuDiv">
                     <div className = "navHeaders">
                         <p> 주문메뉴 </p>
                     </div>
-                    <div style={{ display : "flex", flexDirection : "column"}}>
+                    <div className = "slider">
                         <div>
                             {
                                 result == null
@@ -117,7 +127,7 @@ function RightNav(props) {
                                             <img src = { 아메리카노 } />
                                         </div>
                                       </div>
-                                    : <div className = {'slide-container'} >
+                                    : <div className = {'slide-container'} style = {{ width : ( slideNum + 14 ) + 'vw' }}>
                                         <MenuSlide result = { result }/>
                                       </div>
                             }
@@ -156,53 +166,15 @@ function RightNav(props) {
             </div>
 
             {/* 오른쪽 이동버튼 */}
-            {
-                result != null
-                    ? <RightSlideBtn result = { result } trans = { trans } setTrans = { setTrans } />
-                    : <div className = "arrowDiv">
-                        <i className="fas fa-chevron-circle-right fa-2x"></i>
-                      </div>
-            }
-        </div>
-    )
-}
-
-function LeftSlideBtn (props) {
-    let temp = JSON.parse(props.result)
-    let slideNum = -(14 * (temp.length - 1));
-    console.log(temp.length)
-
-    return (
-        <div className = "arrowDiv" onClick={() => {
-            console.log("click")
-            if(props.trans >= slideNum && props.trans < 0) {
-                props.setTrans(props.trans + 14);
-                console.log(props.trans)
-
-                $('.slide-container').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
-                $('.slide-container_op').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
-            }
-        }}>
-            <i className="fas fa-chevron-circle-left fa-2x"></i>
-        </div>
-    )
-}
-
-function RightSlideBtn (props) {
-    let temp = JSON.parse(props.result)
-    let slideNum = -(14 * (temp.length - 1));
-    console.log(temp.length)
-
-    return (
-        <div className = "arrowDiv" onClick={() => {
-            if(props.trans > -slideNum  && props.trans <= slideNum) {
-                props.setTrans(props.trans - 14);
-                console.log(props.trans)
-                $('.slide-container').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
-                $('.slide-container_op').css('transform', 'translateX(' + ( props.trans ) + 'vw)');
-            }
-        }}>
-            <i className="fas fa-chevron-circle-right fa-2x"></i>
+            <div className = "arrowDiv" onClick={() => {
+                if(translate > -slideNum  && translate <= slideNum) {
+                    translate = translate - 14;
+                    $('.slide-container').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                    $('.slide-container_op').css('transform', 'translateX(' + ( translate ) + 'vw)');
+                }
+            }}>
+                <i className="fas fa-chevron-circle-right fa-2x" style={{ cursor : "pointer" }}></i>
+            </div>
         </div>
     )
 }

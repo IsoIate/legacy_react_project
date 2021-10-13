@@ -40,9 +40,15 @@
     padding: 15px 0 1px 0;
 }
 
+.slider {
+    display: flex;
+    flex-direction: column;
+    width: 42vw;
+}
+
 .slide-container {
     width: 42vw;
-    transition: all 1s;
+    transition: transform 1s;
 }
 
 .slide-box {
@@ -69,7 +75,7 @@
 
 .slide-container_op {
     width: 25vw;
-    transition: all 1s;
+    transition: transform 1s;
     display: flex;
     flex-direction: row;
 }

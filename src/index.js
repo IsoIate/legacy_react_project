@@ -116,21 +116,28 @@ function optionReducer(state = optionState, action) {
     }
 }
 
-/* 카운터 레시피 삭제 */
-function receiptReducer(state = receiptState, action) {
-    if(action.type == "값 삭제") {
-
-    }
-}
-
 /* 카운터 주문 테이블 */
 function detailReducer(state = detailState, action) {
     if(action.type === "값 전송") {
         let copy = [...state];
-
         copy.push(action.payload);
-        /*console.log("copy : ")
-        console.log(copy)*/
+
+        return copy;
+    }
+    else if (action.type === "값 삭제") {
+        let copy = [...state];
+        /*let temp = action.payload;
+
+        copy.splice(temp, 1);*/
+        console.log(copy);
+        console.log(state);
+
+        return copy;
+    }
+    else if (action.type === "값 확인") {
+        let copy = [...state];
+        console.log(copy)
+        console.log(state);
 
         return copy;
     }

@@ -93,7 +93,7 @@ function RightNav(props) {
             <div style={{ display : "none" }}>
                 {
                     props.detailState[0] != null ?
-                        result = Temp( props.detailState, menu )
+                        result = OptionDetail( props.detailState, menu )
                         : null
                 }
                 {/* 이미지 개수만큼 슬라이드 값 조절 */}
@@ -161,7 +161,14 @@ function RightNav(props) {
                     </div>
                 </div>
                 <div className = "confirmDiv">
-                    <button className = "btn btn-success confirmBtn"> 제조 완료 </button>
+                    {/*<button type = "submit" className = "btn btn-success confirmBtn" onClick = { () => {
+                        console.log(props.detailState)
+                    }}> 제조 완료 </button>*/}
+                    {
+                        props.detailState[0] != null
+                            ? <Temp detailState = { props.detailState } Conversion = { Conversion } />
+                            : null
+                    }
                 </div>
             </div>
 
@@ -179,6 +186,46 @@ function RightNav(props) {
     )
 }
 
+function Temp(props) {
+    let detail = props.detailState[0];
+    let detailNum = [];
+
+    for(let i = 0; i < detail.length; i++) {
+        detailNum[i] = 0;
+    }
+
+
+    console.log(detail)
+
+
+    return (
+        <form action = "/makeComp" method = "post">
+            {
+                detail.map((num, idx2) => {
+                    console.log(detail[idx2].title)
+                    return (
+                        <div style={{display : "none"}}>
+                            <input type = "text" value = { detail[idx2].title }
+                                   name = "title" />
+                            <input type = "text" value = { detail[idx2].count }
+                                   name = "count" />
+                            <input type = "text" value = { detail[idx2].price }
+                                   name = "price" />
+                            <input type = "text" value = { detail[idx2].options }
+                                   name = "options" />
+                            <input type = "text" value = { detail[idx2].menuIndex }
+                                   name = "menuIndex" />
+                        </div>
+                    )
+                })
+            }
+            <button type = "submit" className = "btn btn-success confirmBtn" onClick = { () => {
+                props.dispatch({ type : "값 삭제" })
+            }}> 제조 완료 </button>
+        </form>
+    )
+}
+
 function OptionSlide(props) {
     let size = props.cupSize
     let temp = props.drinkTemp
@@ -187,7 +234,6 @@ function OptionSlide(props) {
     let options = [size, temp, syrup, deli]
 
     let result = JSON.parse(props.result);
-    console.log(result)
 
     return (
         result.map((num, idx1) => {
@@ -223,7 +269,7 @@ function MenuSlide(props) {
     )
 }
 
-function Temp(detailState, menu) {
+function OptionDetail(detailState, menu) {
     let coffeeInfo = ["아메리카노", "카페라떼", "바닐라라떼", "카페모카", "헤이즐넛", "카라멜마끼아또", "티라미수라떼"]
     let bubbleTeaInfo  = ['밀크티버블라떼', '흑당버블라떼', '달고나버블라떼', '흑당고구마라떼']
     let frappeInfo = ['자바칩프라푸치노', '쿠앤크프라푸치노', '민트초코프라푸치노', '딸기크림프라푸치노', '녹차프라푸치노']

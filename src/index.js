@@ -126,9 +126,9 @@ function detailReducer(state = detailState, action) {
     }
     else if (action.type === "값 삭제") {
         let copy = [...state];
-        /*let temp = action.payload;
 
-        copy.splice(temp, 1);*/
+        copy.splice(0);
+        console.log("삭제 완료")
         console.log(copy);
         console.log(state);
 

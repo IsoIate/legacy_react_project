@@ -1,7 +1,13 @@
 import {Button} from "react-bootstrap";
 import React from "react";
+import {useDispatch, useSelector} from "react-redux";
 
 function CardMenuDetail(props) {
+    let state = useSelector(((state) => state))
+    let dispatch = useDispatch()
+    let detailState = state.detailReducer
+
+
     return (
         <>
             <div className = "menuDiv">
@@ -62,7 +68,7 @@ function CardMenuDetail(props) {
                             </div>
                             <div className = "md1">
                                 <Button className = "submitBtn" onClick = { () => {
-
+                                    dispatch({ type : "값 전송", payload : props.req })
                                 }}>
                                     자세히
                                 </Button>

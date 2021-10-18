@@ -42,16 +42,16 @@ function Counter(props) {
 
     useEffect(() => {
         socketClient.on("payRespond", req => {
-            /*console.log("pay?")
-            console.log(req)*/
+            console.log("pay?")
+            console.log(req)
             setSocketReq(req)
         })
     }, [socketClient.on])
 
     useEffect(() => {
         socketClient.on("payCash", req => {
-            /*console.log("cash!")
-            console.log(req)*/
+            console.log("cash!")
+            console.log(req)
             setCashSocket(req)
         })
     }, [socketClient.on])

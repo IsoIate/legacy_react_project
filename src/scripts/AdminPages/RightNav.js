@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {connect} from "react-redux";
+import {connect, useDispatch} from "react-redux";
 import $ from 'jquery';
 import '../../css/AdminPages/RightNav.css';
 
@@ -66,6 +66,9 @@ import 플레인크로플 from "../../img/dessert/plainCroffle.png";
 import 아이스크림크로플 from "../../img/dessert/icecreamCroffle.png";
 import 커피콩빵 from "../../img/dessert/coffeeBeanBread.png";
 import 슈크림커피콩빵 from "../../img/dessert/custardCreamBread.png";
+import { useSelector } from "react-redux";
+import MakeCompModal from "./MakeCompModal";
+
 
 let coffee = [아메리카노, 카페라떼, 바닐라라떼, 카페모카, 헤이즐넛, 카라멜마끼아또, 티라미수라떼]
 let bubbleTea = [밀크티버블라떼, 흑당버블라떼, 달고나버블라떼, 흑당고구마라떼]
@@ -88,12 +91,19 @@ function RightNav(props) {
     let translate = 0;
     let slideNum = 0;
 
+    let state = useSelector(((state) => state))
+    let detailState = state.detailReducer
+    let dispatch = useDispatch()
+
+    console.log(detailState[0])
+
+
     return (
         <div className = "rightNav">
             <div style={{ display : "none" }}>
                 {
-                    props.detailState[0] != null ?
-                        result = OptionDetail( props.detailState, menu )
+                    detailState[0] != null ?
+                        result = OptionDetail( detailState, menu )
                         : null
                 }
                 {/* 이미지 개수만큼 슬라이드 값 조절 */}
@@ -165,9 +175,9 @@ function RightNav(props) {
                         console.log(props.detailState)
                     }}> 제조 완료 </button>*/}
                     {
-                        props.detailState[0] != null
-                            ? <Temp detailState = { props.detailState } Conversion = { Conversion } />
-                            : null
+                        detailState[0] != null
+                            ? <Temp detailState = { detailState } dispatch = { dispatch } />
+                            : <button type = "submit" className = "btn btn-success confirmBtn"> 제조 완료 </button>
                     }
                 </div>
             </div>
@@ -190,6 +200,10 @@ function Temp(props) {
     let detail = props.detailState[0];
     let detailNum = [];
 
+    const [show, setShow] = useState(false);
+    const close = () => setShow(false);
+    const open = () => setShow(true);
+
     for(let i = 0; i < detail.length; i++) {
         detailNum[i] = 0;
     }
@@ -199,30 +213,39 @@ function Temp(props) {
 
 
     return (
-        <form action = "/makeComp" method = "post">
+        <>
+            <form action = "/makeComp" method = "post">
+                {
+                    detail.map((num, idx2) => {
+                        console.log(detail[idx2].title)
+                        return (
+                            <div style={{display : "none"}}>
+                                <input type = "text" value = { detail[idx2].title }
+                                       name = "title" />
+                                <input type = "text" value = { detail[idx2].count }
+                                       name = "count" />
+                                <input type = "text" value = { detail[idx2].price }
+                                       name = "price" />
+                                <input type = "text" value = { detail[idx2].options }
+                                       name = "options" />
+                                <input type = "text" value = { detail[idx2].menuIndex }
+                                       name = "menuIndex" />
+                            </div>
+                        )
+                    })
+                }
+                <button type = "submit" className = "btn btn-success confirmBtn" onClick = { () => {
+                    open();
+                    /*props.dispatch({ type : "값 삭제" })*/
+                    console.log("click")
+                }}> 제조 완료 </button>
+            </form>
             {
-                detail.map((num, idx2) => {
-                    console.log(detail[idx2].title)
-                    return (
-                        <div style={{display : "none"}}>
-                            <input type = "text" value = { detail[idx2].title }
-                                   name = "title" />
-                            <input type = "text" value = { detail[idx2].count }
-                                   name = "count" />
-                            <input type = "text" value = { detail[idx2].price }
-                                   name = "price" />
-                            <input type = "text" value = { detail[idx2].options }
-                                   name = "options" />
-                            <input type = "text" value = { detail[idx2].menuIndex }
-                                   name = "menuIndex" />
-                        </div>
-                    )
-                })
+                show === true ?
+                    < MakeCompModal show = { show } onHide = { close } />
+                    : null
             }
-            <button type = "submit" className = "btn btn-success confirmBtn" onClick = { () => {
-                props.dispatch({ type : "값 삭제" })
-            }}> 제조 완료 </button>
-        </form>
+        </>
     )
 }
 
@@ -325,11 +348,14 @@ function OptionDetail(detailState, menu) {
     return result;
 }
 
-/* state를 props로 변환 */
+
+export default RightNav;
+
+/*/!* state를 props로 변환 *!/
 function Conversion(state) {
     return {
         detailState : state.detailReducer
     }
-}
+}*/
 
-export default connect(Conversion)(RightNav);
+/*export default connect(Conversion)(RightNav);*/

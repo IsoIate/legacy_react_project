@@ -1,31 +1,29 @@
-import React from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import Countdown from 'react-countdown';
 import {Button, Modal} from "react-bootstrap";
-
+import '../../css/AdminPages/MakeCompModal.css'
 
 function MakeCompModal(props) {
+    const renderer = ({ seconds }) => {
+        return (
+            <span> { seconds }초 후에 창이 닫힙니다. </span>
+        );
+    };
+
     return (
         <>
             <Modal show = { props.show } onHide = { props.onHide } >
-                <Modal.Header className = "resetHeader">
-                    <div className = "headerDiv">
-                        <h1><i className="fas fa-exclamation-triangle"></i> 제조 완료 <i
-                            className="fas fa-exclamation-triangle"></i></h1>
-                    </div>
-
+                <Modal.Header className = "modalHeader">
+                    <h3><i className="far fa-check-circle"></i> 제조 완료 </h3>
                 </Modal.Header>
 
-                <Modal.Body className = "resetBody">
-                    <div>
-                        <h3> 메뉴 제조를 완료했습니다. </h3>
-                    </div>
+                <Modal.Body>
+                    <h4> 메뉴 제조를 완료했습니다. </h4>
                 </Modal.Body>
 
                 <Modal.Footer>
-
-                    <Button variant="success" onClick={() => {
-                        props.onHide();
-                    }}> 확인 </Button>
-
+                    <Countdown date={Date.now() + 3000} renderer = { renderer } />
+                    {/*<p> { sec } 초 후에 종료됩니다. </p>*/}
                 </Modal.Footer>
             </Modal>
         </>

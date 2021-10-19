@@ -230,6 +230,8 @@ function Temp(props) {
                                        name = "options" />
                                 <input type = "text" value = { detail[idx2].menuIndex }
                                        name = "menuIndex" />
+                                <input type = "text" value = { detail[idx2].payment }
+                                       name = "payment" />
                             </div>
                         )
                     })
@@ -343,7 +345,7 @@ function OptionDetail(detailState, menu) {
         resArray.push(data);
     })
 
-    let result = JSON.stringify(resArray);
+    let result = JSON.stringify(resArray)
 
     return result;
 }

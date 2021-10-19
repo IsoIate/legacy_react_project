@@ -65,7 +65,7 @@ function CashMenuDetail(props) {
                                 <Button className = "submitBtn" onClick = { () => {
                                     /*console.log("req?")
                                     console.log(props.req)*/
-                                    props.dispatch({ type : "값 전송", payload : props.req })
+                                    props.dispatch({ type : "값 전송", payload : { data : props.req, payment : props.cash }})
                                 }}>
                                     자세히
                                 </Button>

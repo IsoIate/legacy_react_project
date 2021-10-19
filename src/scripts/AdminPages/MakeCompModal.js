@@ -23,7 +23,6 @@ function MakeCompModal(props) {
 
                 <Modal.Footer>
                     <Countdown date={Date.now() + 3000} renderer = { renderer } />
-                    {/*<p> { sec } 초 후에 종료됩니다. </p>*/}
                 </Modal.Footer>
             </Modal>
         </>

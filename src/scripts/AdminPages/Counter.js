@@ -22,23 +22,23 @@ function Counter(props) {
 
     let history = useHistory();
 
-    let [data, setData] = useState(null);
+    /*let [data, setData] = useState(null);*/
     let [socketReq, setSocketReq] = useState(null);
     let [cashSocket, setCashSocket] = useState(null);
     let [cardSocket, setCardSocket] = useState(null);
 
     /* getCounter라는 url로 접속했을 때 아래 코드 실행 */
-    useEffect(() => {
+    /*useEffect(() => {
 
         axios.get('/getCounter')
 
             .then(( res ) => {
                 setData(res.data.comp)
-                /*console.log(res.data.comp)*/
+                /!*console.log(res.data.comp)*!/
             })
             .catch(( error )=>{ console.log( error ) })
 
-    }, [])
+    }, [])*/
 
     useEffect(() => {
         socketClient.on("payRespond", req => {

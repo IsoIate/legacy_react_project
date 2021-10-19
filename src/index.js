@@ -120,8 +120,27 @@ function optionReducer(state = optionState, action) {
 function detailReducer(state = detailState, action) {
     if(action.type === "값 전송") {
         let copy = [...state];
-        copy.push(action.payload);
+        let jsonArray = new Array();
+        let temp = action.payload.data;
 
+        for(let i = 0; i < action.payload.data.length; i++) {
+            let data = new Object();
+
+            data.title = temp[i].title;
+            data.count = temp[i].count;
+            data.price = temp[i].price;
+            data.options = temp[i].options;
+            data.menuIndex = temp[i].menuIndex;
+            data.payment = action.payload.payment[2];
+
+            jsonArray.push(data);
+        }
+
+        let result = JSON.stringify(jsonArray);
+        result = JSON.parse(result);
+        console.log(result)
+
+        copy.push(result);
         return copy;
     }
     else if (action.type === "값 삭제") {
